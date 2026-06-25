@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Sanjay G M — Full-Stack Developer specializing in Java, Spring Boot, React.js, and AI-powered applications.">
+  <meta name="author" content="Sanjay G M">
+  <title>Sanjay G M — Full-Stack Developer</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090d'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-weight='700' font-size='26' fill='%2300e5ff'%3ESG%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- GSAP Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+  <style>
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+    :root {
+      --bg: #07090d;
+      --bg-card: rgba(255, 255, 255, 0.02);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(255, 255, 255, 0.15);
+      --text: #ffffff;
+      --text-secondary: #8a8f98;
+      --text-muted: #666;
+      --accent: #00e5ff;
+      --accent-glow: rgba(0, 229, 255, 0.3);
+      --accent-subtle: rgba(0, 229, 255, 0.05);
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    html { scroll-behavior: auto; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Site Background (Grid & Glows) */
+    .site-bg {
+      position: fixed; inset: 0; z-index: -1; pointer-events: none;
+    }
+    .site-bg-grid {
+      position: absolute; inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 50px 50px;
+      mask-image: radial-gradient(ellipse at top, black 40%, transparent 80%);
+      -webkit-mask-image: radial-gradient(ellipse at top, black 40%, transparent 80%);
+      will-change: transform;
+    }
+    .site-bg-glow {
+      position: absolute;
+      top: -20%; left: 50%; transform: translateX(-50%);
+      width: 100vw; height: 100vw; max-width: 1200px; max-height: 1200px;
+      background: radial-gradient(circle, rgba(0,229,255,0.04) 0%, transparent 60%);
+    }
+
+    a { color: var(--text); text-decoration: none; transition: color 0.2s; }
+    a:hover { color: var(--accent); }
+
+    /* ---------- NAV ---------- */
+    .nav {
+      position: fixed; top:0; left:0; right:0; z-index: 100;
+      height: 80px; display: flex; align-items: center;
+      border-bottom: 1px solid transparent;
+      transition: border-bottom-color 0.3s, background 0.3s;
+    }
+    .nav.scrolled {
+      background: rgba(7, 9, 13, 0.85); backdrop-filter: blur(12px);
+      border-bottom-color: var(--border);
+    }
+    .nav-inner {
+      width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 32px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .nav-logo { font-weight: 700; font-size: 1.25rem; letter-spacing: -0.5px; z-index: 101;}
+    .nav-logo span { color: var(--accent); }
+
+    /* Hamburger */
+    .nav-toggle {
+      background: none; border: none; cursor: pointer;
+      width: 40px; height: 40px; position: relative; z-index: 101;
+    }
+    .nav-toggle span {
+      display: block; width: 24px; height: 2px; background: var(--text);
+      position: absolute; left: 8px; transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .nav-toggle span:nth-child(1) { top: 13px; }
+    .nav-toggle span:nth-child(2) { top: 19px; }
+    .nav-toggle span:nth-child(3) { top: 25px; }
+    .nav-toggle.open span:nth-child(1) { top: 19px; transform: rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { top: 19px; transform: rotate(-45deg); }
+
+    /* Menu Overlay (Managed by GSAP now) */
+    .menu-overlay {
+      position: fixed; inset: 0;
+      background: rgba(7, 9, 13, 0.96); backdrop-filter: blur(20px);
+      z-index: 99; display: flex; align-items: center; justify-content: center;
+      visibility: hidden; opacity: 0;
+    }
+    .menu-content {
+      width: 100%; max-width: 1200px; padding: 0 32px;
+      display: flex; justify-content: space-between; align-items: stretch; gap: 60px;
+    }
+    .menu-links {
+      display: flex; flex-direction: column; gap: 4px;
+    }
+    .menu-link {
+      font-size: clamp(3rem, 6vw, 5rem); font-weight: 300; letter-spacing: -2px;
+      color: var(--text-secondary); line-height: 1.1;
+      transition: color 0.3s, transform 0.3s; display: block;
+    }
+    .menu-link:hover, .menu-link.active { color: var(--text); transform: translateX(10px); }
+
+    .menu-aside {
+      display: flex; flex-direction: column; gap: 48px; justify-content: center;
+      min-width: 280px;
+    }
+    .menu-eyebrow {
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--accent); margin-bottom: 20px;
+    }
+    .menu-group { display: flex; flex-direction: column; gap: 16px; }
+    .menu-action {
+      font-size: 1rem; font-weight: 500; color: var(--text);
+      padding-bottom: 8px; border-bottom: 1px solid var(--border);
+      display: inline-flex; width: fit-content; transition: border-color 0.2s;
+    }
+    .menu-action:hover { border-bottom-color: var(--accent); }
+    .menu-social-link { font-size: 1rem; color: var(--text-secondary); transition: color 0.2s; }
+    .menu-social-link:hover { color: var(--text); }
+
+    /* ---------- LAYOUT ---------- */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+
+    section { padding: 120px 0; position: relative; }
+    
+    .section-eyebrow {
+      font-size: 0.8rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 2px; color: var(--accent); margin-bottom: 16px; display: block;
+    }
+    .section-heading {
+      font-size: clamp(2rem, 4vw, 3.5rem); font-weight: 300; color: var(--text);
+      margin-bottom: 24px; letter-spacing: -1px; line-height: 1.2;
+    }
+    .section-sub {
+      font-size: 1.1rem; color: var(--text-secondary); max-width: 600px;
+      margin-bottom: 48px; line-height: 1.6; font-weight: 300;
+    }
+
+    /* ---------- HERO (GSAP Setup) ---------- */
+    .hero-wrapper {
+      height: 300vh; /* Provides the scroll space for the animation */
+      position: relative;
+    }
+    .hero {
+      height: 100vh;
+      position: sticky; top: 0;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; overflow: hidden; padding-top: 0;
+    }
+    .hero-gate {
+      position: absolute; inset: 0; z-index: -1;
+      display: flex; align-items: center; justify-content: center;
+      transform-origin: center center;
+    }
+    .hero-gate svg { width: 100%; height: 100%; max-width: 750px; opacity: 1; }
+    .hero-gate path.inner { filter: drop-shadow(0 0 15px rgba(0,229,255,0.8)); }
+
+    .hero-road {
+      position: absolute; bottom: -20vh; left: -50vw; right: -50vw; height: 80vh;
+      background-image: 
+        linear-gradient(to right, rgba(0,229,255,0.15) 1px, transparent 1px),
+        linear-gradient(to top, rgba(0,229,255,0.1) 1px, transparent 1px);
+      background-size: 80px 80px;
+      transform: perspective(600px) rotateX(75deg);
+      transform-origin: top center;
+      mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 80%);
+      -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, transparent 80%);
+      z-index: 0;
+    }
+
+    .hero-charts {
+      position: absolute; inset: 0; z-index: -2; opacity: 0.3;
+      display: flex; justify-content: space-between; padding: 0 2vw;
+      pointer-events: none; mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+    }
+    .chart-svg { width: 20vw; height: 100%; max-width: 200px; }
+
+    .hero-inner { max-width: 1000px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 2; will-change: transform, opacity; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; text-align: center; }
+    
+    .hero-top-text {
+      font-size: clamp(1.2rem, 3vw, 2.2rem); font-weight: 300; color: var(--text);
+      letter-spacing: 0px; margin-bottom: 5px; opacity: 0.9;
+    }
+    
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 4rem); font-weight: 800; color: #fff;
+      line-height: 1; letter-spacing: -1px; margin-bottom: 24px;
+      text-shadow: 0 0 40px rgba(255,255,255,0.1); text-transform: uppercase;
+    }
+    
+    .hero-subtext {
+      font-size: 1.1rem; color: var(--text-secondary); word-spacing: 2px;
+      margin-bottom: 40px; font-weight: 400; letter-spacing: 0.5px;
+    }
+
+    .hero-actions { display: flex; gap: 20px; justify-content: center; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px 28px; border-radius: 8px;
+      font-family: var(--font); font-size: 0.95rem; font-weight: 500;
+      cursor: pointer; border: 1px solid transparent; text-decoration: none;
+      transition: all 0.3s ease;
+    }
+    .btn-pill {
+      border-radius: 50px; border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.02); backdrop-filter: blur(10px);
+      padding: 12px 32px;
+    }
+    .btn-pill:hover { border-color: var(--accent); background: rgba(0,229,255,0.05); box-shadow: 0 0 20px var(--accent-glow); }
+
+    /* ---------- ABOUT ---------- */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .about-text { font-size: 1.05rem; color: var(--text-secondary); line-height: 1.7; font-weight: 300; margin-bottom: 24px; }
+    .about-text strong { color: var(--text); font-weight: 500; }
+
+    .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+    .stat-box { background: var(--bg); padding: 40px 32px; text-align: center; transition: background 0.3s; }
+    .stat-box:hover { background: var(--bg-card); }
+    .stat-num { font-size: 3rem; font-weight: 300; color: var(--text); letter-spacing: -2px; line-height: 1; margin-bottom: 8px; }
+    .stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+    /* ---------- PROJECTS ---------- */
+    .project-list { display: flex; flex-direction: column; gap: 32px; }
+    .project {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 48px; transition: all 0.4s ease;
+      backdrop-filter: blur(10px); position: relative; overflow: hidden;
+    }
+    .project::before {
+      content: ''; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255,255,255,0.06), transparent 40%);
+      opacity: 0; transition: opacity 0.5s;
+    }
+    .project:hover::before { opacity: 1; }
+    .project:hover { border-color: var(--border-light); transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+
+    .project-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+    .project-title { font-size: 1.75rem; font-weight: 300; color: var(--text); letter-spacing: -1px; }
+    .project-links-row { display: flex; gap: 16px; }
+    .project-link { font-size: 0.9rem; font-weight: 500; color: var(--accent); display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 50px; background: var(--accent-subtle); border: 1px solid rgba(0,229,255,0.1); transition: all 0.2s; }
+    .project-link:hover { background: rgba(0,229,255,0.1); box-shadow: 0 0 15px var(--accent-glow); }
+    .project-link svg { width: 16px; height: 16px; }
+
+    .project-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .tag { font-size: 0.8rem; font-weight: 500; padding: 4px 12px; border-radius: 6px; color: var(--text-secondary); background: rgba(255,255,255,0.03); border: 1px solid var(--border); letter-spacing: 0.5px; }
+
+    .project-desc { list-style: none; }
+    .project-desc li { font-size: 1rem; color: var(--text-secondary); line-height: 1.6; font-weight: 300; padding-left: 20px; position: relative; margin-bottom: 12px; }
+    .project-desc li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-family: monospace; }
+
+    /* ---------- EXPERIENCE ---------- */
+    .exp-card {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 48px; max-width: 800px;
+      backdrop-filter: blur(10px); position: relative;
+    }
+    .exp-card::after {
+      content:''; position:absolute; left:-1px; top:48px; bottom:48px; width:2px;
+      background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+    }
+    .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 16px; margin-bottom: 8px; }
+    .exp-role { font-size: 1.5rem; font-weight: 300; color: var(--text); letter-spacing: -0.5px; }
+    .exp-date { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+    .exp-company { font-size: 1rem; color: var(--accent); margin-bottom: 24px; font-weight: 500; }
+    .exp-list { list-style: none; }
+    .exp-list li { font-size: 1rem; color: var(--text-secondary); line-height: 1.6; font-weight: 300; padding-left: 20px; position: relative; margin-bottom: 12px; }
+    .exp-list li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-family: monospace; }
+
+    /* ---------- SKILLS ---------- */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .skill-group {
+      background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 32px; backdrop-filter: blur(10px);
+      transition: all 0.3s;
+    }
+    .skill-group:hover { border-color: var(--border-light); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+    .skill-group-name { font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; color: var(--text); margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+    .skill-group-name::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .skill-item { font-size: 0.9rem; font-weight: 400; color: var(--text-secondary); padding: 6px 14px; border-radius: 6px; background: rgba(255,255,255,0.02); border: 1px solid var(--border); transition: all 0.2s; }
+    .skill-item:hover { color: var(--accent); border-color: rgba(0,229,255,0.3); background: rgba(0,229,255,0.05); }
+
+    /* ---------- CERTIFICATIONS & EDUCATION ---------- */
+    .dual-section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+    .cert-list { display: flex; flex-direction: column; gap: 16px; }
+    .cert-entry { display: flex; align-items: flex-start; gap: 16px; padding: 20px; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--border); font-size: 0.95rem; color: var(--text-secondary); font-weight: 300; transition: all 0.2s; }
+    .cert-entry:hover { border-color: var(--border-light); background: rgba(255,255,255,0.04); transform: translateX(4px); }
+    .cert-icon { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+
+    .edu-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-bottom: 24px; transition: all 0.2s; position: relative; overflow: hidden; }
+    .edu-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background: var(--accent); opacity:0.5; transition:0.3s; }
+    .edu-card:hover { border-color: var(--border-light); }
+    .edu-card:hover::before { opacity: 1; box-shadow: 0 0 15px var(--accent); }
+    .edu-degree { font-size: 1.25rem; font-weight: 300; color: var(--text); margin-bottom: 8px; }
+    .edu-school { font-size: 0.95rem; color: var(--text-secondary); margin-bottom: 20px; font-weight: 300; }
+    .edu-meta { display: flex; gap: 12px; }
+    .edu-tag { font-size: 0.8rem; font-weight: 500; padding: 4px 12px; border-radius: 4px; }
+    .edu-tag.score { color: var(--bg); background: var(--text); }
+    .edu-tag.year { color: var(--text-muted); border: 1px solid var(--border); }
+
+    /* ---------- CONTACT ---------- */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+    .contact-text { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.7; font-weight: 300; margin-bottom: 32px; }
+    .contact-text em { font-style: normal; color: var(--accent); font-weight: 500; }
+    .contact-links { display: flex; flex-direction: column; gap: 12px; }
+    .contact-link { display: flex; align-items: center; gap: 16px; font-size: 1rem; color: var(--text-secondary); padding: 16px 20px; border-radius: 12px; background: var(--bg-card); border: 1px solid var(--border); text-decoration: none; transition: all 0.3s; }
+    .contact-link:hover { border-color: var(--border-light); color: var(--text); background: rgba(255,255,255,0.04); transform: translateX(4px); }
+    .contact-link svg { width: 20px; height: 20px; color: var(--accent); }
+
+    .form-box { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 40px; backdrop-filter: blur(10px); }
+    .form-group { margin-bottom: 24px; }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+    .form-group input, .form-group textarea { width: 100%; padding: 14px 16px; background: rgba(0,0,0,0.2); border: 1px solid var(--border); border-radius: 8px; color: var(--text); font-family: var(--font); font-size: 1rem; outline: none; transition: all 0.3s; }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent), 0 0 15px rgba(0,229,255,0.1); }
+    .form-group textarea { min-height: 120px; resize: vertical; }
+
+    /* ---------- FOOTER ---------- */
+    .footer { padding: 60px 0; text-align: center; border-top: 1px solid var(--border); margin-top: 60px; }
+    .footer-links { display: flex; gap: 24px; justify-content: center; margin-bottom: 24px; }
+    .footer-links a { color: var(--text-muted); transition: color 0.3s, transform 0.3s; }
+    .footer-links a:hover { color: var(--accent); transform: translateY(-2px); }
+    .footer-links svg { width: 24px; height: 24px; }
+    .footer p { font-size: 0.9rem; color: var(--text-muted); font-weight: 300; }
+
+    /* Initial state for GSAP targets to avoid FOUC */
+    .gsap-reveal { opacity: 0; transform: translateY(30px); }
+
+    /* ---------- BACK TO TOP ---------- */
+    .back-to-top {
+      position: fixed; bottom: 30px; right: 30px; width: 45px; height: 45px;
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; color: var(--accent);
+      cursor: pointer; z-index: 90; opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(10px);
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover { border-color: var(--accent); box-shadow: 0 0 15px var(--accent-glow); transform: translateY(-3px); }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 900px) {
+      .menu-content { flex-direction: column; justify-content: center; text-align: center; gap: 40px; }
+      .menu-link { font-size: 3.5rem; }
+      .menu-aside { align-items: center; }
+      .menu-action { margin: 0 auto; }
+      .about-grid, .dual-section-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      section { padding: 80px 0; }
+      .hero h1 { font-size: 2.2rem; }
+    }
+    @media (max-width: 600px) {
+      .project-top { flex-direction: column; }
+      .exp-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+      .hero-actions { flex-direction: column; width: 100%; max-width: 300px; margin: 0 auto; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="site-bg">
+  <div class="site-bg-grid" id="bgGrid"></div>
+  <div class="site-bg-glow"></div>
+</div>
+
+<!-- ========== NAV ========== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">gms<span>.</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- FULL SCREEN MENU -->
+<div class="menu-overlay" id="menuOverlay">
+  <div class="menu-content">
+    <nav class="menu-links">
+      <a href="#about" class="menu-link menu-item" data-nav>About</a>
+      <a href="#projects" class="menu-link menu-item" data-nav>Projects</a>
+      <a href="#experience" class="menu-link menu-item" data-nav>Experience</a>
+      <a href="#skills" class="menu-link menu-item" data-nav>Skills</a>
+      <a href="#certifications" class="menu-link menu-item" data-nav>Certifications</a>
+      <a href="#contact" class="menu-link menu-item" data-nav>Contact</a>
+    </nav>
+    <div class="menu-aside">
+      <div class="menu-group menu-aside-item">
+        <p class="menu-eyebrow">Access</p>
+        <a href="#projects" class="menu-action" data-nav>View Projects</a>
+        <a href="https://drive.google.com/file/d/1CWXPUpHOEnLvhLk1zL-_NAraNiW37hwA/view?usp=sharing" target="_blank" class="menu-action" id="resumeBtnMenu">Download Resume</a>
+      </div>
+      <div class="menu-group menu-aside-item">
+        <p class="menu-eyebrow">Social</p>
+        <a href="https://github.com/gms26" target="_blank" class="menu-social-link">GitHub</a>
+        <a href="https://www.linkedin.com/in/sanjay-g-m-55893a287/" target="_blank" class="menu-social-link">LinkedIn</a>
+        <a href="https://leetcode.com/u/gms_26/" target="_blank" class="menu-social-link">LeetCode</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== HERO WRAPPER FOR SCROLL EFFECT ========== -->
+<div class="hero-wrapper" id="heroWrapper">
+  <section class="hero" id="hero">
+    
+    <!-- Left & Right Candlestick Backgrounds -->
+    <div class="hero-charts" id="heroCharts">
+      <svg class="chart-svg" viewBox="0 0 200 400" fill="none">
+        <rect x="20" y="150" width="6" height="40" fill="#00e5ff" opacity="0.3"/> <line x1="23" y1="130" x2="23" y2="200" stroke="#00e5ff" stroke-width="2" opacity="0.3"/>
+        <rect x="40" y="170" width="6" height="50" fill="#00e5ff" opacity="0.4"/> <line x1="43" y1="160" x2="43" y2="230" stroke="#00e5ff" stroke-width="2" opacity="0.4"/>
+        <rect x="60" y="140" width="6" height="30" fill="#7b5ea7" opacity="0.5"/> <line x1="63" y1="120" x2="63" y2="180" stroke="#7b5ea7" stroke-width="2" opacity="0.5"/>
+        <rect x="80" y="100" width="6" height="60" fill="#00e5ff" opacity="0.6"/> <line x1="83" y1="80" x2="83" y2="180" stroke="#00e5ff" stroke-width="2" opacity="0.6"/>
+        <rect x="100" y="110" width="6" height="40" fill="#00e5ff" opacity="0.7"/> <line x1="103" y1="90" x2="103" y2="170" stroke="#00e5ff" stroke-width="2" opacity="0.7"/>
+        <rect x="120" y="80" width="6" height="50" fill="#7b5ea7" opacity="0.6"/> <line x1="123" y1="60" x2="123" y2="140" stroke="#7b5ea7" stroke-width="2" opacity="0.6"/>
+        <rect x="140" y="50" width="6" height="70" fill="#00e5ff" opacity="0.5"/> <line x1="143" y1="30" x2="143" y2="140" stroke="#00e5ff" stroke-width="2" opacity="0.5"/>
+        <rect x="160" y="70" width="6" height="40" fill="#00e5ff" opacity="0.4"/> <line x1="163" y1="50" x2="163" y2="130" stroke="#00e5ff" stroke-width="2" opacity="0.4"/>
+        <rect x="180" y="90" width="6" height="30" fill="#7b5ea7" opacity="0.3"/> <line x1="183" y1="70" x2="183" y2="130" stroke="#7b5ea7" stroke-width="2" opacity="0.3"/>
+      </svg>
+      <svg class="chart-svg" viewBox="0 0 200 400" fill="none" style="transform: scaleX(-1);">
+        <rect x="20" y="150" width="6" height="40" fill="#00e5ff" opacity="0.3"/> <line x1="23" y1="130" x2="23" y2="200" stroke="#00e5ff" stroke-width="2" opacity="0.3"/>
+        <rect x="40" y="170" width="6" height="50" fill="#00e5ff" opacity="0.4"/> <line x1="43" y1="160" x2="43" y2="230" stroke="#00e5ff" stroke-width="2" opacity="0.4"/>
+        <rect x="60" y="140" width="6" height="30" fill="#7b5ea7" opacity="0.5"/> <line x1="63" y1="120" x2="63" y2="180" stroke="#7b5ea7" stroke-width="2" opacity="0.5"/>
+        <rect x="80" y="100" width="6" height="60" fill="#00e5ff" opacity="0.6"/> <line x1="83" y1="80" x2="83" y2="180" stroke="#00e5ff" stroke-width="2" opacity="0.6"/>
+        <rect x="100" y="110" width="6" height="40" fill="#00e5ff" opacity="0.7"/> <line x1="103" y1="90" x2="103" y2="170" stroke="#00e5ff" stroke-width="2" opacity="0.7"/>
+        <rect x="120" y="80" width="6" height="50" fill="#7b5ea7" opacity="0.6"/> <line x1="123" y1="60" x2="123" y2="140" stroke="#7b5ea7" stroke-width="2" opacity="0.6"/>
+        <rect x="140" y="50" width="6" height="70" fill="#00e5ff" opacity="0.5"/> <line x1="143" y1="30" x2="143" y2="140" stroke="#00e5ff" stroke-width="2" opacity="0.5"/>
+        <rect x="160" y="70" width="6" height="40" fill="#00e5ff" opacity="0.4"/> <line x1="163" y1="50" x2="163" y2="130" stroke="#00e5ff" stroke-width="2" opacity="0.4"/>
+        <rect x="180" y="90" width="6" height="30" fill="#7b5ea7" opacity="0.3"/> <line x1="183" y1="70" x2="183" y2="130" stroke="#7b5ea7" stroke-width="2" opacity="0.3"/>
+      </svg>
+    </div>
+
+    <!-- The Glowing Gate -->
+    <div class="hero-gate" id="heroGate">
+       <!-- Perspective Road inside the gate container so it scales together -->
+       <div class="hero-road"></div>
+       <svg viewBox="0 0 500 600" preserveAspectRatio="xMidYMax slice" fill="none">
+         <!-- Outer Arch -->
+         <path d="M50 600 L50 250 A200 200 0 0 1 450 250 L450 600" stroke="rgba(0,229,255,0.4)" stroke-width="2"/>
+         <!-- Inner Arch -->
+         <path class="inner" d="M70 600 L70 250 A180 180 0 0 1 430 250 L430 600" stroke="#00e5ff" stroke-width="4"/>
+         <!-- Floor connector lines -->
+         <line x1="50" y1="600" x2="450" y2="600" stroke="rgba(0,229,255,0.4)" stroke-width="2"/>
+       </svg>
+    </div>
+
+    <!-- The Text Content -->
+    <div class="hero-inner" id="heroInner">
+      <div class="hero-top-text">Strategy Through Code</div>
+      <h1>SANJAY</h1>
+      <p class="hero-subtext">Build now &bull; Rewind history &bull; Watch it live</p>
+      
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-pill">View Projects &rarr;</a>
+        <a href="https://drive.google.com/file/d/1CWXPUpHOEnLvhLk1zL-_NAraNiW37hwA/view?usp=sharing" target="_blank" class="btn btn-pill" style="background: transparent; border-color: rgba(255,255,255,0.3);">Download Resume</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ========== ABOUT ========== -->
+<section id="about" class="content-section">
+  <div class="container">
+    <span class="section-eyebrow gsap-reveal">About</span>
+    <h2 class="section-heading gsap-reveal">Logic meets intuition</h2>
+
+    <div class="about-grid">
+      <div class="gsap-reveal">
+        <p class="about-text">
+          Full-stack developer with strong expertise in backend engineering, REST APIs, and scalable web applications. Solved 400+ LeetCode problems with solid foundations in Data Structures and Algorithms. Experienced in building AI-powered and real-time applications using Java, Spring Boot, React, PostgreSQL, and Python.
+        </p>
+      </div>
+
+      <div class="stats-grid gsap-reveal">
+        <div class="stat-box">
+          <div class="stat-num">400+</div>
+          <div class="stat-label">LeetCode Problems Solved</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">3</div>
+          <div class="stat-label">Full-Stack Projects</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">1</div>
+          <div class="stat-label">AI Internship</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">7.74</div>
+          <div class="stat-label">CGPA</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== PROJECTS ========== -->
+<section id="projects" class="content-section">
+  <div class="container">
+    <span class="section-eyebrow gsap-reveal">Projects</span>
+    <h2 class="section-heading gsap-reveal">Built to scale</h2>
+    <p class="section-sub gsap-reveal">A selection of platforms I've architected — from real-time systems to AI-powered tools.</p>
+
+    <div class="project-list">
+      <div class="project gsap-reveal">
+        <div class="project-top">
+          <h3 class="project-title">CivicPulse</h3>
+          <div class="project-links-row">
+            <a href="https://civicpulse-d6a0.onrender.com/" target="_blank" class="project-link">Live Demo</a>
+            <a href="https://github.com/gms26/CivicPulse" target="_blank" class="project-link">Source</a>
+          </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">React.js</span><span class="tag">PostgreSQL</span><span class="tag">WebSocket</span><span class="tag">JWT</span><span class="tag">Docker</span>
+        </div>
+        <ul class="project-desc">
+          <li>Engineered a real-time civic issue management platform supporting Citizens and Admin workflows</li>
+          <li>Designed RESTful APIs with JWT-based authentication and role-based authorization using Spring Security</li>
+          <li>Implemented WebSocket (STOMP)-based live notifications supporting real-time issue tracking workflows</li>
+          <li>Containerized and deployed using Docker and Render with PostgreSQL</li>
+        </ul>
+      </div>
+
+      <div class="project gsap-reveal">
+        <div class="project-top">
+          <h3 class="project-title">Forecasting Platform</h3>
+          <div class="project-links-row">
+            <a href="https://forcasting-gsyx.onrender.com/" target="_blank" class="project-link">Live Demo</a>
+            <a href="https://github.com/gms26/Forcasting" target="_blank" class="project-link">Source</a>
+          </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">React.js</span><span class="tag">FastAPI</span><span class="tag">Python</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Gemini AI</span>
+        </div>
+        <ul class="project-desc">
+          <li>Built an AI-powered forecasting platform for analyzing historical data and generating predictive insights</li>
+          <li>Developed FastAPI backend services for CSV processing, missing-value handling, and forecasting workflows</li>
+          <li>Integrated Google Gemini AI to generate human-readable business insights from forecasted data</li>
+          <li>Processed large-scale historical datasets using ARIMA and Holt-Winters models</li>
+        </ul>
+      </div>
+
+      <div class="project gsap-reveal">
+        <div class="project-top">
+          <h3 class="project-title">Smart Code Translator</h3>
+          <div class="project-links-row">
+            <a href="https://smart-code-translator-kappa.vercel.app/" target="_blank" class="project-link">Live Demo</a>
+            <a href="https://github.com/gms26/Smart-Code-Translator" target="_blank" class="project-link">Source</a>
+          </div>
+        </div>
+        <div class="project-tags">
+          <span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">Express.js</span><span class="tag">MongoDB</span><span class="tag">Gemini AI</span>
+        </div>
+        <ul class="project-desc">
+          <li>Developed a full-stack AI-powered code translation platform using React.js and Express.js with secure client-server architecture</li>
+          <li>Integrated Google Gemini AI APIs to perform syntax-aware code translation across multiple programming languages</li>
+          <li>Implemented Monaco Editor for real-time syntax highlighting and in-browser code editing similar to VS Code</li>
+          <li>Designed secure authentication and scalable REST API workflows using Google OAuth, JWT, and MongoDB</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EXPERIENCE ========== -->
+<section id="experience" class="content-section">
+  <div class="container">
+    <span class="section-eyebrow gsap-reveal">Experience</span>
+    <h2 class="section-heading gsap-reveal">Time through logic</h2>
+    
+    <div class="exp-card gsap-reveal">
+      <div class="exp-header">
+        <span class="exp-role">AI Intern</span>
+        <span class="exp-date">June 2025</span>
+      </div>
+      <p class="exp-company">Gateway Software Solutions</p>
+      <ul class="exp-list">
+        <li>Developed a real-time crop suitability prediction system using DeepSeek and Mistral APIs</li>
+        <li>Processed agricultural datasets including soil conditions, weather patterns, and crop yield parameters</li>
+        <li>Integrated AI-based recommendation workflows to improve prediction accuracy and automation</li>
+        <li>Collaborated on backend integration and scalable AI-driven data processing workflows</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ========== SKILLS ========== -->
+<section id="skills" class="content-section">
+  <div class="container">
+    <span class="section-eyebrow gsap-reveal">Skills</span>
+    <h2 class="section-heading gsap-reveal">The stack</h2>
+
+    <div class="skills-grid">
+      <div class="skill-group gsap-reveal">
+        <div class="skill-group-name">Languages</div>
+        <div class="skill-list">
+          <span class="skill-item">Java</span><span class="skill-item">Python</span><span class="skill-item">JavaScript</span>
+        </div>
+      </div>
+      <div class="skill-group gsap-reveal">
+        <div class="skill-group-name">Frontend</div>
+        <div class="skill-list">
+          <span class="skill-item">React.js</span><span class="skill-item">HTML5</span><span class="skill-item">CSS3</span>
+        </div>
+      </div>
+      <div class="skill-group gsap-reveal">
+        <div class="skill-group-name">Backend</div>
+        <div class="skill-list">
+          <span class="skill-item">Spring Boot</span><span class="skill-item">REST APIs</span><span class="skill-item">Node.js</span><span class="skill-item">FastAPI</span>
+        </div>
+      </div>
+      <div class="skill-group gsap-reveal">
+        <div class="skill-group-name">Databases</div>
+        <div class="skill-list">
+          <span class="skill-item">PostgreSQL</span><span class="skill-item">MySQL</span><span class="skill-item">MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-group gsap-reveal">
+        <div class="skill-group-name">Tools & Platforms</div>
+        <div class="skill-list">
+          <span class="skill-item">Git</span><span class="skill-item">GitHub</span><span class="skill-item">Render</span><span class="skill-item">Cloudinary</span><span class="skill-item">Docker</span>
+        </div>
+      </div>
+      <div class="skill-group gsap-reveal">
+        <div class="skill-group-name">Core CS</div>
+        <div class="skill-list">
+          <span class="skill-item">Data Structures & Algorithms</span><span class="skill-item">OOP</span><span class="skill-item">DBMS</span><span class="skill-item">Operating Systems</span>
+        </div>
+      </div>
+      <div class="skill-group gsap-reveal">
+        <div class="skill-group-name">Concepts</div>
+        <div class="skill-list">
+          <span class="skill-item">JWT Authentication</span><span class="skill-item">WebSocket</span><span class="skill-item">API Integration</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CERTIFICATIONS & EDUCATION ========== -->
+<section id="certifications" class="content-section">
+  <div class="container">
+    <div class="dual-section-grid">
+      
+      <div>
+        <span class="section-eyebrow gsap-reveal">Recognition</span>
+        <h2 class="section-heading gsap-reveal">Certifications</h2>
+        <div class="cert-list">
+          <div class="cert-entry gsap-reveal">
+            Completed certifications in MCP, LLMs, Generative AI
+          </div>
+          <div class="cert-entry gsap-reveal">
+            Participated in State-Level Buildathon and UI/UX workshops
+          </div>
+          <div class="cert-entry gsap-reveal">
+            NPTEL Certification in Cloud Computing
+          </div>
+          <div class="cert-entry gsap-reveal">
+            NPTEL Certification in Internet of Things
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <span class="section-eyebrow gsap-reveal">Education</span>
+        <h2 class="section-heading gsap-reveal">Background</h2>
+        <div class="edu-card gsap-reveal">
+          <h3 class="edu-degree">B.E. Computer Science Engineering</h3>
+          <p class="edu-school">Dr. NGP Institute of Technology, Coimbatore</p>
+          <div class="edu-meta">
+            <span class="edu-tag score">CGPA: 7.74</span>
+            <span class="edu-tag year">2023 – Present</span>
+          </div>
+        </div>
+        <div class="edu-card gsap-reveal">
+          <h3 class="edu-degree">HSC</h3>
+          <p class="edu-school">AVP Trust National Matric School, Tirupur</p>
+          <div class="edu-meta">
+            <span class="edu-tag score">83%</span>
+            <span class="edu-tag year">2023</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== CONTACT ========== -->
+<section id="contact" class="content-section">
+  <div class="container">
+    <span class="section-eyebrow gsap-reveal">Contact</span>
+    <h2 class="section-heading gsap-reveal">Initialize communication</h2>
+
+    <div class="contact-grid">
+      <div class="gsap-reveal">
+        <p class="contact-text">
+          <em>System ready for new connections.</em><br><br>
+          Open to full-time roles, internships, and freelance projects. Let's build something exceptional.
+        </p>
+        <div class="contact-links">
+          <a href="mailto:gmsofficial26@gmail.com" class="contact-link">gmsofficial26@gmail.com</a>
+          <a href="tel:+919952830946" class="contact-link">+91 9952830946</a>
+          <a href="https://github.com/gms26" target="_blank" class="contact-link">github.com/gms26</a>
+          <a href="https://www.linkedin.com/in/sanjay-g-m-55893a287/" target="_blank" class="contact-link">linkedin.com/in/sanjay-g-m</a>
+        </div>
+      </div>
+
+      <form class="form-box gsap-reveal" id="contactForm" onsubmit="event.preventDefault(); alert('Message transmission protocol initiated!');">
+        <div class="form-group">
+          <label for="c-name">Name</label>
+          <input type="text" id="c-name" placeholder="Your name" autocomplete="name" required>
+        </div>
+        <div class="form-group">
+          <label for="c-email">Email</label>
+          <input type="email" id="c-email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+        <div class="form-group">
+          <label for="c-msg">Message</label>
+          <textarea id="c-msg" placeholder="System input..." rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%;">Transmit &rarr;</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <p>System operational. Built by Sanjay G M.</p>
+  </div>
+</footer>
+
+<!-- ========== BACK TO TOP ========== -->
+<a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20" stroke-linecap="round" stroke-linejoin="round"><path d="M18 15l-6-6-6 6"/></svg>
+</a>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ── Hero Zoom Animation ──
+  const heroTl = gsap.timeline({
+    scrollTrigger: {
+      trigger: "#heroWrapper",
+      start: "top top",
+      end: "bottom top", 
+      scrub: 1,          
+      pin: false         
+    }
+  });
+
+  heroTl.to("#heroGate", { scale: 30, opacity: 0, ease: "power2.in" }, 0);
+  heroTl.to("#heroCharts", { opacity: 0, scale: 1.5, ease: "power2.in" }, 0);
+  heroTl.to("#heroInner", { y: -200, opacity: 0, scale: 0.9, ease: "power2.inOut" }, 0);
+
+  // ── Background Grid Parallax ──
+  gsap.to("#bgGrid", {
+    yPercent: 30,
+    ease: "none",
+    scrollTrigger: {
+      trigger: "body",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: true
+    }
+  });
+
+  // ── Scroll Reveal for Sections ──
+  const sections = gsap.utils.toArray('.content-section');
+  sections.forEach(section => {
+    const reveals = section.querySelectorAll('.gsap-reveal');
+    if(reveals.length === 0) return;
+    
+    gsap.to(reveals, {
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top 80%", 
+      }
+    });
+  });
+
+  // ── Typing Effect ──
+  const phrases = [
+    'Full-Stack Developer',
+    'Backend Engineer',
+    'AI-Powered App Builder',
+    '400+ LeetCode Problem Solver'
+  ];
+  const typedEl = document.getElementById('typed');
+  let pi = 0, ci = 0, deleting = false;
+
+  function type() {
+    if (!typedEl) return;
+    const phrase = phrases[pi];
+    if (deleting) {
+      typedEl.textContent = phrase.substring(0, --ci);
+      if (ci === 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(type, 300); return; }
+      setTimeout(type, 30);
+    } else {
+      typedEl.textContent = phrase.substring(0, ++ci);
+      if (ci === phrase.length) { deleting = true; setTimeout(type, 1800); return; }
+      setTimeout(type, 60);
+    }
+  }
+  type();
+
+  // ── Mobile Menu with GSAP ──
+  const toggle = document.getElementById('navToggle');
+  const menu = document.getElementById('menuOverlay');
+  
+  const menuAnimation = gsap.timeline({ paused: true })
+    .to(menu, { autoAlpha: 1, duration: 0.3, ease: "power2.out" })
+    .from(".menu-item", { y: 40, opacity: 0, stagger: 0.05, duration: 0.5, ease: "power3.out" }, "-=0.1")
+    .from(".menu-aside-item", { y: 30, opacity: 0, stagger: 0.1, duration: 0.5, ease: "power3.out" }, "-=0.3");
+
+  let isMenuOpen = false;
+
+  function toggleMenu() {
+    isMenuOpen = !isMenuOpen;
+    toggle.classList.toggle('open');
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      menuAnimation.play();
+    } else {
+      document.body.style.overflow = '';
+      menuAnimation.reverse();
+    }
+  }
+
+  toggle.addEventListener('click', toggleMenu);
+
+  document.querySelectorAll('.menu-link, .menu-action').forEach(a => {
+    a.addEventListener('click', () => {
+      if(isMenuOpen) toggleMenu();
+    });
+  });
+
+  // ── Active Nav Highlight & Back-to-Top ──
+  const navAs = document.querySelectorAll('.menu-link');
+  const backBtn = document.getElementById('backToTop');
+  
+  function updateNav() {
+    const y = window.scrollY + 120;
+    
+    // Back to top visibility
+    if (window.scrollY > 500) {
+      backBtn.classList.add('visible');
+    } else {
+      backBtn.classList.remove('visible');
+    }
+
+    sections.forEach(s => {
+      const t = s.offsetTop, h = s.offsetHeight, id = s.id;
+      navAs.forEach(a => {
+        if (a.getAttribute('href') === '#' + id) {
+          if (y >= t && y < t + h) {
+            a.classList.add('active');
+          } else {
+            a.classList.remove('active');
+          }
+        }
+      });
+    });
+  }
+  window.addEventListener('scroll', updateNav, { passive: true });
+
+  // ── Navbar background ──
+  const nav = document.querySelector('.nav');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 10) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+  }, { passive: true });
+
+  // ── Mouse Glow Effect for Project Cards ──
+  document.querySelectorAll('.project').forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+</script>
+</body>
+</html>
