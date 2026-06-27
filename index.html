@@ -76,7 +76,6 @@
       z-index: 9999;
       pointer-events: none;
       display: none;
-      transform: translate(-50%, -50%);
       will-change: transform, width, height;
     }
 
@@ -91,6 +90,8 @@
     .cursor-dot {
       width: 5px;
       height: 5px;
+      margin-left: -2.5px;
+      margin-top: -2.5px;
       background: #fff;
       border-radius: 50%;
       box-shadow: 0 0 10px #fff;
@@ -99,17 +100,21 @@
     .cursor-outline {
       width: 24px;
       height: 24px;
+      margin-left: -12px;
+      margin-top: -12px;
       border: 1px solid rgba(0, 229, 255, 0.2);
       border-radius: 50%;
       background: rgba(0, 229, 255, 0.03);
       backdrop-filter: blur(2px);
       -webkit-backdrop-filter: blur(2px);
-      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, margin 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .cursor-outline.hover {
       width: 40px;
       height: 40px;
+      margin-left: -20px;
+      margin-top: -20px;
       background-color: rgba(0, 229, 255, 0.1);
       border-color: rgba(0, 229, 255, 0.5);
     }
@@ -1328,13 +1333,16 @@
   </footer>
 
   <script>
+    // ── GSAP ── (must register BEFORE Lenis connects to ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger);
+
     // ── Smooth Scroll ──
     const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
 
-    // ── GSAP ──
-    gsap.registerPlugin(ScrollTrigger);
+    // Connect Lenis to GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
 
     // (Glitch animation is now handled purely in CSS for performance and stability)
 
