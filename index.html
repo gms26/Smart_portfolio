@@ -55,17 +55,7 @@
       overflow-x: hidden;
     }
 
-    /* Performant Custom Cursor */
-    @media(min-width: 768px) {
-
-      body,
-      a,
-      button,
-      input,
-      textarea {
-        cursor: none !important;
-      }
-    }
+    /* Custom Cursor - keep native cursor as fallback, custom overlays on top */
 
     .cursor-dot,
     .cursor-outline {
@@ -88,13 +78,13 @@
     }
 
     .cursor-dot {
-      width: 5px;
-      height: 5px;
-      margin-left: -2.5px;
-      margin-top: -2.5px;
-      background: #fff;
+      width: 8px;
+      height: 8px;
+      margin-left: -4px;
+      margin-top: -4px;
+      background: var(--accent);
       border-radius: 50%;
-      box-shadow: 0 0 10px #fff;
+      box-shadow: 0 0 12px var(--accent), 0 0 4px #fff;
     }
 
     .cursor-outline {
@@ -268,7 +258,7 @@
     .menu-link {
       font-family: var(--font-heading);
       font-size: clamp(2.5rem, 5vw, 4rem);
-      color: var(--text-secondary);
+      color: rgba(255, 255, 255, 0.7);
       line-height: 1.2;
       transition: 0.3s;
       font-weight: 300;
@@ -1333,18 +1323,16 @@
   </footer>
 
   <script>
-    // ── GSAP ── (must register BEFORE Lenis connects to ScrollTrigger)
+    // ── GSAP ──
     gsap.registerPlugin(ScrollTrigger);
 
     // ── Smooth Scroll ──
     const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
 
-    // Connect Lenis to GSAP ScrollTrigger
+    // Connect Lenis to GSAP ScrollTrigger properly
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
-
-    // (Glitch animation is now handled purely in CSS for performance and stability)
 
     // Performant Hero Fly-Through (CryptOwl style)
     const heroTl = gsap.timeline({
@@ -1370,16 +1358,16 @@
       repeat: -1
     });
 
-    // Hide elements for scroll animations (fallbacks to visible in CSS if JS fails)
+    // Scroll reveal animations with visibility fallback
     gsap.set('.gsap-reveal-clip', { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)', opacity: 0, y: 30 });
     gsap.set('.gsap-fade', { opacity: 0, y: 20 });
 
-    // Unique Clip-Path Reveal for Projects
+    // Clip-Path Reveal for Projects
     gsap.utils.toArray('.gsap-reveal-clip').forEach(el => {
       gsap.to(el, {
         clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
         opacity: 1, y: 0, duration: 1.2, ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 85%" }
+        scrollTrigger: { trigger: el, start: "top 90%", once: true }
       });
     });
 
@@ -1387,12 +1375,22 @@
     gsap.utils.toArray('.gsap-fade').forEach(el => {
       gsap.to(el, {
         y: 0, opacity: 1, duration: 0.8, ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 85%" }
+        scrollTrigger: { trigger: el, start: "top 90%", once: true }
       });
     });
 
-    // Ensure scroll triggers are perfectly aligned after everything loads
-    setTimeout(() => ScrollTrigger.refresh(), 500);
+    // Fallback: if elements are still hidden after 3 seconds, force them visible
+    setTimeout(() => {
+      document.querySelectorAll('.gsap-fade, .gsap-reveal-clip').forEach(el => {
+        const style = window.getComputedStyle(el);
+        if (style.opacity === '0') {
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+          el.style.clipPath = 'none';
+        }
+      });
+      ScrollTrigger.refresh();
+    }, 3000);
 
     // Typing Effect
     const phrases = ['System Online.', 'Full-Stack Developer.', 'Problem Solver.'];
@@ -1421,7 +1419,7 @@
 
     const menuAnim = gsap.timeline({ paused: true })
       .to(menu, { autoAlpha: 1, duration: 0.3 })
-      .from(".m-item", { y: 20, opacity: 0, stagger: 0.05, duration: 0.4, ease: "power2.out" }, "-=0.1");
+      .fromTo(".m-item", { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, duration: 0.4, ease: "power2.out" }, "-=0.1");
 
     function toggleMenu() {
       isMenuOpen = !isMenuOpen;
@@ -1437,21 +1435,34 @@
       else nav.classList.remove('scrolled');
     });
 
-    // Performant Custom Cursor using GSAP quickTo
+    // Custom Cursor
     if (window.innerWidth >= 768) {
       const dot = document.querySelector('.cursor-dot');
       const outline = document.querySelector('.cursor-outline');
+      let mouseX = 0, mouseY = 0;
+      let outlineX = 0, outlineY = 0;
 
-      // Create highly performant setters
-      const xDot = gsap.quickTo(dot, "x", { duration: 0 });
-      const yDot = gsap.quickTo(dot, "y", { duration: 0 });
-      const xOutline = gsap.quickTo(outline, "x", { duration: 0.15, ease: "power3" });
-      const yOutline = gsap.quickTo(outline, "y", { duration: 0.15, ease: "power3" });
-
-      window.addEventListener("mousemove", e => {
-        xDot(e.clientX); yDot(e.clientY);
-        xOutline(e.clientX); yOutline(e.clientY);
+      // Hide native cursor only after custom cursor is confirmed working
+      document.body.style.cursor = 'none';
+      document.querySelectorAll('a, button, input, textarea').forEach(el => {
+        el.style.cursor = 'none';
       });
+
+      window.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        // Dot follows instantly
+        dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+      });
+
+      // Smooth outline follow
+      function animateCursor() {
+        outlineX += (mouseX - outlineX) * 0.15;
+        outlineY += (mouseY - outlineY) * 0.15;
+        outline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
+        requestAnimationFrame(animateCursor);
+      }
+      animateCursor();
 
       document.querySelectorAll('a, button, input, textarea, .card, .activity-box, .skill-box').forEach(el => {
         el.addEventListener('mouseenter', () => {
