@@ -926,6 +926,204 @@
       transform: translateX(4px);
     }
 
+    /* LEETCODE PROFILE */
+    .lc-profile {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .lc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .lc-username {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .lc-avatar {
+      width: 56px;
+      height: 56px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #ffa116 0%, #ff6b00 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(255, 161, 22, 0.3);
+    }
+
+    .lc-name {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .lc-rank {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .lc-visit-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border-radius: 6px;
+      border: 1px solid #ffa116;
+      background: rgba(255, 161, 22, 0.08);
+      color: #ffa116;
+      transition: 0.3s;
+    }
+
+    .lc-visit-btn:hover {
+      background: rgba(255, 161, 22, 0.2);
+      color: #ffa116;
+      box-shadow: 0 0 20px rgba(255, 161, 22, 0.15);
+    }
+
+    .lc-stats-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media(max-width: 800px) {
+      .lc-stats-row {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .lc-ring-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      transition: 0.3s;
+    }
+
+    .lc-ring-card:hover {
+      border-color: var(--border-light);
+      transform: translateY(-4px);
+    }
+
+    .lc-ring-wrap {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+
+    .lc-ring-wrap svg {
+      transform: rotate(-90deg);
+      width: 100px;
+      height: 100px;
+    }
+
+    .lc-ring-wrap svg circle {
+      fill: none;
+      stroke-width: 6;
+      stroke-linecap: round;
+    }
+
+    .lc-ring-bg {
+      stroke: rgba(255, 255, 255, 0.06);
+    }
+
+    .lc-ring-fill {
+      transition: stroke-dashoffset 1.5s ease-out;
+    }
+
+    .lc-ring-label {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .lc-ring-count {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .lc-ring-total {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+    }
+
+    .lc-ring-title {
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .lc-easy .lc-ring-fill { stroke: #00b8a3; }
+    .lc-easy .lc-ring-title { color: #00b8a3; }
+    .lc-medium .lc-ring-fill { stroke: #ffc01e; }
+    .lc-medium .lc-ring-title { color: #ffc01e; }
+    .lc-hard .lc-ring-fill { stroke: #ef4743; }
+    .lc-hard .lc-ring-title { color: #ef4743; }
+
+    .lc-bottom-stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    @media(max-width: 800px) {
+      .lc-bottom-stats {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .lc-stat-mini {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .lc-stat-mini:hover {
+      border-color: var(--border-light);
+    }
+
+    .lc-stat-mini h4 {
+      font-size: 1.75rem;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+
+    .lc-stat-mini p {
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
     /* FOOTER */
     footer {
       padding: 40px 0;
@@ -977,8 +1175,10 @@
     <div class="menu-content">
       <nav class="menu-links">
         <a href="#about" class="menu-link m-item">About</a>
+        <a href="#dsa" class="menu-link m-item">DSA & LeetCode</a>
         <a href="#projects" class="menu-link m-item">Projects</a>
-        <a href="#experience" class="menu-link m-item">Experience & Activities</a>
+        <a href="#experience" class="menu-link m-item">Experience</a>
+        <a href="#certifications" class="menu-link m-item">Certifications</a>
         <a href="#skills" class="menu-link m-item">Skills</a>
         <a href="#contact" class="menu-link m-item">Contact</a>
       </nav>
@@ -995,7 +1195,7 @@
           </div>
         </div>
         <div>
-          <a href="https://drive.google.com/file/d/1CWXPUpHOEnLvhLk1zL-_NAraNiW37hwA/view?usp=sharing" target="_blank"
+          <a href="https://drive.google.com/uc?export=download&id=11vT_R4RBj3vjtHVjS_rIWE-h_7vMTe9m" target="_blank"
             class="btn m-item" style="width:100%; justify-content:center;">Download Resume</a>
         </div>
       </div>
@@ -1011,40 +1211,30 @@
     </div>
 
     <div class="hero-inner" id="heroInner">
-      <div class="hero-top-text">Strategy Through Code</div>
+      <div class="hero-top-text">Building Scalable Systems with Java, Spring Boot & React</div>
       <h1 id="heroTitle">SANJAY G M</h1>
       <p class="hero-subtext"><span id="typed"></span><span class="cursor-blink" style="color:var(--accent);">_</span>
       </p>
       <div class="hero-actions">
         <a href="#projects" class="btn">Explore Work</a>
         <a href="https://leetcode.com/u/gms_26/" target="_blank" class="btn btn-outline">LeetCode Profile</a>
-        <a href="https://drive.google.com/file/d/1CWXPUpHOEnLvhLk1zL-_NAraNiW37hwA/view?usp=sharing" target="_blank"
+        <a href="https://drive.google.com/uc?export=download&id=11vT_R4RBj3vjtHVjS_rIWE-h_7vMTe9m" target="_blank"
           class="btn btn-outline">Download Resume</a>
       </div>
     </div>
   </section>
 
-  <div class="marquee-container">
-    <div class="marquee-content" id="marquee1">
-      <span>FULL STACK DEVELOPER <em>//</em></span>
-      <span>AI ENTHUSIAST <em>//</em></span>
-      <span>PROGRAM SOLVER <em>//</em></span>
-      <span>ENGINEER <em>//</em></span>
-      <span>FULL STACK DEVELOPER <em>//</em></span>
-      <span>AI ENTHUSIAST <em>//</em></span>
-      <span>PROGRAM SOLVER <em>//</em></span>
-    </div>
-  </div>
+
 
   <section id="about">
     <div class="container">
       <span class="section-eyebrow gsap-fade">Initialize</span>
-      <h2 class="section-heading gsap-fade">Logic & Intuition</h2>
+      <h2 class="section-heading gsap-fade">About Me</h2>
       <div class="grid-2">
         <div class="gsap-fade">
           <p style="color:var(--text-secondary); margin-bottom:20px; font-weight:300;">
             I am a Full-Stack Developer with strong expertise in backend engineering, REST APIs, and scalable web
-            applications. I have solved over <span style="color:var(--text); font-weight:500;">400+ LeetCode
+            applications. I have solved over <span style="color:var(--text); font-weight:500;">498+ LeetCode
               problems</span>, establishing a solid foundation in Data Structures and Algorithms.
           </p>
           <p style="color:var(--text-secondary); font-weight:300;">
@@ -1056,20 +1246,111 @@
           <a href="https://leetcode.com/u/gms_26/" target="_blank" class="stat"
             style="text-decoration:none; display:block; color:inherit;">
             <h3>400+</h3>
-            <p>LeetCode</p>
+            <p>LeetCode Problems</p>
           </a>
           <div class="stat">
-            <h3>3</h3>
-            <p>Major Platforms</p>
+            <h3>3+</h3>
+            <p>Live Projects</p>
+          </div>
+          <div class="stat">
+            <h3>1</h3>
+            <p>AI Internship</p>
           </div>
           <div class="stat">
             <h3>7.74</h3>
             <p>CGPA</p>
           </div>
-          <div class="stat">
-            <h3>AI</h3>
-            <p>Internship</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="dsa">
+    <div class="container">
+      <span class="section-eyebrow gsap-fade">Competitive Edge</span>
+      <h2 class="section-heading gsap-fade">DSA & Problem Solving</h2>
+
+      <div class="lc-profile gsap-fade">
+        <div class="lc-header">
+          <div class="lc-username">
+            <div class="lc-avatar">LC</div>
+            <div>
+              <div class="lc-name">gms_26</div>
+              <div class="lc-rank">Ranking: #198,638</div>
+            </div>
           </div>
+          <a href="https://leetcode.com/u/gms_26/" target="_blank" class="lc-visit-btn">View Full Profile &rarr;</a>
+        </div>
+
+        <div class="lc-stats-row">
+          <div class="lc-ring-card lc-easy">
+            <div class="lc-ring-wrap">
+              <svg viewBox="0 0 100 100">
+                <circle class="lc-ring-bg" cx="50" cy="50" r="42"></circle>
+                <circle class="lc-ring-fill" cx="50" cy="50" r="42"
+                  stroke-dasharray="263.9" stroke-dashoffset="195.4"></circle>
+              </svg>
+              <div class="lc-ring-label">
+                <span class="lc-ring-count">247</span>
+                <span class="lc-ring-total">/ 951</span>
+              </div>
+            </div>
+            <span class="lc-ring-title">Easy</span>
+          </div>
+
+          <div class="lc-ring-card lc-medium">
+            <div class="lc-ring-wrap">
+              <svg viewBox="0 0 100 100">
+                <circle class="lc-ring-bg" cx="50" cy="50" r="42"></circle>
+                <circle class="lc-ring-fill" cx="50" cy="50" r="42"
+                  stroke-dasharray="263.9" stroke-dashoffset="236.6"></circle>
+              </svg>
+              <div class="lc-ring-label">
+                <span class="lc-ring-count">215</span>
+                <span class="lc-ring-total">/ 2074</span>
+              </div>
+            </div>
+            <span class="lc-ring-title">Medium</span>
+          </div>
+
+          <div class="lc-ring-card lc-hard">
+            <div class="lc-ring-wrap">
+              <svg viewBox="0 0 100 100">
+                <circle class="lc-ring-bg" cx="50" cy="50" r="42"></circle>
+                <circle class="lc-ring-fill" cx="50" cy="50" r="42"
+                  stroke-dasharray="263.9" stroke-dashoffset="253.9"></circle>
+              </svg>
+              <div class="lc-ring-label">
+                <span class="lc-ring-count">36</span>
+                <span class="lc-ring-total">/ 948</span>
+              </div>
+            </div>
+            <span class="lc-ring-title">Hard</span>
+          </div>
+        </div>
+
+        <div class="lc-bottom-stats">
+          <div class="lc-stat-mini">
+            <h4>498</h4>
+            <p>Total Solved</p>
+          </div>
+          <div class="lc-stat-mini">
+            <h4>849</h4>
+            <p>Submissions</p>
+          </div>
+          <div class="lc-stat-mini">
+            <h4>74.7%</h4>
+            <p>Acceptance</p>
+          </div>
+          <div class="lc-stat-mini">
+            <h4>165</h4>
+            <p>Contribution</p>
+          </div>
+        </div>
+
+        <div style="margin-top: 40px; text-align: center;" class="gsap-fade">
+          <p style="color: var(--text-secondary); font-weight: 300; font-size: 1.05rem; margin-bottom: 16px;">400+ problems solved — Arrays, Trees, Graphs, DP, Backtracking</p>
+          <a href="https://leetcode.com/u/gms_26/" target="_blank" class="btn">View LeetCode Profile</a>
         </div>
       </div>
     </div>
@@ -1078,7 +1359,7 @@
   <section id="projects">
     <div class="container">
       <span class="section-eyebrow gsap-fade">Deployment</span>
-      <h2 class="section-heading gsap-fade">Engineered Systems</h2>
+      <h2 class="section-heading gsap-fade">Projects</h2>
       <p class="section-sub gsap-fade">A selection of platforms I've architected.</p>
 
       <div class="project-list">
@@ -1175,13 +1456,6 @@
               <li>&bull; Collaborated on backend integration and scalable AI-driven data processing workflows.</li>
             </ul>
           </div>
-          <div class="exp-item" style="border-left-color:transparent;">
-            <h3 class="exp-title">Certifications</h3>
-            <span class="exp-meta">Technical Recognition</span>
-            <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Completed certifications in MCP,
-              LLMs, and Generative AI. Achieved NPTEL Certifications in Cloud Computing and Internet of Things.
-              Participated in UI/UX workshops.</p>
-          </div>
         </div>
         <div class="gsap-fade">
           <div class="exp-item">
@@ -1198,29 +1472,74 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <div style="margin-top: 60px;">
-        <h2 class="section-heading gsap-fade" style="font-size: 2rem;">Interests & Activities</h2>
-        <div class="grid-2">
-          <div class="activity-box gsap-fade">
-            <h4 class="activity-title">Areas of Interest</h4>
-            <p class="activity-desc">Backend Engineering, Full Stack Development, Generative AI Applications, Database
-              Management.</p>
-          </div>
-          <div class="activity-box gsap-fade">
-            <h4 class="activity-title">Hackathons & Innovation</h4>
-            <p class="activity-desc">Member of the Hackathon Club. Actively participating in technical innovation events
-              and State-Level Buildathons.</p>
-          </div>
-          <div class="activity-box gsap-fade">
-            <h4 class="activity-title">Extra-Curriculars</h4>
-            <p class="activity-desc">Participated in Zonal-Level Table Tennis Tournaments, maintaining a balance between
-              logic and physical reflexes.</p>
-          </div>
-          <div class="activity-box gsap-fade">
-            <h4 class="activity-title">Hobbies</h4>
-            <p class="activity-desc">Playing Cricket and Video Editing.</p>
-          </div>
+  <section id="certifications">
+    <div class="container">
+      <span class="section-eyebrow gsap-fade">Recognition</span>
+      <h2 class="section-heading gsap-fade">Certifications</h2>
+
+      <h3 class="gsap-fade" style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">AI & Generative AI</h3>
+      <div class="grid-3 gsap-fade" style="margin-bottom:60px;">
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Generative AI Mastery Workshop</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">OpenAI Academy</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Sep 2025</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Gen AI Project Completion</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft (SDE II)</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Sep 2024</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">LLMs & Agentic AI Masterclass</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Ion Health</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Sep 2025</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">MCP Workshop + Project Completion</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Aug 2025</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">MVP Build & Launch Workshop</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">May 2026</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">UI/UX Mega Workshop</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Dec 2024</p>
+        </div>
+      </div>
+
+      <h3 class="gsap-fade" style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">Cloud & Platforms</h3>
+      <div class="grid-3 gsap-fade">
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">NPTEL Cloud Computing</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">IIT</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jan–Apr 2025 · Score: 72/100</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">NPTEL Internet of Things</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">IIT</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jul–Oct 2025 · Score: 75/100</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">AWS Mega Workshop</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jun 2024</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Salesforce Agentblazer Workshop</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jan 2026</p>
+        </div>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">ICT Academy Learnathon 2024</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft · Google · MathWorks · MongoDB · Bentley</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Aug–Oct 2024</p>
         </div>
       </div>
     </div>
@@ -1270,7 +1589,7 @@
   <section id="contact">
     <div class="container">
       <span class="section-eyebrow gsap-fade">Network</span>
-      <h2 class="section-heading gsap-fade">Initialize Connection</h2>
+      <h2 class="section-heading gsap-fade">Contact</h2>
 
       <div class="grid-2">
         <div class="gsap-fade">
@@ -1299,18 +1618,18 @@
           <input type="hidden" name="access_key" value="78daa832-ff6f-4a9b-b716-ba961a22c952">
 
           <div class="form-group">
-            <label>Identity</label>
+            <label>Your Name</label>
             <input type="text" name="name" class="form-control" required>
           </div>
           <div class="form-group">
-            <label>Coordinates (Email)</label>
+            <label>Your Email</label>
             <input type="email" name="email" class="form-control" required>
           </div>
           <div class="form-group">
-            <label>Payload</label>
+            <label>Your Message</label>
             <textarea name="message" class="form-control" required></textarea>
           </div>
-          <button type="submit" class="btn" style="width:100%;" id="submitBtn">Transmit</button>
+          <button type="submit" class="btn" style="width:100%;" id="submitBtn">Send Message</button>
         </form>
       </div>
     </div>
@@ -1318,7 +1637,7 @@
 
   <footer>
     <div class="container">
-      <p>SECURE CHANNEL // &copy; 2026 Sanjay G M. All rights reserved.</p>
+      <p>&copy; 2026 Sanjay G M. All rights reserved.</p>
     </div>
   </footer>
 
@@ -1350,13 +1669,7 @@
       .to("#heroFloor", { rotateX: 60, y: 100, ease: "power1.in" }, 0)
       .to("#heroInner", { y: -100, opacity: 0, ease: "power2.in" }, 0);
 
-    // ── Infinite Marquee Animation ──
-    gsap.to("#marquee1", {
-      xPercent: -50,
-      ease: "none",
-      duration: 15,
-      repeat: -1
-    });
+
 
     // Scroll reveal animations with visibility fallback
     gsap.set('.gsap-reveal-clip', { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)', opacity: 0, y: 30 });
@@ -1393,7 +1706,7 @@
     }, 3000);
 
     // Typing Effect
-    const phrases = ['System Online.', 'Full-Stack Developer.', 'Problem Solver.'];
+    const phrases = ['Full-Stack Developer', 'Backend Engineer \u2014 Java & Spring Boot', 'AI-Powered App Builder', '400+ LeetCode Problem Solver'];
     const typedEl = document.getElementById('typed');
     let pi = 0, ci = 0, deleting = false;
     function type() {
@@ -1482,14 +1795,14 @@
       if (contactForm.querySelector('input[name="access_key"]').value === 'YOUR_WEB3FORMS_ACCESS_KEY_HERE') {
         alert('Please add your Web3Forms access key.'); return;
       }
-      submitBtn.innerHTML = 'Transmitting...'; submitBtn.style.opacity = '0.7'; submitBtn.style.pointerEvents = 'none';
+      submitBtn.innerHTML = 'Sending...'; submitBtn.style.opacity = '0.7'; submitBtn.style.pointerEvents = 'none';
       try {
         const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(contactForm) });
         const data = await res.json();
-        if (data.success) { submitBtn.innerHTML = 'Data Sent ✓'; contactForm.reset(); }
+        if (data.success) { submitBtn.innerHTML = 'Sent ✓'; contactForm.reset(); }
         else { submitBtn.innerHTML = 'Error'; }
       } catch (error) { submitBtn.innerHTML = 'Failed'; }
-      setTimeout(() => { submitBtn.innerHTML = 'Transmit'; submitBtn.style.opacity = '1'; submitBtn.style.pointerEvents = 'auto'; }, 4000);
+      setTimeout(() => { submitBtn.innerHTML = 'Send Message'; submitBtn.style.opacity = '1'; submitBtn.style.pointerEvents = 'auto'; }, 4000);
     });
   </script>
 </body>
