@@ -344,39 +344,6 @@
       font-weight: 300;
     }
 
-    /* INFINITE MARQUEE */
-    .marquee-container {
-      width: 100vw;
-      overflow: hidden;
-      padding: 20px 0;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.01);
-      display: flex;
-      align-items: center;
-    }
-
-    .marquee-content {
-      display: flex;
-      white-space: nowrap;
-      font-family: var(--font-heading);
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: rgba(255, 255, 255, 0.05);
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .marquee-content span {
-      padding: 0 40px;
-    }
-
-    .marquee-content span em {
-      font-style: normal;
-      color: var(--accent);
-      -webkit-text-stroke: 0;
-    }
 
     /* HERO - Performant CryptOwl Style */
     .hero {
@@ -1467,8 +1434,7 @@
           <div class="exp-item" style="border-left-color:transparent;">
             <h3 class="exp-title">HSC</h3>
             <span class="exp-meta">AVP Trust National Matric School | 2023</span>
-            <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Completed higher secondary
-              education with a score of 83%.</p>
+            <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Scored 83% overall with a perfect 100/100 in Computer Science.</p>
           </div>
         </div>
       </div>
@@ -1646,14 +1612,19 @@
     gsap.registerPlugin(ScrollTrigger);
 
     // ── Smooth Scroll ──
-    const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true });
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smooth: true,
+      smoothTouch: false
+    });
 
-    // Connect Lenis to GSAP ScrollTrigger properly
+    // Connect Lenis to GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
 
-    // Performant Hero Fly-Through (CryptOwl style)
+    // ── Hero Fly-Through ──
     const heroTl = gsap.timeline({
       scrollTrigger: {
         trigger: "#hero",
@@ -1661,38 +1632,49 @@
         end: "+=100%",
         scrub: 1,
         pin: true,
-        anticipatePin: 1
+        pinSpacing: true,
+        anticipatePin: 1,
+        fastScrollEnd: true,
+        preventOverlaps: true,
+        onLeave: () => ScrollTrigger.refresh(),
+        onEnterBack: () => ScrollTrigger.refresh()
       }
     });
 
-    heroTl.to("#heroGate", { translateZ: 800, scale: 4, opacity: 0, ease: "power1.in" }, 0)
+    heroTl.to("#heroGate", { scale: 3, opacity: 0, ease: "power1.in" }, 0)
       .to("#heroFloor", { rotateX: 60, y: 100, ease: "power1.in" }, 0)
       .to("#heroInner", { y: -100, opacity: 0, ease: "power2.in" }, 0);
 
-
-
-    // Scroll reveal animations with visibility fallback
+    // ── Scroll Reveal (Batched for Performance) ──
     gsap.set('.gsap-reveal-clip', { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)', opacity: 0, y: 30 });
     gsap.set('.gsap-fade', { opacity: 0, y: 20 });
 
-    // Clip-Path Reveal for Projects
-    gsap.utils.toArray('.gsap-reveal-clip').forEach(el => {
-      gsap.to(el, {
-        clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
-        opacity: 1, y: 0, duration: 1.2, ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 90%", once: true }
-      });
+    // Batch clip-path reveals
+    ScrollTrigger.batch('.gsap-reveal-clip', {
+      start: "top 90%",
+      once: true,
+      onEnter: batch => {
+        gsap.to(batch, {
+          clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+          opacity: 1, y: 0, duration: 1.2, ease: "power3.out",
+          stagger: 0.1
+        });
+      }
     });
 
-    // Fade up sections
-    gsap.utils.toArray('.gsap-fade').forEach(el => {
-      gsap.to(el, {
-        y: 0, opacity: 1, duration: 0.8, ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 90%", once: true }
-      });
+    // Batch fade-up reveals
+    ScrollTrigger.batch('.gsap-fade', {
+      start: "top 90%",
+      once: true,
+      onEnter: batch => {
+        gsap.to(batch, {
+          y: 0, opacity: 1, duration: 0.8, ease: "power2.out",
+          stagger: 0.08
+        });
+      }
     });
 
-    // Fallback: if elements are still hidden after 3 seconds, force them visible
+    // Fallback: force-show hidden elements after 4s
     setTimeout(() => {
       document.querySelectorAll('.gsap-fade, .gsap-reveal-clip').forEach(el => {
         const style = window.getComputedStyle(el);
@@ -1703,9 +1685,9 @@
         }
       });
       ScrollTrigger.refresh();
-    }, 3000);
+    }, 4000);
 
-    // Typing Effect
+    // ── Typing Effect ──
     const phrases = ['Full-Stack Developer', 'Backend Engineer \u2014 Java & Spring Boot', 'AI-Powered App Builder', '400+ LeetCode Problem Solver'];
     const typedEl = document.getElementById('typed');
     let pi = 0, ci = 0, deleting = false;
@@ -1724,14 +1706,14 @@
     }
     setTimeout(type, 1500);
 
-    // Mobile Menu
+    // ── Mobile Menu ──
     const toggle = document.getElementById('navToggle');
-    const menu = document.getElementById('menuOverlay');
+    const menuOverlay = document.getElementById('menuOverlay');
     const nav = document.querySelector('.nav');
     let isMenuOpen = false;
 
     const menuAnim = gsap.timeline({ paused: true })
-      .to(menu, { autoAlpha: 1, duration: 0.3 })
+      .to(menuOverlay, { autoAlpha: 1, duration: 0.3 })
       .fromTo(".m-item", { y: 20, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.05, duration: 0.4, ease: "power2.out" }, "-=0.1");
 
     function toggleMenu() {
@@ -1743,19 +1725,26 @@
     toggle.addEventListener('click', toggleMenu);
     document.querySelectorAll('.m-item').forEach(el => el.addEventListener('click', () => { if (isMenuOpen) toggleMenu(); }));
 
+    // Throttled scroll listener for nav
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) nav.classList.add('scrolled');
-      else nav.classList.remove('scrolled');
+      if (!scrollTicking) {
+        requestAnimationFrame(() => {
+          if (window.scrollY > 50) nav.classList.add('scrolled');
+          else nav.classList.remove('scrolled');
+          scrollTicking = false;
+        });
+        scrollTicking = true;
+      }
     });
 
-    // Custom Cursor
+    // ── Custom Cursor ──
     if (window.innerWidth >= 768) {
       const dot = document.querySelector('.cursor-dot');
       const outline = document.querySelector('.cursor-outline');
       let mouseX = 0, mouseY = 0;
       let outlineX = 0, outlineY = 0;
 
-      // Hide native cursor only after custom cursor is confirmed working
       document.body.style.cursor = 'none';
       document.querySelectorAll('a, button, input, textarea').forEach(el => {
         el.style.cursor = 'none';
@@ -1764,11 +1753,9 @@
       window.addEventListener('mousemove', e => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        // Dot follows instantly
         dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
       });
 
-      // Smooth outline follow
       function animateCursor() {
         outlineX += (mouseX - outlineX) * 0.15;
         outlineY += (mouseY - outlineY) * 0.15;
@@ -1777,17 +1764,13 @@
       }
       animateCursor();
 
-      document.querySelectorAll('a, button, input, textarea, .card, .activity-box, .skill-box').forEach(el => {
-        el.addEventListener('mouseenter', () => {
-          outline.classList.add('hover');
-        });
-        el.addEventListener('mouseleave', () => {
-          outline.classList.remove('hover');
-        });
+      document.querySelectorAll('a, button, input, textarea, .card, .skill-box').forEach(el => {
+        el.addEventListener('mouseenter', () => { outline.classList.add('hover'); });
+        el.addEventListener('mouseleave', () => { outline.classList.remove('hover'); });
       });
     }
 
-    // Web3Forms
+    // ── Web3Forms ──
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     contactForm.addEventListener('submit', async (e) => {
