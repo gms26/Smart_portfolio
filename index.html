@@ -1120,6 +1120,20 @@
       font-size: 0.85rem;
     }
 
+    /* INTERESTS & ACTIVITIES */
+    .activity-box {
+      padding: 24px;
+      border-left: 2px solid var(--border);
+      transition: 0.3s;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .activity-box:hover {
+      border-left-color: var(--accent);
+      background: rgba(255, 255, 255, 0.03);
+      transform: translateX(8px);
+    }
+
     .gsap-reveal-clip {
       clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
@@ -1220,6 +1234,7 @@
         <a href="#projects" class="menu-link m-item">Projects</a>
         <a href="#experience" class="menu-link m-item">Experience</a>
         <a href="#certifications" class="menu-link m-item">Certifications</a>
+        <a href="#activities" class="menu-link m-item">Interests & Activities</a>
         <a href="#skills" class="menu-link m-item">Skills</a>
         <a href="#contact" class="menu-link m-item">Contact</a>
       </nav>
@@ -1636,6 +1651,46 @@
           <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft · Google · MathWorks ·
             MongoDB · Bentley</p>
           <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Aug–Oct 2024</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities">
+    <div class="container">
+      <span class="section-eyebrow gsap-fade">Beyond Code</span>
+      <h2 class="section-heading gsap-fade">Interests & Activities</h2>
+
+      <div class="grid-2">
+        <div class="gsap-fade">
+          <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">Area of Interest</h3>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="activity-box">
+              <h4 class="activity-title">Backend Engineering</h4>
+            </div>
+            <div class="activity-box">
+              <h4 class="activity-title">Full Stack Development</h4>
+            </div>
+            <div class="activity-box">
+              <h4 class="activity-title">Web Development</h4>
+            </div>
+            <div class="activity-box">
+              <h4 class="activity-title">AI Engineer</h4>
+            </div>
+          </div>
+        </div>
+        <div class="gsap-fade">
+          <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">Co-Curricular Activities</h3>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="activity-box">
+              <h4 class="activity-title">Table Tennis</h4>
+              <p class="activity-desc">Participated in Zonal-Level Table Tennis Tournament.</p>
+            </div>
+            <div class="activity-box">
+              <h4 class="activity-title">Hackathon Club</h4>
+              <p class="activity-desc">Member of Hackathon Club and technical innovation events.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
