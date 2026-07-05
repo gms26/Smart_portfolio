@@ -347,22 +347,19 @@
 
     /* HERO - Performant CryptOwl Style */
     .hero {
-      height: 100vh;
-      position: relative;
       display: flex;
       align-items: center;
       justify-content: center;
+      height: 100vh;
+      position: relative;
       overflow: hidden;
     }
 
     .hero-scene {
       position: absolute;
       inset: 0;
-      z-index: -1;
-      left: 0;
-      right: 0;
-      perspective: 1000px;
-      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
     }
 
     .hero-grid-floor {
@@ -386,10 +383,10 @@
       position: absolute;
       left: 50%;
       top: 50%;
+      transform: translate(-50%, -50%);
       width: 600px;
       height: 600px;
-      margin-left: -300px;
-      margin-top: -300px;
+      margin: 0;
       border: 1px solid rgba(0, 229, 255, 0.2);
       border-radius: 50% 50% 0 0;
       border-bottom: none;
@@ -1158,15 +1155,19 @@
       object-position: top center;
       border-radius: 0;
       border: none;
-      filter: grayscale(10%) brightness(0.9);
-      mask-image: linear-gradient(to left,
-          rgba(0, 0, 0, 0.85) 0%,
-          rgba(0, 0, 0, 0.4) 40%,
-          transparent 75%);
-      -webkit-mask-image: linear-gradient(to left,
-          rgba(0, 0, 0, 0.85) 0%,
-          rgba(0, 0, 0, 0.4) 40%,
-          transparent 75%);
+      filter: grayscale(5%) brightness(1.1);
+      mask-image: linear-gradient(
+        to left,
+        rgba(0,0,0,0.95) 0%,
+        rgba(0,0,0,0.5) 50%,
+        transparent 80%
+      );
+      -webkit-mask-image: linear-gradient(
+        to left,
+        rgba(0,0,0,0.95) 0%,
+        rgba(0,0,0,0.5) 50%,
+        transparent 80%
+      );
     }
 
     .hero-text-block {
@@ -1178,16 +1179,15 @@
     }
 
     .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 0 0 8%;
       display: flex;
       align-items: center;
       justify-content: flex-start;
-      text-align: left;
-      width: 100%;
-      max-width: 100%;
-      padding: 0 0 0 8%;
-      gap: 0;
-      position: relative;
-      z-index: 2;
+      height: 100%;
     }
 
     @media(max-width: 768px) {
