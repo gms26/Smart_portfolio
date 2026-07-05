@@ -1114,7 +1114,7 @@
     /* FOOTER */
     footer {
       padding: 40px 0;
-      border-top: 1px solid var(--border);
+      border-top: none;
       text-align: center;
       color: var(--text-muted);
       font-size: 0.85rem;
@@ -1140,10 +1140,10 @@
 
     .hero-photo-wrap {
       position: absolute;
-      top: 0;
+      top: 80px;
       right: 0;
       width: 55%;
-      height: 100%;
+      height: calc(100% - 80px);
       z-index: 0;
       pointer-events: none;
     }
@@ -1155,7 +1155,7 @@
       object-position: top center;
       border-radius: 0;
       border: none;
-      filter: grayscale(0%) brightness(1.4);
+      filter: grayscale(0%) brightness(1.6);
       mask-image: linear-gradient(
         to left,
         rgba(0,0,0,0.95) 0%,
@@ -1173,17 +1173,18 @@
     .hero-text-block {
       position: relative;
       z-index: 2;
-      flex: 1;
-      max-width: 520px;
-      padding-left: 0;
+      width: 440px;
+      max-width: 440px;
+      flex-shrink: 0;
+      text-align: center;
     }
 
     .hero-inner {
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 1200px;
-      padding: 0 0 0 8%;
+      max-width: 100%;
+      padding: 0 0 0 calc(25% - 220px);
       display: flex;
       align-items: center;
       justify-content: flex-start;
