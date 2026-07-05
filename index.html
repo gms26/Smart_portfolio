@@ -978,7 +978,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 32px 24px;
+      padding: 20px 16px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -993,14 +993,14 @@
 
     .lc-ring-wrap {
       position: relative;
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
     }
 
     .lc-ring-wrap svg {
       transform: rotate(-90deg);
-      width: 100px;
-      height: 100px;
+      width: 80px;
+      height: 80px;
     }
 
     .lc-ring-wrap svg circle {
@@ -1028,7 +1028,7 @@
 
     .lc-ring-count {
       font-family: var(--font-heading);
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 600;
       color: var(--text);
     }
@@ -1068,7 +1068,7 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       border-radius: 10px;
-      padding: 24px 16px;
+      padding: 16px 12px;
       text-align: center;
       transition: 0.3s;
     }
@@ -1078,7 +1078,7 @@
     }
 
     .lc-stat-mini h4 {
-      font-size: 1.75rem;
+      font-size: 1.4rem;
       font-weight: 300;
       color: var(--text);
       margin-bottom: 4px;
@@ -1090,6 +1090,8 @@
       text-transform: uppercase;
       letter-spacing: 1px;
     }
+
+    #dsa { padding: 60px 0; }
 
     /* FOOTER */
     footer {
@@ -1118,25 +1120,62 @@
       }
     }
 
-    .hero-photo-wrap {
-      margin-bottom: 28px;
+    .hero-inner {
       display: flex;
-      justify-content: center;
+      align-items: center;
+      justify-content: space-between;
+      text-align: left;
+      max-width: 1100px;
+      gap: 60px;
+      padding: 0 40px;
     }
+
+    .hero-text-block {
+      flex: 1;
+    }
+
+    .hero-photo-wrap {
+      flex-shrink: 0;
+      width: 380px;
+      height: 100vh;
+      max-height: 600px;
+      position: relative;
+    }
+
     .hero-photo {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
+      width: 100%;
+      height: 100%;
       object-fit: cover;
       object-position: top center;
-      border: 2px solid rgba(0, 229, 255, 0.4);
-      box-shadow: 0 0 30px rgba(0, 229, 255, 0.15), 0 0 60px rgba(0, 229, 255, 0.05);
-      filter: grayscale(10%);
-      transition: box-shadow 0.4s ease, transform 0.4s ease;
+      border-radius: 12px;
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      box-shadow: 0 0 60px rgba(0, 229, 255, 0.1),
+                  -20px 0 80px rgba(0, 229, 255, 0.05);
+      filter: grayscale(15%);
+      transition: box-shadow 0.4s ease;
     }
+
     .hero-photo:hover {
-      box-shadow: 0 0 40px rgba(0, 229, 255, 0.3), 0 0 80px rgba(0, 229, 255, 0.1);
-      transform: scale(1.03);
+      box-shadow: 0 0 80px rgba(0, 229, 255, 0.2),
+                  -20px 0 100px rgba(0, 229, 255, 0.1);
+    }
+
+    @media(max-width: 900px) {
+      .hero-inner {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-photo-wrap {
+        width: 200px;
+        height: 200px;
+        max-height: 200px;
+      }
+      .hero-photo {
+        border-radius: 50%;
+      }
+      .hero-actions {
+        justify-content: center;
+      }
     }
   </style>
 </head>
@@ -1167,7 +1206,6 @@
         <a href="#projects" class="menu-link m-item">Projects</a>
         <a href="#experience" class="menu-link m-item">Experience</a>
         <a href="#certifications" class="menu-link m-item">Certifications</a>
-        <a href="#activities" class="menu-link m-item">Interests & Activities</a>
         <a href="#skills" class="menu-link m-item">Skills</a>
         <a href="#contact" class="menu-link m-item">Contact</a>
       </nav>
@@ -1198,23 +1236,24 @@
         <div class="hero-gate-line"></div>
       </div>
     </div>
-
     <div class="hero-inner" id="heroInner">
+      <div class="hero-text-block">
+        <div class="hero-top-text">Building Scalable Systems with Java, Spring Boot & React</div>
+        <h1 id="heroTitle">SANJAY G M</h1>
+        <p class="hero-subtext"><span id="typed"></span><span class="cursor-blink" style="color:var(--accent);">_</span>
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn">Explore Work</a>
+          <a href="https://drive.google.com/uc?export=download&id=11vT_R4RBj3vjtHVjS_rIWE-h_7vMTe9m" target="_blank"
+            class="btn btn-outline">Download Resume</a>
+        </div>
+      </div>
       <div class="hero-photo-wrap">
         <img
           src="https://res.cloudinary.com/doyugoqpz/image/upload/w_400,h_400,c_fill,g_face,q_auto,f_auto/v1783272612/WhatsApp_Image_Jul_5_2026_10_16_33_PM_avnzrq.png"
           alt="Sanjay G M"
           class="hero-photo"
         />
-      </div>
-      <div class="hero-top-text">Building Scalable Systems with Java, Spring Boot & React</div>
-      <h1 id="heroTitle">SANJAY G M</h1>
-      <p class="hero-subtext"><span id="typed"></span><span class="cursor-blink" style="color:var(--accent);">_</span>
-      </p>
-      <div class="hero-actions">
-        <a href="#projects" class="btn">Explore Work</a>
-        <a href="https://drive.google.com/uc?export=download&id=11vT_R4RBj3vjtHVjS_rIWE-h_7vMTe9m" target="_blank"
-          class="btn btn-outline">Download Resume</a>
       </div>
     </div>
   </section>
@@ -1558,46 +1597,6 @@
           <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">ICT Academy Learnathon 2024</h4>
           <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft · Google · MathWorks · MongoDB · Bentley</p>
           <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Aug–Oct 2024</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="activities">
-    <div class="container">
-      <span class="section-eyebrow gsap-fade">Beyond Code</span>
-      <h2 class="section-heading gsap-fade">Interests & Activities</h2>
-
-      <div class="grid-2">
-        <div class="gsap-fade">
-          <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">Area of Interest</h3>
-          <div style="display:flex; flex-direction:column; gap:16px;">
-            <div class="activity-box">
-              <h4 class="activity-title">Backend Engineering</h4>
-            </div>
-            <div class="activity-box">
-              <h4 class="activity-title">Full Stack Development</h4>
-            </div>
-            <div class="activity-box">
-              <h4 class="activity-title">Web Development</h4>
-            </div>
-            <div class="activity-box">
-              <h4 class="activity-title">AI Engineer</h4>
-            </div>
-          </div>
-        </div>
-        <div class="gsap-fade">
-          <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">Co-Curricular Activities</h3>
-          <div style="display:flex; flex-direction:column; gap:16px;">
-            <div class="activity-box">
-              <h4 class="activity-title">Table Tennis</h4>
-              <p class="activity-desc">Participated in Zonal-Level Table Tennis Tournament.</p>
-            </div>
-            <div class="activity-box">
-              <h4 class="activity-title">Hackathon Club</h4>
-              <p class="activity-desc">Member of Hackathon Club and technical innovation events.</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>
