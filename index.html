@@ -1144,8 +1144,10 @@
       right: 0;
       width: 55%;
       height: calc(100% - 80px);
-      z-index: 0;
+      z-index: 1;
       pointer-events: none;
+      background: var(--bg);
+      overflow: hidden;
     }
 
     .hero-photo {
@@ -1788,7 +1790,7 @@
       }
     });
 
-    heroTl.to("#heroGate", { scale: 3, opacity: 0, ease: "power1.in" }, 0)
+    heroTl.to("#heroGate", { scale: 1.3, opacity: 0, ease: "power1.in" }, 0)
       .to("#heroFloor", { rotateX: 60, y: 100, ease: "power1.in" }, 0)
       .to("#heroInner", { y: -100, opacity: 0, ease: "power2.in" }, 0);
 
