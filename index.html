@@ -452,7 +452,7 @@
     }
 
     .hero h1 {
-      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      font-size: clamp(2.2rem, 4.5vw, 4rem);
       font-weight: 700;
       line-height: 1;
       letter-spacing: -2px;
@@ -1127,19 +1127,37 @@
       text-align: left;
       max-width: 1100px;
       gap: 60px;
-      padding: 0 40px;
+      padding: 0 20px 0 60px;
     }
 
     .hero-text-block {
       flex: 1;
+      padding-left: 20px;
     }
 
     .hero-photo-wrap {
       flex-shrink: 0;
-      width: 380px;
+      width: 420px;
       height: 100vh;
-      max-height: 600px;
+      max-height: 700px;
       position: relative;
+      margin-right: -40px;
+    }
+
+    .hero-photo-wrap::before {
+      content: '';
+      position: absolute;
+      left: -1px;
+      top: 10%;
+      height: 80%;
+      width: 1px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 229, 255, 0.6),
+        transparent
+      );
+      z-index: 2;
     }
 
     .hero-photo {
@@ -1147,17 +1165,25 @@
       height: 100%;
       object-fit: cover;
       object-position: top center;
-      border-radius: 12px;
-      border: 1px solid rgba(0, 229, 255, 0.2);
-      box-shadow: 0 0 60px rgba(0, 229, 255, 0.1),
-                  -20px 0 80px rgba(0, 229, 255, 0.05);
-      filter: grayscale(15%);
-      transition: box-shadow 0.4s ease;
+      border-radius: 12px 12px 0 0;
+      border: none;
+      box-shadow: none;
+      filter: grayscale(20%) brightness(0.9);
+      mask-image: linear-gradient(
+        to bottom,
+        black 60%,
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        black 60%,
+        transparent 100%
+      );
+      transition: filter 0.4s ease;
     }
 
     .hero-photo:hover {
-      box-shadow: 0 0 80px rgba(0, 229, 255, 0.2),
-                  -20px 0 100px rgba(0, 229, 255, 0.1);
+      filter: grayscale(0%) brightness(1);
     }
 
     @media(max-width: 900px) {
