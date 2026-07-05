@@ -359,6 +359,8 @@
       position: absolute;
       inset: 0;
       z-index: -1;
+      left: 0;
+      right: 0;
       perspective: 1000px;
       overflow: hidden;
     }
@@ -1156,7 +1158,7 @@
       object-position: top center;
       border-radius: 0;
       border: none;
-      filter: grayscale(20%) brightness(0.75);
+      filter: grayscale(10%) brightness(0.9);
       mask-image: linear-gradient(to left,
           rgba(0, 0, 0, 0.85) 0%,
           rgba(0, 0, 0, 0.4) 40%,
@@ -1181,8 +1183,8 @@
       justify-content: flex-start;
       text-align: left;
       width: 100%;
-      max-width: 1200px;
-      padding: 0 60px 0 100px;
+      max-width: 100%;
+      padding: 0 0 0 8%;
       gap: 0;
       position: relative;
       z-index: 2;
@@ -1832,7 +1834,7 @@
     }, 4000);
 
     // ── Typing Effect ──
-    const phrases = ['Full-Stack Developer', 'Backend Engineer \u2014 Java & Spring Boot', 'AI-Powered App Builder', '400+ LeetCode Problem Solver'];
+    const phrases = ['Full-Stack Developer', 'Backend Engineer — Java & Spring Boot', 'AI-Powered App Builder', '498+ LeetCode Problem Solver'];
     const typedEl = document.getElementById('typed');
     let pi = 0, ci = 0, deleting = false;
     function type() {
@@ -1848,7 +1850,7 @@
         setTimeout(type, 60);
       }
     }
-    setTimeout(type, 1500);
+    setTimeout(type, 100);
 
     // ── Mobile Menu ──
     const toggle = document.getElementById('navToggle');
