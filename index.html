@@ -1154,12 +1154,11 @@
 
     .hero-photo-wrap {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 80px;
       right: 0;
-      width: 45%;
-      height: 600px;
-      z-index: 0;
+      width: 50%;
+      height: calc(100% - 80px);
+      z-index: 1;
       pointer-events: none;
       overflow: hidden;
     }
@@ -1169,21 +1168,14 @@
       height: 100%;
       object-fit: contain;
       object-position: right bottom;
-      border-radius: 0;
-      border: none;
-      filter: grayscale(30%) brightness(0.85);
-      mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        rgba(0,0,0,0.6) 20%,
-        black 50%
-      );
-      -webkit-mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        rgba(0,0,0,0.6) 20%,
-        black 50%
-      );
+      mask-image: 
+        linear-gradient(to right, transparent 0%, black 60%, black 90%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+      mask-composite: intersect;
+      -webkit-mask-image: 
+        linear-gradient(to right, transparent 0%, black 60%, black 90%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 15%, black 100%);
+      -webkit-mask-composite: source-in;
     }
 
     .hero-text-block {
