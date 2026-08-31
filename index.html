@@ -900,219 +900,214 @@
       transform: translateX(4px);
     }
 
-    /* LEETCODE PROFILE */
-    .lc-profile {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
+    /* MODERN LEETCODE PROFILE */
+    .lc-modern-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: 0.4s;
     }
 
-    .lc-header {
+    .lc-modern-card:hover {
+      border-color: rgba(255, 161, 22, 0.2);
+    }
+
+    .lc-modern-card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(255, 161, 22, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .lc-main-info {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .lc-brand {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
       gap: 20px;
     }
 
-    .lc-username {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .lc-avatar {
-      width: 56px;
-      height: 56px;
-      border-radius: 12px;
+    .lc-logo {
+      width: 64px;
+      height: 64px;
+      border-radius: 16px;
       background: linear-gradient(135deg, #ffa116 0%, #ff6b00 100%);
       display: flex;
       align-items: center;
       justify-content: center;
       font-family: var(--font-heading);
       font-weight: 700;
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       color: #fff;
-      box-shadow: 0 4px 20px rgba(255, 161, 22, 0.3);
+      box-shadow: 0 8px 24px rgba(255, 161, 22, 0.3);
     }
 
-    .lc-name {
+    .lc-user-details h3 {
       font-family: var(--font-heading);
-      font-size: 1.5rem;
+      font-size: 1.8rem;
       font-weight: 500;
       color: var(--text);
+      line-height: 1.2;
     }
 
-    .lc-rank {
-      font-size: 0.85rem;
+    .lc-user-details p {
+      font-size: 0.9rem;
       color: var(--text-secondary);
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
-    .lc-visit-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 24px;
-      font-size: 0.85rem;
-      font-weight: 500;
-      border-radius: 6px;
-      border: 1px solid #ffa116;
-      background: rgba(255, 161, 22, 0.08);
-      color: #ffa116;
-      transition: 0.3s;
-    }
-
-    .lc-visit-btn:hover {
-      background: rgba(255, 161, 22, 0.2);
-      color: #ffa116;
-      box-shadow: 0 0 20px rgba(255, 161, 22, 0.15);
-    }
-
-    .lc-stats-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 20px;
-    }
-
-    @media(max-width: 800px) {
-      .lc-stats-row {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .lc-ring-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 20px 16px;
+    .lc-big-stat {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      transition: 0.3s;
     }
 
-    .lc-ring-card:hover {
-      border-color: var(--border-light);
-      transform: translateY(-4px);
-    }
-
-    .lc-ring-wrap {
-      position: relative;
-      width: 80px;
-      height: 80px;
-    }
-
-    .lc-ring-wrap svg {
-      transform: rotate(-90deg);
-      width: 80px;
-      height: 80px;
-    }
-
-    .lc-ring-wrap svg circle {
-      fill: none;
-      stroke-width: 6;
-      stroke-linecap: round;
-    }
-
-    .lc-ring-bg {
-      stroke: rgba(255, 255, 255, 0.06);
-    }
-
-    .lc-ring-fill {
-      transition: stroke-dashoffset 1.5s ease-out;
-    }
-
-    .lc-ring-label {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .lc-ring-count {
+    .lc-big-stat .number {
+      font-size: 3.5rem;
       font-family: var(--font-heading);
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: var(--text);
-    }
-
-    .lc-ring-total {
-      font-size: 0.7rem;
-      color: var(--text-secondary);
-    }
-
-    .lc-ring-title {
-      font-size: 0.85rem;
-      font-weight: 500;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .lc-easy .lc-ring-fill {
-      stroke: #00b8a3;
-    }
-
-    .lc-easy .lc-ring-title {
-      color: #00b8a3;
-    }
-
-    .lc-medium .lc-ring-fill {
-      stroke: #ffc01e;
-    }
-
-    .lc-medium .lc-ring-title {
-      color: #ffc01e;
-    }
-
-    .lc-hard .lc-ring-fill {
-      stroke: #ef4743;
-    }
-
-    .lc-hard .lc-ring-title {
-      color: #ef4743;
-    }
-
-    .lc-bottom-stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-    }
-
-    @media(max-width: 800px) {
-      .lc-bottom-stats {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    .lc-stat-mini {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 16px 12px;
-      text-align: center;
-      transition: 0.3s;
-    }
-
-    .lc-stat-mini:hover {
-      border-color: var(--border-light);
-    }
-
-    .lc-stat-mini h4 {
-      font-size: 1.4rem;
       font-weight: 300;
       color: var(--text);
-      margin-bottom: 4px;
+      line-height: 1;
     }
 
-    .lc-stat-mini p {
-      font-size: 0.7rem;
+    .lc-big-stat .label {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      margin-top: 8px;
+    }
+
+    .lc-btn {
+      align-self: flex-start;
+      background: rgba(255, 161, 22, 0.1);
+      border-color: rgba(255, 161, 22, 0.4);
+      color: #ffa116;
+    }
+    
+    .lc-btn:hover {
+      background: rgba(255, 161, 22, 0.2);
+      box-shadow: 0 0 20px rgba(255, 161, 22, 0.2);
+      border-color: #ffa116;
+    }
+
+    .lc-bars {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .lc-bar-item {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .lc-bar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-heading);
+    }
+
+    .lc-bar-header .difficulty {
+      font-size: 1.1rem;
+      font-weight: 500;
+    }
+
+    .lc-bar-header .count {
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+
+    .lc-bar-header .total {
+      font-size: 0.8rem;
       color: var(--text-secondary);
+    }
+
+    .lc-track {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .lc-fill {
+      height: 100%;
+      border-radius: 4px;
+      position: relative;
+    }
+    
+    .lc-fill::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: lc-shimmer 2s infinite linear;
+    }
+
+    @keyframes lc-shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .lc-mini-stats {
+      display: flex;
+      gap: 32px;
+      margin-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      padding-top: 24px;
+    }
+
+    .lc-mini-item {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lc-mini-item .val {
+      font-size: 1.25rem;
+      color: var(--text);
+      font-family: var(--font-heading);
+    }
+
+    .lc-mini-item .lbl {
+      font-size: 0.7rem;
       text-transform: uppercase;
       letter-spacing: 1px;
+      color: var(--text-secondary);
+    }
+
+    @media(max-width: 800px) {
+      .lc-modern-card {
+        grid-template-columns: 1fr;
+        padding: 32px;
+        gap: 40px;
+      }
+      .lc-mini-stats {
+        flex-wrap: wrap;
+      }
     }
 
     #dsa {
@@ -1288,7 +1283,7 @@
           <div style="display:flex; flex-direction:column; gap:12px;">
             <a href="https://github.com/gms26" target="_blank" class="menu-action m-item"
               style="border:none;">GitHub</a>
-            <a href="https://www.linkedin.com/in/sanjay-g-m-55893a287/" target="_blank" class="menu-action m-item"
+            <a href="https://linkedin.com/in/sanjay" target="_blank" class="menu-action m-item"
               style="border:none;">LinkedIn</a>
             <a href="https://leetcode.com/u/gms_26/" target="_blank" class="menu-action m-item"
               style="border:none;">LeetCode</a>
@@ -1336,13 +1331,10 @@
       <div class="grid-2">
         <div class="gsap-fade">
           <p style="color:var(--text-secondary); margin-bottom:20px; font-weight:300;">
-            I am a Full-Stack Developer with strong expertise in backend engineering, REST APIs, and scalable web
-            applications. I have solved over <span style="color:var(--text); font-weight:500;">500+ LeetCode
-              problems</span>, establishing a solid foundation in Data Structures and Algorithms.
+            Full Stack Software Developer with hands-on experience in backend engineering, REST API design and scalable web application development. Solved <span style="color:var(--text); font-weight:500;">500+ LeetCode problems</span> covering Data Structures, Algorithms.
           </p>
           <p style="color:var(--text-secondary); font-weight:300;">
-            My experience spans building AI-powered platforms and real-time applications using Java, Spring Boot, React,
-            PostgreSQL, and Python. I believe in writing code that is not only functional but architecturally sound.
+            Experienced in building AI-powered, real-time systems using Java, Spring Boot, React.js, PostgreSQL and Python. I believe in writing code that is not only functional but architecturally sound.
           </p>
         </div>
         <div class="stat-grid gsap-fade">
@@ -1373,87 +1365,63 @@
       <span class="section-eyebrow gsap-fade">Problem Solving</span>
       <h2 class="section-heading gsap-fade">DSA & Problem Solving</h2>
 
-      <div class="lc-profile gsap-fade">
-        <div class="lc-header">
-          <div class="lc-username">
-            <div class="lc-avatar">LC</div>
-            <div>
-              <div class="lc-name">gms_26</div>
-              <div class="lc-rank">Ranking: #198,638</div>
+      <div class="lc-modern-card gsap-fade">
+        <div class="lc-main-info">
+          <div class="lc-brand">
+            <div class="lc-logo">LC</div>
+            <div class="lc-user-details">
+              <h3>gms_26</h3>
+              <p>Global Rank #198,638</p>
             </div>
           </div>
+          
+          <div class="lc-big-stat">
+            <span class="number">500</span>
+            <span class="label">Problems Solved</span>
+          </div>
+
+          <div class="lc-mini-stats">
+            <div class="lc-mini-item">
+              <span class="val">849</span>
+              <span class="lbl">Submissions</span>
+            </div>
+            <div class="lc-mini-item">
+              <span class="val">74.7%</span>
+              <span class="lbl">Acceptance</span>
+            </div>
+            <div class="lc-mini-item">
+              <span class="val">165</span>
+              <span class="lbl">Contribution</span>
+            </div>
+          </div>
+
+          <a href="https://leetcode.com/u/gms_26/" target="_blank" class="btn lc-btn">View Full Profile</a>
         </div>
-
-        <div class="lc-stats-row">
-          <div class="lc-ring-card lc-easy">
-            <div class="lc-ring-wrap">
-              <svg viewBox="0 0 100 100">
-                <circle class="lc-ring-bg" cx="50" cy="50" r="42"></circle>
-                <circle class="lc-ring-fill" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="195.4">
-                </circle>
-              </svg>
-              <div class="lc-ring-label">
-                <span class="lc-ring-count">249</span>
-                <span class="lc-ring-total">/ 951</span>
-              </div>
+        
+        <div class="lc-bars">
+          <div class="lc-bar-item">
+            <div class="lc-bar-header">
+              <span class="difficulty" style="color: #00b8a3;">Easy</span>
+              <span class="count">249 <span class="total">/ 951</span></span>
             </div>
-            <span class="lc-ring-title">Easy</span>
+            <div class="lc-track"><div class="lc-fill" style="width: 26%; background: #00b8a3; box-shadow: 0 0 10px #00b8a3;"></div></div>
           </div>
-
-          <div class="lc-ring-card lc-medium">
-            <div class="lc-ring-wrap">
-              <svg viewBox="0 0 100 100">
-                <circle class="lc-ring-bg" cx="50" cy="50" r="42"></circle>
-                <circle class="lc-ring-fill" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="236.6">
-                </circle>
-              </svg>
-              <div class="lc-ring-label">
-                <span class="lc-ring-count">215</span>
-                <span class="lc-ring-total">/ 2074</span>
-              </div>
+          
+          <div class="lc-bar-item">
+            <div class="lc-bar-header">
+              <span class="difficulty" style="color: #ffc01e;">Medium</span>
+              <span class="count">215 <span class="total">/ 2074</span></span>
             </div>
-            <span class="lc-ring-title">Medium</span>
+            <div class="lc-track"><div class="lc-fill" style="width: 10%; background: #ffc01e; box-shadow: 0 0 10px #ffc01e;"></div></div>
           </div>
-
-          <div class="lc-ring-card lc-hard">
-            <div class="lc-ring-wrap">
-              <svg viewBox="0 0 100 100">
-                <circle class="lc-ring-bg" cx="50" cy="50" r="42"></circle>
-                <circle class="lc-ring-fill" cx="50" cy="50" r="42" stroke-dasharray="263.9" stroke-dashoffset="253.9">
-                </circle>
-              </svg>
-              <div class="lc-ring-label">
-                <span class="lc-ring-count">36</span>
-                <span class="lc-ring-total">/ 948</span>
-              </div>
+          
+          <div class="lc-bar-item">
+            <div class="lc-bar-header">
+              <span class="difficulty" style="color: #ef4743;">Hard</span>
+              <span class="count">36 <span class="total">/ 948</span></span>
             </div>
-            <span class="lc-ring-title">Hard</span>
+            <div class="lc-track"><div class="lc-fill" style="width: 3.8%; background: #ef4743; box-shadow: 0 0 10px #ef4743;"></div></div>
           </div>
-        </div>
-
-        <div class="lc-bottom-stats">
-          <div class="lc-stat-mini">
-            <h4>500</h4>
-            <p>Total Solved</p>
-          </div>
-          <div class="lc-stat-mini">
-            <h4>849</h4>
-            <p>Submissions</p>
-          </div>
-          <div class="lc-stat-mini">
-            <h4>74.7%</h4>
-            <p>Acceptance</p>
-          </div>
-          <div class="lc-stat-mini">
-            <h4>165</h4>
-            <p>Contribution</p>
-          </div>
-        </div>
-
-        <div style="margin-top: 40px; text-align: center;" class="gsap-fade">
-          <p style="color: var(--text-secondary); font-weight: 300; font-size: 1.05rem; margin-bottom: 16px;">500+
-            problems solved — Arrays, Trees, Graphs, DP, Backtracking</p>
-          <a href="https://leetcode.com/u/gms_26/" target="_blank" class="btn">View LeetCode Profile</a>
         </div>
       </div>
     </div>
@@ -1468,7 +1436,27 @@
       <div class="project-list">
         <div class="card project-card gsap-reveal-clip">
           <div class="project-header">
-            <h3 class="project-title">CivicPulse</h3>
+            <h3 class="project-title">PR Reviewer <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:12px;">2026</span></h3>
+            <div class="project-links">
+              <a href="https://pr-reviewer-iota.vercel.app/login" target="_blank" class="p-link">Live Demo</a>
+              <a href="https://github.com/gms26/PR-Reviewer" target="_blank" class="p-link"
+                style="color:var(--text-secondary);">Source</a>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Java</span><span class="tag">Spring Boot</span><span class="tag">React</span><span
+              class="tag">PostgreSQL</span><span class="tag">OAuth2</span><span class="tag">Webhooks</span><span class="tag">Docker</span>
+          </div>
+          <ul class="project-desc">
+            <li>Automated GitHub Pull Request reviews using Google Gemini AI for intelligent code analysis.</li>
+            <li>Integrated GitHub OAuth2, Webhooks and REST APIs for secure event-driven review workflows.</li>
+            <li>Designed a scalable Spring Boot backend with PostgreSQL for review orchestration and persistence.</li>
+            <li>Built a React dashboard for repository management and AI review monitoring.</li>
+          </ul>
+        </div>
+        <div class="card project-card gsap-reveal-clip">
+          <div class="project-header">
+            <h3 class="project-title">CivicPulse <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:12px;">2025</span></h3>
             <div class="project-links">
               <a href="https://civicpulse-frontend-3mb8.onrender.com" target="_blank" class="p-link">Live Demo</a>
               <a href="https://github.com/gms26/CivicPulse" target="_blank" class="p-link"
@@ -1481,18 +1469,16 @@
               class="tag">Docker</span>
           </div>
           <ul class="project-desc">
-            <li>Engineered a real-time civic issue management platform supporting Citizens and Admin workflows.</li>
-            <li>Designed RESTful APIs with JWT-based authentication and role-based authorization using Spring Security.
-            </li>
-            <li>Implemented WebSocket(STOMP)-based live notifications supporting real-time issue tracking workflows.
-            </li>
-            <li>Containerized and deployed the application using Docker and Render with PostgreSQL integration.</li>
+            <li>Engineered a real-time civic issue management platform with Citizen and Admin workflows.</li>
+            <li>Designed secure REST APIs using Spring Security and JWT authentication.</li>
+            <li>Implemented WebSocket-based real-time issue tracking and notifications.</li>
+            <li>Containerized and deployed the application using Docker, Render, and PostgreSQL.</li>
           </ul>
         </div>
 
         <div class="card project-card gsap-reveal-clip">
           <div class="project-header">
-            <h3 class="project-title">Forecasting</h3>
+            <h3 class="project-title">Forecasting Platform <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:12px;">2024</span></h3>
             <div class="project-links">
               <a href="https://sanjay-forcasting.vercel.app/" target="_blank" class="p-link">Live Demo</a>
               <a href="https://github.com/gms26/Forcasting" target="_blank" class="p-link"
@@ -1501,74 +1487,13 @@
           </div>
           <div class="project-tags">
             <span class="tag">React.js</span><span class="tag">FastAPI</span><span class="tag">Python</span><span
-              class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Gemini AI</span>
+              class="tag">Pandas</span><span class="tag">NumPy</span>
           </div>
           <ul class="project-desc">
-            <li>Built an AI-powered forecasting platform for analyzing historical data and generating predictive
-              insights.</li>
-            <li>Developed FastAPI backend services for CSV processing, missing-value handling, and forecasting
-              workflows.</li>
-            <li>Integrated Google Gemini AI to generate human-readable business insights from forecasted data.</li>
-            <li>Processed large-scale historical datasets and generated automated forecasting insights using ARIMA and
-              Holt-Winters models.</li>
-          </ul>
-        </div>
-
-        <div class="card project-card gsap-reveal-clip">
-          <div class="project-header">
-            <h3 class="project-title">Smart Code Translator</h3>
-            <div class="project-links">
-              <a href="https://smart-code-translator-kappa.vercel.app/" target="_blank" class="p-link">Live Demo</a>
-              <a href="https://github.com/gms26/Smart-Code-Translator" target="_blank" class="p-link"
-                style="color:var(--text-secondary);">Source</a>
-            </div>
-          </div>
-          <div class="project-tags">
-            <span class="tag">React.js</span><span class="tag">Node.js</span><span class="tag">MongoDB</span><span
-              class="tag">Gemini AI</span>
-          </div>
-          <ul class="project-desc">
-            <li>Developed a full-stack AI-powered code translation platform supporting 5 programming languages.</li>
-            <li>Integrated Google Gemini AI APIs to perform syntax-aware code translation across multiple programming
-              languages.</li>
-            <li>Implemented Monaco Editor for real-time syntax highlighting and in-browser code editing similar to VS
-              Code.</li>
-            <li>Designed secure authentication and scalable REST API workflows using Google OAuth, JWT, and MongoDB.
-            </li>
-          </ul>
-        </div>
-
-        <div class="card project-card gsap-reveal-clip">
-          <div class="project-header">
-            <h3 class="project-title">
-              Space Escape Runner
-              <span
-                style="font-size:0.7rem;color:var(--accent);border:1px solid rgba(0,229,255,0.3);padding:3px 10px;border-radius:4px;margin-left:12px;vertical-align:middle;font-family:var(--font-body);font-weight:400;letter-spacing:1px;text-transform:uppercase;">Android
-                APK</span>
-            </h3>
-            <div class="project-links">
-              <a href="https://expo.dev/accounts/gms26/projects/SpaceEscapeRunner/builds/3e353ecd-27a7-46f2-afe5-16386f13d62a"
-                target="_blank" class="p-link">Download APK</a>
-              <a href="https://github.com/gms26/Game-App" target="_blank" class="p-link"
-                style="color:var(--text-secondary);">Source</a>
-            </div>
-          </div>
-          <div class="project-tags">
-            <span class="tag">React Native</span>
-            <span class="tag">Expo</span>
-            <span class="tag">EAS Build</span>
-            <span class="tag">AsyncStorage</span>
-            <span class="tag">AABB Collision</span>
-            <span class="tag">Android</span>
-          </div>
-          <ul class="project-desc">
-            <li>2D arcade survival game — pilot a spaceship dodging asteroids, meteors, and enemies while collecting
-              power-ups: shields, slow-motion, and score multipliers.</li>
-            <li>Custom real-time game loop with AABB collision detection and dynamic difficulty scaling — zero game
-              engines used.</li>
-            <li>Built entirely with native React Native views; no images, no canvas, no external game libraries.</li>
-            <li>Haptic feedback, persistent high scores via AsyncStorage, packaged as standalone Android APK using EAS
-              Build.</li>
+            <li>Built an AI-powered forecasting platform for predictive analytics.</li>
+            <li>Developed FastAPI services for CSV processing and forecasting workflows.</li>
+            <li>Integrated Gemini AI and implemented ARIMA and Holt-Winters models.</li>
+            <li>Designed automated trend analysis and business insight generation.</li>
           </ul>
         </div>
       </div>
@@ -1589,11 +1514,9 @@
               style="font-size:0.95rem; color:var(--text-secondary); font-weight:300; list-style:none; padding-left:0;">
               <li style="margin-bottom:8px;">&bull; Developed a real-time crop suitability prediction system using
                 DeepSeek and Mistral APIs.</li>
-              <li style="margin-bottom:8px;">&bull; Processed agricultural datasets including soil conditions, weather
-                patterns, and crop yield parameters.</li>
-              <li style="margin-bottom:8px;">&bull; Integrated AI-based recommendation workflows to improve prediction
-                accuracy and automation.</li>
-              <li>&bull; Collaborated on backend integration and scalable AI-driven data processing workflows.</li>
+              <li style="margin-bottom:8px;">&bull; Processed agricultural datasets and integrated AI-based
+                recommendation workflows.</li>
+              <li>&bull; Collaborated on backend integration and scalable AI-driven data processing.</li>
             </ul>
           </div>
         </div>
@@ -1618,7 +1541,15 @@
   <section id="certifications">
     <div class="container">
       <span class="section-eyebrow gsap-fade">Achievements</span>
-      <h2 class="section-heading gsap-fade">Certifications</h2>
+      <h2 class="section-heading gsap-fade">Certifications & Achievements</h2>
+
+      <div class="gsap-fade" style="margin-bottom:60px;">
+        <ul style="color:var(--text-secondary); font-weight:300; line-height:1.8; padding-left:20px; font-size:1.05rem;">
+          <li style="margin-bottom:12px;">Solved <strong>500+ LeetCode problems</strong> focused on Data Structures, Algorithms, and optimization.</li>
+          <li style="margin-bottom:12px;">Completed certifications: <strong>Large Language Models (LLMs) and Generative AI</strong>.</li>
+          <li style="margin-bottom:12px;">Participated in a <strong>State-Level Buildathon</strong> and UI/UX design workshops.</li>
+        </ul>
+      </div>
 
       <h3 class="gsap-fade"
         style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">
@@ -1757,7 +1688,7 @@
         <div class="skill-box gsap-fade">
           <h4 class="skill-title">Tools</h4>
           <div class="skill-tags"><span class="tag">Git & GitHub</span><span class="tag">Docker</span><span
-              class="tag">Render</span><span class="tag">Cloudinary</span></div>
+              class="tag">Render</span><span class="tag">Cloudinary</span><span class="tag">Vercel</span></div>
         </div>
         <div class="skill-box gsap-fade">
           <h4 class="skill-title">AI / ML</h4>
@@ -1792,8 +1723,8 @@
           <a href="https://github.com/gms26" target="_blank" class="c-link-item">
             <span>GitHub: github.com/gms26</span>
           </a>
-          <a href="https://www.linkedin.com/in/sanjay-g-m-55893a287/" target="_blank" class="c-link-item">
-            <span>LinkedIn: sanjay_</span>
+          <a href="https://linkedin.com/in/sanjay" target="_blank" class="c-link-item">
+            <span>LinkedIn: linkedin.com/in/sanjay</span>
           </a>
           <a href="https://leetcode.com/u/gms_26/" target="_blank" class="c-link-item">
             <span>LeetCode: gms_26</span>
