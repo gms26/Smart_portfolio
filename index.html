@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -1774,9 +1774,9 @@
             <span class="tag">Android</span>
           </div>
           <ul class="project-desc">
-            <li>2D arcade survival game ΓÇö pilot a spaceship dodging asteroids, meteors, and enemies while collecting
+            <li>2D arcade survival game - pilot a spaceship dodging asteroids, meteors, and enemies while collecting
               power-ups: shields, slow-motion, and score multipliers.</li>
-            <li>Custom real-time game loop with AABB collision detection and dynamic difficulty scaling ΓÇö zero game
+            <li>Custom real-time game loop with AABB collision detection and dynamic difficulty scaling - zero game
               engines used.</li>
             <li>Built entirely with native React Native views; no images, no canvas, no external game libraries.</li>
             <li>Haptic feedback, persistent high scores via AsyncStorage, packaged as standalone Android APK using EAS
@@ -1831,7 +1831,7 @@
         <div class="gsap-fade">
           <div class="exp-item">
             <h3 class="exp-title">B.E. Computer Science</h3>
-            <span class="exp-meta">Dr. NGP Institute of Technology | 2023 ΓÇô Present</span>
+            <span class="exp-meta">Dr. NGP Institute of Technology | 2023 - Present</span>
             <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Current CGPA: 7.74. Focusing on
               Data Structures, Algorithms, Web Development, and AI technologies.</p>
           </div>
@@ -1911,14 +1911,14 @@
         <div class="card" style="padding:28px;">
           <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">NPTEL Cloud Computing</h4>
           <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">IIT</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">JanΓÇôApr 2025 ┬╖
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jan - Apr 2025 &bull;
             Score: 72/100</p>
         </div>
         <div class="card" style="padding:28px;">
           <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">NPTEL Internet of Things
           </h4>
           <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">IIT</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">JulΓÇôOct 2025 ┬╖
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jul - Oct 2025 &bull;
             Score: 75/100</p>
         </div>
         <div class="card" style="padding:28px;">
@@ -1935,10 +1935,8 @@
         <div class="card" style="padding:28px;">
           <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">ICT Academy Learnathon 2024
           </h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft ┬╖ Google ┬╖ MathWorks
-            ┬╖
-            MongoDB ┬╖ Bentley</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">AugΓÇôOct 2024</p>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft &bull; Google &bull; MathWorks &bull; MongoDB &bull; Bentley</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Aug - Oct 2024</p>
         </div>
       </div>
     </div>
@@ -2076,10 +2074,10 @@
   </footer>
 
   <script>
-    // ΓöÇΓöÇ GSAP ΓöÇΓöÇ
+    // -- GSAP --
     gsap.registerPlugin(ScrollTrigger);
 
-    // ΓöÇΓöÇ Smooth Scroll ΓöÇΓöÇ
+    // -- Smooth Scroll --
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -2092,7 +2090,7 @@
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
 
-    // ΓöÇΓöÇ Hero Fly-Through ΓöÇΓöÇ
+    // -- Hero Fly-Through --
     const heroTl = gsap.timeline({
       scrollTrigger: {
         trigger: "#hero",
@@ -2112,7 +2110,7 @@
       .to("#heroInner", { y: -100, opacity: 0, ease: "power2.in" }, 0)
       .to("#heroPhoto", { opacity: 0, ease: "power2.in" }, 0);
 
-    // ΓöÇΓöÇ Scroll Reveal (Batched for Performance) ΓöÇΓöÇ
+    // -- Scroll Reveal (Batched for Performance) --
     gsap.set('.gsap-reveal-clip', { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)', opacity: 0, y: 30 });
     gsap.set('.gsap-fade', { opacity: 0, y: 20 });
 
@@ -2154,8 +2152,8 @@
       ScrollTrigger.refresh();
     }, 4000);
 
-    // ΓöÇΓöÇ Typing Effect ΓöÇΓöÇ
-    const phrases = ['Full-Stack Developer & Freelancer', 'Backend Engineer ΓÇö Java & Spring Boot', 'AI-Powered App Builder', '540+ LeetCode Problem Solver'];
+    // -- Typing Effect --
+    const phrases = ['Full-Stack Developer & Freelancer', 'Backend Engineer - Java & Spring Boot', 'AI-Powered App Builder', '540+ LeetCode Problem Solver'];
     const typedEl = document.getElementById('typed');
     let pi = 0, ci = 0, deleting = false;
     function type() {
@@ -2173,7 +2171,7 @@
     }
     setTimeout(type, 100);
 
-    // ΓöÇΓöÇ Mobile Menu ΓöÇΓöÇ
+    // -- Mobile Menu --
     const toggle = document.getElementById('navToggle');
     const menuOverlay = document.getElementById('menuOverlay');
     const nav = document.querySelector('.nav');
@@ -2205,7 +2203,7 @@
       }
     });
 
-    // ΓöÇΓöÇ Custom Cursor ΓöÇΓöÇ
+    // -- Custom Cursor --
     if (window.innerWidth >= 768) {
       const dot = document.querySelector('.cursor-dot');
       const outline = document.querySelector('.cursor-outline');
@@ -2237,7 +2235,7 @@
       });
     }
 
-    // ΓöÇΓöÇ Web3Forms ΓöÇΓöÇ
+    // -- Web3Forms --
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     contactForm.addEventListener('submit', async (e) => {
@@ -2249,7 +2247,7 @@
       try {
         const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(contactForm) });
         const data = await res.json();
-        if (data.success) { submitBtn.innerHTML = 'Sent Γ£ô'; contactForm.reset(); }
+        if (data.success) { submitBtn.innerHTML = 'Sent &#10003;'; contactForm.reset(); }
         else { submitBtn.innerHTML = 'Error'; }
       } catch (error) { submitBtn.innerHTML = 'Failed'; }
       setTimeout(() => { submitBtn.innerHTML = 'Send Message'; submitBtn.style.opacity = '1'; submitBtn.style.pointerEvents = 'auto'; }, 4000);
