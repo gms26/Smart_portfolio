@@ -596,13 +596,32 @@
       border: 1px solid var(--border);
       padding: 40px;
       border-radius: 8px;
-      transition: 0.4s;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, transparent 65%);
+      opacity: 0;
+      transition: 0.4s ease;
+      pointer-events: none;
+    }
+
+    .card:hover::after {
+      opacity: 1;
     }
 
     .card:hover {
       border-color: var(--accent);
       background: rgba(10, 18, 30, 0.9);
-      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 229, 255, 0.24), inset 0 1px 0 rgba(0, 229, 255, 0.35);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
       transform: translateY(-4px);
     }
 
@@ -621,6 +640,24 @@
       text-align: center;
       position: relative;
       overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: 0.4s ease;
+      pointer-events: none;
+    }
+
+    .stat:hover::before {
+      opacity: 1;
     }
 
     .stat::after {
@@ -641,7 +678,7 @@
     .stat:hover {
       border-color: var(--accent);
       background: rgba(10, 18, 30, 0.9);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), 0 0 22px rgba(0, 229, 255, 0.22);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
       transform: translateY(-4px);
     }
 
@@ -770,20 +807,40 @@
 
     /* EXP & EDU */
     .exp-item {
-      border-left: 1px solid var(--border);
-      padding: 0 0 32px 32px;
+      border-left: 2px solid var(--border);
+      padding: 20px 24px 28px 30px;
       position: relative;
+      border-radius: 6px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    .exp-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at left center, rgba(0, 229, 255, 0.1) 0%, transparent 65%);
+      opacity: 0;
+      transition: 0.4s ease;
+      pointer-events: none;
+    }
+
+    .exp-item:hover::after {
+      opacity: 1;
     }
 
     .exp-item::before {
       content: '';
       position: absolute;
-      left: -4px;
-      top: 8px;
-      width: 7px;
-      height: 7px;
+      left: -5px;
+      top: 22px;
+      width: 8px;
+      height: 8px;
       background: var(--bg);
-      border: 1px solid var(--accent);
+      border: 1.5px solid var(--accent);
       border-radius: 50%;
       transition: 0.3s;
     }
@@ -795,8 +852,8 @@
 
     .exp-item:hover {
       border-left-color: var(--accent);
-      background: rgba(10, 18, 30, 0.6);
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35), 0 0 16px rgba(0, 229, 255, 0.16);
+      background: rgba(10, 18, 30, 0.9);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
       transform: translateX(6px);
     }
 
@@ -816,17 +873,38 @@
     /* INTERESTS & ACTIVITIES */
     .activity-box {
       padding: 24px;
-      border-left: 2px solid var(--border);
-      transition: 0.3s;
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       background: rgba(255, 255, 255, 0.01);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .activity-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: 0.4s ease;
+      pointer-events: none;
+    }
+
+    .activity-box:hover::after {
+      opacity: 1;
     }
 
     .activity-box:hover {
       border-color: var(--accent);
       border-left-color: var(--accent);
       background: rgba(10, 18, 30, 0.9);
-      box-shadow: 0 8px 26px rgba(0, 0, 0, 0.45), 0 0 18px rgba(0, 229, 255, 0.22);
-      transform: translateX(6px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
+      transform: translateY(-4px);
     }
 
     .activity-title {
@@ -939,13 +1017,31 @@
       gap: 12px;
       font-size: 1rem;
       color: var(--text-secondary);
-      padding: 16px;
+      padding: 16px 20px;
       border: 1px solid var(--border);
       border-radius: 8px;
       margin-bottom: 12px;
-      transition: 0.3s;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .c-link-item::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: 0.4s ease;
+      pointer-events: none;
+    }
+
+    .c-link-item:hover::after {
+      opacity: 1;
     }
 
     .c-link-item::before {
@@ -968,14 +1064,14 @@
       background: rgba(10, 18, 30, 0.9);
       color: var(--text);
       border-color: var(--accent);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45), 0 0 18px rgba(0, 229, 255, 0.22);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
       transform: translateX(6px);
     }
 
     /* MODERN LEETCODE PROFILE */
     .lc-modern-card {
       background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
       border-radius: 16px;
       padding: 48px;
       display: grid;
@@ -987,25 +1083,31 @@
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(10px);
       -webkit-backdrop-filter: blur(10px);
-      transition: 0.4s;
-    }
-
-    .lc-modern-card:hover {
-      border-color: var(--accent);
-      background: rgba(10, 18, 30, 0.9);
-      box-shadow: 0 16px 42px rgba(0, 0, 0, 0.55), 0 0 26px rgba(0, 229, 255, 0.24), inset 0 1px 0 rgba(0, 229, 255, 0.35);
-      transform: translateY(-4px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .lc-modern-card::before {
       content: '';
       position: absolute;
-      top: -50%;
-      left: -50%;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, rgba(255, 161, 22, 0.08) 0%, transparent 60%);
+      background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: 0.4s ease;
       pointer-events: none;
+    }
+
+    .lc-modern-card:hover::before {
+      opacity: 1;
+    }
+
+    .lc-modern-card:hover {
+      border-color: var(--accent);
+      background: rgba(10, 18, 30, 0.9);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
+      transform: translateY(-4px);
     }
 
     .lc-main-info {
