@@ -143,12 +143,13 @@
     }
 
     .cursor-outline.hover {
-      width: 40px;
-      height: 40px;
-      margin-left: -20px;
-      margin-top: -20px;
-      background-color: rgba(0, 229, 255, 0.1);
-      border-color: rgba(0, 229, 255, 0.5);
+      width: 42px;
+      height: 42px;
+      margin-left: -21px;
+      margin-top: -21px;
+      background-color: rgba(0, 229, 255, 0.12);
+      border-color: rgba(0, 229, 255, 0.6);
+      box-shadow: 0 0 18px rgba(0, 229, 255, 0.4);
     }
 
     /* Site Background */
@@ -791,6 +792,28 @@
       background: rgba(0, 229, 255, 0.04);
       border-color: rgba(0, 229, 255, 0.25);
       box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
+      transform: translateX(4px);
+    }
+
+    .achievement-item {
+      padding: 12px 18px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text-secondary);
+      font-size: 0.98rem;
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: default;
+    }
+
+    .achievement-item:hover {
+      background: rgba(0, 229, 255, 0.06);
+      border-color: var(--accent);
+      color: var(--text);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.25);
       transform: translateX(4px);
     }
 
@@ -1600,6 +1623,14 @@
             Experienced in building AI-powered, real-time systems using Java, Spring Boot, React.js, PostgreSQL and
             Python. I believe in writing code that is not only functional but architecturally sound.
           </p>
+          <div class="skill-tags" style="margin-top:22px;">
+            <span class="tag">Backend Engineering</span>
+            <span class="tag">Full Stack Development</span>
+            <span class="tag">540+ LeetCode Solved</span>
+            <span class="tag">Spring Boot &amp; React</span>
+            <span class="tag">REST API Architecture</span>
+            <span class="tag">AI Systems</span>
+          </div>
         </div>
         <div class="stat-grid gsap-fade">
           <a href="https://leetcode.com/u/gms_26/" target="_blank" class="stat"
@@ -1875,6 +1906,13 @@
                 &nearr;</a>
             </div>
             <span class="exp-meta">Pennool | 2026</span>
+            <div class="skill-tags" style="margin-bottom: 14px;">
+              <span class="tag">Pennool.in</span>
+              <span class="tag">E-Commerce</span>
+              <span class="tag">Razorpay</span>
+              <span class="tag">Google OAuth</span>
+              <span class="tag">SEO / JSON-LD</span>
+            </div>
             <ul
               style="font-size:0.95rem; color:var(--text-secondary); font-weight:300; list-style:none; padding-left:0;">
               <li style="margin-bottom:8px;">&bull; Developed and launched the production e-commerce website for Pennool
@@ -1892,6 +1930,12 @@
           <div class="exp-item" style="border-left-color:transparent;">
             <h3 class="exp-title">AI Intern</h3>
             <span class="exp-meta">Gateway Software Solutions | June 2025</span>
+            <div class="skill-tags" style="margin-bottom: 14px;">
+              <span class="tag">DeepSeek AI</span>
+              <span class="tag">Mistral API</span>
+              <span class="tag">Python</span>
+              <span class="tag">AgriTech Workflows</span>
+            </div>
             <ul
               style="font-size:0.95rem; color:var(--text-secondary); font-weight:300; list-style:none; padding-left:0;">
               <li style="margin-bottom:8px;">&bull; Developed a real-time crop suitability prediction system using
@@ -1906,12 +1950,24 @@
           <div class="exp-item">
             <h3 class="exp-title">B.E. Computer Science</h3>
             <span class="exp-meta">Dr. NGP Institute of Technology | 2023 - Present</span>
+            <div class="skill-tags" style="margin: 12px 0 14px 0;">
+              <span class="tag">CGPA: 7.74</span>
+              <span class="tag">Data Structures</span>
+              <span class="tag">Algorithms</span>
+              <span class="tag">Web Architecture</span>
+              <span class="tag">AI Technologies</span>
+            </div>
             <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Current CGPA: 7.74. Focusing on
               Data Structures, Algorithms, Web Development, and AI technologies.</p>
           </div>
           <div class="exp-item" style="border-left-color:transparent;">
             <h3 class="exp-title">HSC</h3>
             <span class="exp-meta">AVP Trust National Matric School | 2023</span>
+            <div class="skill-tags" style="margin: 12px 0 14px 0;">
+              <span class="tag">CS: 100/100</span>
+              <span class="tag">83% Overall</span>
+              <span class="tag">AVP Trust</span>
+            </div>
             <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Scored 83% overall with a
               perfect 100/100 in Computer Science.</p>
           </div>
@@ -1925,56 +1981,68 @@
       <span class="section-eyebrow gsap-fade">Achievements</span>
       <h2 class="section-heading gsap-fade">Certifications & Achievements</h2>
 
-      <div class="card gsap-fade" style="margin-bottom:48px; padding:28px 36px;">
-        <ul
-          style="color:var(--text-secondary); font-weight:300; line-height:1.8; padding-left:20px; font-size:1.05rem;">
-          <li style="margin-bottom:12px;">Solved <strong>540+ LeetCode problems</strong> focused on Data Structures,
-            Algorithms, and optimization.</li>
-          <li style="margin-bottom:12px;">Completed certifications: <strong>Large Language Models (LLMs) and Generative
-              AI</strong>.</li>
-          <li style="margin-bottom:12px;">Participated in a <strong>State-Level Buildathon</strong> and UI/UX design
-            workshops.</li>
-        </ul>
+      <div class="card gsap-fade" style="margin-bottom:48px; padding:28px 32px;">
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div class="achievement-item">
+            <span class="tag" style="border-color:var(--accent); color:var(--accent); font-weight:600;">LeetCode</span>
+            <span>Solved <strong>540+ problems</strong> focused on Data Structures, Algorithms, and optimization.</span>
+          </div>
+          <div class="achievement-item">
+            <span class="tag" style="border-color:var(--accent); color:var(--accent); font-weight:600;">AI &amp; LLMs</span>
+            <span>Completed certifications in <strong>Large Language Models (LLMs) and Generative AI</strong>.</span>
+          </div>
+          <div class="achievement-item">
+            <span class="tag" style="border-color:var(--accent); color:var(--accent); font-weight:600;">Buildathon</span>
+            <span>Participated in <strong>State-Level Buildathon</strong> and UI/UX design workshops.</span>
+          </div>
+        </div>
       </div>
 
       <h3 class="gsap-fade"
         style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">
         AI & Generative AI</h3>
       <div class="grid-3 gsap-fade" style="margin-bottom:60px;">
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Generative AI Mastery
-            Workshop</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">OpenAI Academy</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Sep 2025</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">Generative AI Mastery Workshop</h4>
+          <div class="skill-tags">
+            <span class="tag">OpenAI Academy</span>
+            <span class="tag">Sep 2025</span>
+          </div>
         </div>
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Gen AI Project Completion
-          </h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft (SDE II)</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Sep 2024</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">Gen AI Project Completion</h4>
+          <div class="skill-tags">
+            <span class="tag">Microsoft (SDE II)</span>
+            <span class="tag">Sep 2024</span>
+          </div>
         </div>
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">LLMs & Agentic AI
-            Masterclass</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Ion Health</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Sep 2025</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">LLMs &amp; Agentic AI Masterclass</h4>
+          <div class="skill-tags">
+            <span class="tag">Ion Health</span>
+            <span class="tag">Sep 2025</span>
+          </div>
         </div>
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">MCP Workshop + Project
-            Completion</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Aug 2025</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">MCP Workshop + Project Completion</h4>
+          <div class="skill-tags">
+            <span class="tag">Anthropic MCP</span>
+            <span class="tag">Aug 2025</span>
+          </div>
         </div>
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">MVP Build & Launch Workshop
-          </h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">May 2026</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">MVP Build &amp; Launch Workshop</h4>
+          <div class="skill-tags">
+            <span class="tag">Full-Stack MVP</span>
+            <span class="tag">May 2026</span>
+          </div>
         </div>
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">UI/UX Mega Workshop</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Dec 2024</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">UI/UX Mega Workshop</h4>
+          <div class="skill-tags">
+            <span class="tag">UI/UX Design</span>
+            <span class="tag">Dec 2024</span>
+          </div>
         </div>
       </div>
 
@@ -1982,35 +2050,46 @@
         style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">
         Cloud & Platforms</h3>
       <div class="grid-3 gsap-fade">
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">NPTEL Cloud Computing</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">IIT</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jan - Apr 2025 &bull;
-            Score: 72/100</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">NPTEL Cloud Computing</h4>
+          <div class="skill-tags">
+            <span class="tag">IIT</span>
+            <span class="tag">Score: 72/100</span>
+            <span class="tag">Jan - Apr 2025</span>
+          </div>
         </div>
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">NPTEL Internet of Things
-          </h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">IIT</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jul - Oct 2025 &bull;
-            Score: 75/100</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">NPTEL Internet of Things</h4>
+          <div class="skill-tags">
+            <span class="tag">IIT</span>
+            <span class="tag">Score: 75/100</span>
+            <span class="tag">Jul - Oct 2025</span>
+          </div>
         </div>
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">AWS Mega Workshop</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">AWS</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jun 2024</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">AWS Mega Workshop</h4>
+          <div class="skill-tags">
+            <span class="tag">AWS Cloud</span>
+            <span class="tag">Jun 2024</span>
+          </div>
         </div>
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Salesforce Agentblazer
-            Workshop</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Salesforce</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jan 2026</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">Salesforce Agentblazer Workshop</h4>
+          <div class="skill-tags">
+            <span class="tag">Salesforce</span>
+            <span class="tag">Jan 2026</span>
+          </div>
         </div>
-        <div class="card" style="padding:28px;">
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">ICT Academy Learnathon 2024
-          </h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft &bull; Google &bull; MathWorks &bull; MongoDB &bull; Bentley</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Aug - Oct 2024</p>
+        <div class="card" style="padding:24px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:14px; font-weight:500;">ICT Academy Learnathon 2024</h4>
+          <div class="skill-tags">
+            <span class="tag">Microsoft</span>
+            <span class="tag">Google</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">MathWorks</span>
+            <span class="tag">Bentley</span>
+            <span class="tag">2024</span>
+          </div>
         </div>
       </div>
     </div>
@@ -2028,16 +2107,40 @@
             Area of Interest</h3>
           <div style="display:flex; flex-direction:column; gap:16px;">
             <div class="activity-box">
-              <h4 class="activity-title">Backend Engineering</h4>
+              <h4 class="activity-title" style="margin-bottom:12px;">Backend Engineering</h4>
+              <div class="skill-tags">
+                <span class="tag">Spring Boot</span>
+                <span class="tag">REST APIs</span>
+                <span class="tag">Microservices</span>
+                <span class="tag">Database Architecture</span>
+              </div>
             </div>
             <div class="activity-box">
-              <h4 class="activity-title">Full Stack Development</h4>
+              <h4 class="activity-title" style="margin-bottom:12px;">Full Stack Development</h4>
+              <div class="skill-tags">
+                <span class="tag">End-to-End Systems</span>
+                <span class="tag">React &amp; Node</span>
+                <span class="tag">Responsive UI</span>
+                <span class="tag">Payment &amp; Auth</span>
+              </div>
             </div>
             <div class="activity-box">
-              <h4 class="activity-title">Web Development</h4>
+              <h4 class="activity-title" style="margin-bottom:12px;">Web Development</h4>
+              <div class="skill-tags">
+                <span class="tag">Modern HTML5/CSS3</span>
+                <span class="tag">State Management</span>
+                <span class="tag">Performance &amp; SEO</span>
+                <span class="tag">Cloud Deployment</span>
+              </div>
             </div>
             <div class="activity-box">
-              <h4 class="activity-title">AI Engineer</h4>
+              <h4 class="activity-title" style="margin-bottom:12px;">AI Engineer</h4>
+              <div class="skill-tags">
+                <span class="tag">LLM Integration</span>
+                <span class="tag">Gemini API</span>
+                <span class="tag">Agentic Workflows</span>
+                <span class="tag">Prompt Engineering</span>
+              </div>
             </div>
           </div>
         </div>
@@ -2303,7 +2406,7 @@
       }
       animateCursor();
 
-      document.querySelectorAll('a, button, input, textarea, .card, .skill-box, .stat, .lc-modern-card, .exp-item, .activity-box, .c-link-item, .tag, .p-link, .lc-mini-item, .lc-bar-item, .project-desc li, .exp-item ul li').forEach(el => {
+      document.querySelectorAll('a, button, input, textarea, .card, .skill-box, .stat, .lc-modern-card, .exp-item, .activity-box, .c-link-item, .tag, .p-link, .lc-mini-item, .lc-bar-item, .project-desc li, .exp-item ul li, .achievement-item').forEach(el => {
         el.addEventListener('mouseenter', () => { outline.classList.add('hover'); });
         el.addEventListener('mouseleave', () => { outline.classList.remove('hover'); });
       });
