@@ -31,15 +31,29 @@
 
     :root {
       --bg: #07090d;
-      --bg-card: rgba(255, 255, 255, 0.02);
-      --border: rgba(255, 255, 255, 0.08);
-      --border-light: rgba(255, 255, 255, 0.15);
+      --bg-card: rgba(10, 18, 30, 0.8);
+      --border: rgba(0, 229, 255, 0.22);
+      --border-light: rgba(0, 229, 255, 0.45);
       --text: #ffffff;
       --text-secondary: #8a8f98;
       --accent: #00e5ff;
-      --accent-glow: rgba(0, 229, 255, 0.15);
+      --accent-glow: rgba(0, 229, 255, 0.18);
+      --card-blue-border: rgba(0, 229, 255, 0.25);
+      --card-blue-glow: 0 8px 30px rgba(0, 0, 0, 0.45), 0 0 18px rgba(0, 229, 255, 0.08), inset 0 1px 0 rgba(0, 229, 255, 0.22);
+      --card-blue-glow-hover: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 229, 255, 0.28), inset 0 1px 0 rgba(0, 229, 255, 0.5);
       --font-body: 'Inter', sans-serif;
       --font-heading: 'Space Grotesk', sans-serif;
+    }
+
+    @keyframes bluePulse {
+      0%, 100% {
+        border-color: rgba(0, 229, 255, 0.22);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), 0 0 16px rgba(0, 229, 255, 0.08), inset 0 1px 0 rgba(0, 229, 255, 0.22);
+      }
+      50% {
+        border-color: rgba(0, 229, 255, 0.42);
+        box-shadow: 0 10px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 229, 255, 0.18), inset 0 1px 0 rgba(0, 229, 255, 0.38);
+      }
     }
 
     html {
@@ -546,19 +560,47 @@
     }
 
     .card {
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      background: linear-gradient(145deg, rgba(11, 19, 32, 0.8), rgba(6, 11, 20, 0.92));
+      border: 1px solid var(--card-blue-border);
       padding: 40px;
-      border-radius: 8px;
-      transition: 0.4s;
+      border-radius: 14px;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--card-blue-glow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: relative;
+      animation: bluePulse 5s ease-in-out infinite alternate;
     }
 
     .card:hover {
-      border-color: var(--border-light);
+      border-color: var(--accent);
+      box-shadow: var(--card-blue-glow-hover);
       transform: translateY(-4px);
     }
 
     /* ABOUT */
+    .about-bio-box {
+      background: linear-gradient(145deg, rgba(11, 19, 32, 0.8), rgba(6, 11, 20, 0.92));
+      border: 1px solid var(--card-blue-border);
+      border-radius: 14px;
+      padding: 32px;
+      box-shadow: var(--card-blue-glow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      animation: bluePulse 5s ease-in-out infinite alternate;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: all 0.35s ease;
+    }
+
+    .about-bio-box:hover {
+      border-color: var(--accent);
+      box-shadow: var(--card-blue-glow-hover);
+      transform: translateY(-2px);
+    }
+
     .stat-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -567,12 +609,17 @@
 
     .stat {
       padding: 32px;
-      background: rgba(255, 255, 255, 0.01);
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      background: linear-gradient(145deg, rgba(11, 22, 38, 0.8), rgba(6, 12, 22, 0.92));
+      border: 1px solid var(--card-blue-border);
+      border-radius: 14px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: var(--card-blue-glow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      animation: bluePulse 5s ease-in-out infinite alternate;
     }
 
     .stat::after {
@@ -580,28 +627,38 @@
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 0;
+      width: 100%;
       height: 2px;
-      background: var(--accent);
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.6;
       transition: 0.4s ease-out;
     }
 
+    .stat:hover {
+      border-color: var(--accent);
+      box-shadow: var(--card-blue-glow-hover);
+      transform: translateY(-4px);
+    }
+
     .stat:hover::after {
-      width: 100%;
+      opacity: 1;
+      height: 3px;
     }
 
     .stat h3 {
       font-size: 2.5rem;
-      color: var(--text);
-      font-weight: 300;
+      color: var(--accent);
+      font-weight: 600;
+      text-shadow: 0 0 20px rgba(0, 229, 255, 0.35);
     }
 
     .stat p {
-      font-size: 0.75rem;
-      color: var(--text-muted);
+      font-size: 0.78rem;
+      color: #ffffff;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 1.2px;
       margin-top: 8px;
+      font-weight: 500;
     }
 
     /* PROJECTS */
@@ -619,23 +676,7 @@
       position: relative;
       overflow: hidden;
       transform-origin: center bottom;
-    }
-
-    .project-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 3px;
-      height: 100%;
-      background: var(--accent);
-      transform: scaleY(0);
-      transform-origin: top;
-      transition: 0.4s;
-    }
-
-    .project-card:hover::before {
-      transform: scaleY(1);
+      border-left: 3px solid var(--accent);
     }
 
     .project-header {
@@ -659,18 +700,19 @@
 
     .tag {
       font-size: 0.75rem;
-      padding: 4px 10px;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid var(--border);
-      color: var(--text-secondary);
+      padding: 5px 12px;
+      border-radius: 6px;
+      background: rgba(0, 229, 255, 0.05);
+      border: 1px solid rgba(0, 229, 255, 0.2);
+      color: #b0d0e6;
       transition: all 0.3s ease;
     }
 
     .tag:hover {
-      background: rgba(0, 229, 255, 0.08);
-      color: var(--text);
+      background: rgba(0, 229, 255, 0.15);
+      color: #ffffff;
       border-color: var(--accent);
+      box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
       transform: translateY(-2px);
     }
 
@@ -715,27 +757,28 @@
 
     /* EXP & EDU */
     .exp-item {
-      border-left: 1px solid var(--border);
-      padding: 0 0 32px 32px;
+      background: linear-gradient(145deg, rgba(11, 19, 32, 0.8), rgba(6, 11, 20, 0.92));
+      border: 1px solid var(--card-blue-border);
+      border-left: 3px solid var(--accent) !important;
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 20px;
       position: relative;
+      box-shadow: var(--card-blue-glow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: bluePulse 5s ease-in-out infinite alternate;
     }
 
     .exp-item::before {
-      content: '';
-      position: absolute;
-      left: -4px;
-      top: 8px;
-      width: 7px;
-      height: 7px;
-      background: var(--bg);
-      border: 1px solid var(--accent);
-      border-radius: 50%;
-      transition: 0.3s;
+      display: none;
     }
 
-    .exp-item:hover::before {
-      background: var(--accent);
-      box-shadow: 0 0 10px var(--accent);
+    .exp-item:hover {
+      border-color: var(--accent);
+      box-shadow: var(--card-blue-glow-hover);
+      transform: translateY(-3px);
     }
 
     .exp-title {
@@ -753,22 +796,27 @@
 
     /* INTERESTS & ACTIVITIES */
     .activity-box {
-      padding: 24px;
-      border-left: 2px solid var(--border);
-      transition: 0.3s;
-      background: rgba(255, 255, 255, 0.01);
+      padding: 20px 24px;
+      border-radius: 12px;
+      border: 1px solid var(--card-blue-border);
+      border-left: 3px solid var(--accent);
+      background: linear-gradient(145deg, rgba(11, 19, 32, 0.8), rgba(6, 11, 20, 0.92));
+      box-shadow: var(--card-blue-glow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.35s ease;
+      animation: bluePulse 5s ease-in-out infinite alternate;
     }
 
     .activity-box:hover {
-      border-left-color: var(--accent);
-      background: rgba(255, 255, 255, 0.03);
-      transform: translateX(8px);
+      border-color: var(--accent);
+      box-shadow: var(--card-blue-glow-hover);
+      transform: translateX(6px);
     }
 
     .activity-title {
       font-size: 1rem;
       color: var(--text);
-      margin-bottom: 8px;
       font-weight: 500;
     }
 
@@ -788,36 +836,31 @@
 
     .skill-box {
       padding: 24px;
-      border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.01);
-      border-radius: 8px;
+      border: 1px solid var(--card-blue-border);
+      background: linear-gradient(145deg, rgba(11, 20, 33, 0.8), rgba(6, 11, 21, 0.92));
+      border-radius: 12px;
       position: relative;
       overflow: hidden;
+      box-shadow: var(--card-blue-glow);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+      animation: bluePulse 5s ease-in-out infinite alternate;
     }
 
-    .skill-box::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, transparent 60%);
-      opacity: 0;
-      transition: 0.4s;
-      pointer-events: none;
-    }
-
-    .skill-box:hover::after {
-      opacity: 1;
+    .skill-box:hover {
+      border-color: var(--accent);
+      box-shadow: var(--card-blue-glow-hover);
+      transform: translateY(-4px);
     }
 
     .skill-title {
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       text-transform: uppercase;
-      color: var(--text-secondary);
+      color: var(--accent);
       margin-bottom: 16px;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      font-weight: 600;
     }
 
     .skill-tags {
@@ -842,19 +885,21 @@
 
     .form-control {
       width: 100%;
-      padding: 12px 16px;
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid var(--border);
+      padding: 14px 18px;
+      background: rgba(10, 18, 30, 0.8);
+      border: 1px solid var(--card-blue-border);
       color: var(--text);
-      border-radius: 4px;
+      border-radius: 8px;
       font-family: inherit;
       font-size: 1rem;
       transition: 0.3s;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
     }
 
     .form-control:focus {
       outline: none;
       border-color: var(--accent);
+      box-shadow: 0 0 16px rgba(0, 229, 255, 0.3), inset 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     textarea.form-control {
@@ -868,42 +913,32 @@
       gap: 12px;
       font-size: 1rem;
       color: var(--text-secondary);
-      padding: 16px;
-      border: 1px solid var(--border);
-      border-radius: 8px;
+      padding: 18px 20px;
+      border: 1px solid var(--card-blue-border);
+      border-left: 3px solid var(--accent);
+      border-radius: 10px;
       margin-bottom: 12px;
-      transition: 0.3s;
+      background: linear-gradient(145deg, rgba(11, 19, 32, 0.8), rgba(6, 11, 20, 0.92));
+      box-shadow: var(--card-blue-glow);
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
-    }
-
-    .c-link-item::before {
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      width: 3px;
-      background: var(--accent);
-      transform: scaleY(0);
-      transition: 0.3s;
-    }
-
-    .c-link-item:hover::before {
-      transform: scaleY(1);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      animation: bluePulse 5s ease-in-out infinite alternate;
     }
 
     .c-link-item:hover {
-      background: rgba(255, 255, 255, 0.03);
-      color: var(--text);
-      border-color: var(--border-light);
+      border-color: var(--accent);
+      color: #ffffff;
+      box-shadow: var(--card-blue-glow-hover);
       transform: translateX(4px);
     }
 
     /* MODERN LEETCODE PROFILE */
     .lc-modern-card {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid rgba(255, 255, 255, 0.05);
+      background: linear-gradient(145deg, rgba(11, 20, 34, 0.85), rgba(6, 12, 22, 0.94));
+      border: 1px solid var(--card-blue-border);
       border-radius: 16px;
       padding: 48px;
       display: grid;
@@ -912,14 +947,16 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: 0.4s;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 229, 255, 0.12), inset 0 1px 0 rgba(0, 229, 255, 0.3);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      transition: all 0.4s ease;
+      animation: bluePulse 5s ease-in-out infinite alternate;
     }
 
     .lc-modern-card:hover {
-      border-color: rgba(255, 161, 22, 0.2);
+      border-color: var(--accent);
+      box-shadow: var(--card-blue-glow-hover);
     }
 
     .lc-modern-card::before {
@@ -929,7 +966,7 @@
       left: -50%;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, rgba(255, 161, 22, 0.08) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, transparent 60%);
       pointer-events: none;
     }
 
@@ -1075,15 +1112,26 @@
 
     .lc-mini-stats {
       display: flex;
-      gap: 32px;
+      gap: 16px;
       margin-top: 16px;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      border-top: 1px solid rgba(0, 229, 255, 0.15);
       padding-top: 24px;
     }
 
     .lc-mini-item {
       display: flex;
       flex-direction: column;
+      padding: 10px 16px;
+      background: rgba(0, 229, 255, 0.05);
+      border: 1px solid rgba(0, 229, 255, 0.15);
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+
+    .lc-mini-item:hover {
+      border-color: var(--accent);
+      background: rgba(0, 229, 255, 0.1);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
     }
 
     .lc-mini-item .val {
@@ -1329,11 +1377,11 @@
       <span class="section-eyebrow gsap-fade">About</span>
       <h2 class="section-heading gsap-fade">About Me</h2>
       <div class="grid-2">
-        <div class="gsap-fade">
-          <p style="color:var(--text-secondary); margin-bottom:20px; font-weight:300;">
+        <div class="about-bio-box gsap-fade">
+          <p style="color:var(--text-secondary); margin-bottom:20px; font-weight:300; line-height:1.7;">
             Full Stack Software Developer &amp; Freelancer with hands-on experience in backend engineering, REST API design and scalable web application development. Solved <span style="color:var(--text); font-weight:500;">540+ LeetCode problems</span> covering Data Structures, Algorithms.
           </p>
-          <p style="color:var(--text-secondary); font-weight:300;">
+          <p style="color:var(--text-secondary); font-weight:300; line-height:1.7;">
             Experienced in building AI-powered, real-time systems using Java, Spring Boot, React.js, PostgreSQL and Python. I believe in writing code that is not only functional but architecturally sound.
           </p>
         </div>
@@ -1599,7 +1647,7 @@
               <li>&bull; Implemented responsive mobile-optimized UI, fast-loading media assets, and SEO structured schemas.</li>
             </ul>
           </div>
-          <div class="exp-item" style="border-left-color:transparent;">
+          <div class="exp-item">
             <h3 class="exp-title">AI Intern</h3>
             <span class="exp-meta">Gateway Software Solutions | June 2025</span>
             <ul
@@ -1619,7 +1667,7 @@
             <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Current CGPA: 7.74. Focusing on
               Data Structures, Algorithms, Web Development, and AI technologies.</p>
           </div>
-          <div class="exp-item" style="border-left-color:transparent;">
+          <div class="exp-item">
             <h3 class="exp-title">HSC</h3>
             <span class="exp-meta">AVP Trust National Matric School | 2023</span>
             <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Scored 83% overall with a
@@ -1635,11 +1683,11 @@
       <span class="section-eyebrow gsap-fade">Achievements</span>
       <h2 class="section-heading gsap-fade">Certifications & Achievements</h2>
 
-      <div class="gsap-fade" style="margin-bottom:60px;">
-        <ul style="color:var(--text-secondary); font-weight:300; line-height:1.8; padding-left:20px; font-size:1.05rem;">
-          <li style="margin-bottom:12px;">Solved <strong>540+ LeetCode problems</strong> focused on Data Structures, Algorithms, and optimization.</li>
-          <li style="margin-bottom:12px;">Completed certifications: <strong>Large Language Models (LLMs) and Generative AI</strong>.</li>
-          <li style="margin-bottom:12px;">Participated in a <strong>State-Level Buildathon</strong> and UI/UX design workshops.</li>
+      <div class="card gsap-fade" style="margin-bottom:48px; padding:28px 32px;">
+        <ul style="color:var(--text-secondary); font-weight:300; line-height:1.8; padding-left:20px; font-size:1.05rem; margin:0;">
+          <li style="margin-bottom:10px;">Solved <strong style="color:var(--text);">540+ LeetCode problems</strong> focused on Data Structures, Algorithms, and optimization.</li>
+          <li style="margin-bottom:10px;">Completed certifications: <strong style="color:var(--text);">Large Language Models (LLMs) and Generative AI</strong>.</li>
+          <li>Participated in a <strong style="color:var(--text);">State-Level Buildathon</strong> and UI/UX design workshops.</li>
         </ul>
       </div>
 
@@ -2008,7 +2056,7 @@
       }
       animateCursor();
 
-      document.querySelectorAll('a, button, input, textarea, .card, .skill-box').forEach(el => {
+      document.querySelectorAll('a, button, input, textarea, .card, .skill-box, .stat, .exp-item, .activity-box, .lc-modern-card, .c-link-item, .about-bio-box').forEach(el => {
         el.addEventListener('mouseenter', () => { outline.classList.add('hover'); });
         el.addEventListener('mouseleave', () => { outline.classList.remove('hover'); });
       });
