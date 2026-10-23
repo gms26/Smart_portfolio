@@ -1,18 +1,18 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Sanjay G M — Full-Stack Developer">
-  <title>Sanjay G M — Full-Stack Developer</title>
+  <meta name="description" content="Sanjay G M ΓÇö Full-Stack Developer">
+  <title>Sanjay G M ΓÇö Full-Stack Developer</title>
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307090d'/%3E%3Ctext x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='system-ui' font-weight='700' font-size='26' fill='%2300e5ff'%3ESG%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@700;800&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
     rel="stylesheet">
 
   <!-- GSAP & Lenis -->
@@ -31,35 +31,18 @@
 
     :root {
       --bg: #07090d;
-      --bg-card: rgba(10, 18, 30, 0.8);
-      --border: rgba(0, 229, 255, 0.22);
-      --border-light: rgba(0, 229, 255, 0.45);
+      --bg-card: rgba(255, 255, 255, 0.02);
+      --border: rgba(255, 255, 255, 0.08);
+      --border-light: rgba(255, 255, 255, 0.15);
       --text: #ffffff;
       --text-secondary: #8a8f98;
       --accent: #00e5ff;
-      --accent-glow: rgba(0, 229, 255, 0.18);
-      --card-blue-border: rgba(0, 229, 255, 0.25);
-      --card-blue-glow: 0 8px 30px rgba(0, 0, 0, 0.45), 0 0 18px rgba(0, 229, 255, 0.08), inset 0 1px 0 rgba(0, 229, 255, 0.22);
-      --card-blue-glow-hover: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 229, 255, 0.28), inset 0 1px 0 rgba(0, 229, 255, 0.5);
+      --accent-glow: rgba(0, 229, 255, 0.15);
       --font-body: 'Inter', sans-serif;
       --font-heading: 'Space Grotesk', sans-serif;
-      --font-name: 'Syne', sans-serif;
     }
 
-    @keyframes bluePulse {
-      0%, 100% {
-        border-color: rgba(0, 229, 255, 0.22);
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.45), 0 0 16px rgba(0, 229, 255, 0.08), inset 0 1px 0 rgba(0, 229, 255, 0.22);
-      }
-      50% {
-        border-color: rgba(0, 229, 255, 0.42);
-        box-shadow: 0 10px 36px rgba(0, 0, 0, 0.55), 0 0 24px rgba(0, 229, 255, 0.18), inset 0 1px 0 rgba(0, 229, 255, 0.38);
-      }
-    }
-
-    /* ══════════════════════════════════════════════════
-       CUSTOM FUTURISTIC SIDE SCROLLBAR
-       ══════════════════════════════════════════════════ */
+    /* Custom Sleek Side Scrollbar */
     html {
       scroll-behavior: auto;
       scrollbar-width: thin;
@@ -112,20 +95,6 @@
 
     ::-webkit-scrollbar-corner {
       background: #07090d;
-    }
-
-    /* Top Reading Progress Bar */
-    .scroll-progress-line {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 3px;
-      width: 0%;
-      background: linear-gradient(90deg, #00e5ff 0%, #00b4d8 50%, #a855f7 100%);
-      box-shadow: 0 0 12px rgba(0, 229, 255, 0.9), 0 0 24px rgba(0, 229, 255, 0.5);
-      z-index: 99999;
-      pointer-events: none;
-      transition: width 0.05s ease-out;
     }
 
     /* Custom Cursor - keep native cursor as fallback, custom overlays on top */
@@ -525,11 +494,11 @@
 
     .hero h1,
     #heroTitle {
-      font-family: var(--font-name);
-      font-size: clamp(2.4rem, 5.2vw, 4.4rem);
+      font-family: 'Cinzel', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.4rem);
       font-weight: 800;
-      line-height: 1.05;
-      letter-spacing: 1px;
+      line-height: 1.1;
+      letter-spacing: 3px;
       margin-bottom: 24px;
       color: var(--text);
       text-transform: uppercase;
@@ -624,299 +593,96 @@
     }
 
     .card {
-      background: linear-gradient(145deg, rgba(11, 19, 32, 0.8), rgba(6, 11, 20, 0.92));
-      border: 1px solid var(--card-blue-border);
+      background: var(--bg-card);
+      border: 1px solid var(--border);
       padding: 40px;
-      border-radius: 14px;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: var(--card-blue-glow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      position: relative;
-      animation: bluePulse 5s ease-in-out infinite alternate;
+      border-radius: 8px;
+      transition: 0.4s;
     }
 
     .card:hover {
-      border-color: var(--accent);
-      box-shadow: var(--card-blue-glow-hover);
+      border-color: var(--border-light);
       transform: translateY(-4px);
     }
 
-    /* ─── UNIQUE MODULE STYLING ─── */
-
-    /* 1. ABOUT: Terminal Bio Box */
-    .about-bio-box {
-      background: linear-gradient(145deg, rgba(10, 18, 30, 0.88), rgba(5, 10, 18, 0.96));
-      border: 1px solid rgba(0, 229, 255, 0.25);
-      border-radius: 14px;
-      padding: 0;
-      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.45), 0 0 18px rgba(0, 229, 255, 0.08), inset 0 1px 0 rgba(0, 229, 255, 0.25);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      animation: bluePulse 6s ease-in-out infinite alternate;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      transition: all 0.35s ease;
-    }
-    .about-bio-box:hover {
-      border-color: var(--accent);
-      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 229, 255, 0.25);
-      transform: translateY(-2px);
-    }
-    .bio-terminal-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 12px 18px;
-      background: rgba(0, 229, 255, 0.06);
-      border-bottom: 1px solid rgba(0, 229, 255, 0.15);
-    }
-    .terminal-dots {
-      display: flex;
-      gap: 6px;
-    }
-    .t-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    .t-red { background: #ff5f56; }
-    .t-yellow { background: #ffbd2e; }
-    .t-green { background: #27c93f; }
-    .t-title {
-      font-family: monospace;
-      font-size: 0.75rem;
-      color: var(--accent);
-      letter-spacing: 0.5px;
-    }
-    .t-status {
-      font-size: 0.65rem;
-      padding: 2px 8px;
-      border-radius: 12px;
-      background: rgba(0, 230, 118, 0.15);
-      color: #00e676;
-      border: 1px solid rgba(0, 230, 118, 0.3);
-      font-family: var(--font-body);
-      font-weight: 600;
-      letter-spacing: 1px;
-    }
-    .bio-content {
-      padding: 28px 24px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      flex: 1;
-    }
-
-    /* 2. ABOUT: Individual Stat Tiles */
+    /* ABOUT */
     .stat-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
+
     .stat {
-      padding: 24px 20px;
-      background: linear-gradient(145deg, rgba(10, 19, 34, 0.85), rgba(5, 10, 20, 0.95));
-      border: 1px solid rgba(0, 229, 255, 0.22);
-      border-radius: 14px;
-      text-align: left;
+      padding: 32px;
+      background: rgba(255, 255, 255, 0.01);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-align: center;
       position: relative;
       overflow: hidden;
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-    }
-    .stat-corner-tag {
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 12px;
-    }
-    .pulse-dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #00e676;
-      box-shadow: 0 0 8px #00e676;
-      display: inline-block;
-      animation: blinkDot 1.5s infinite;
-    }
-    @keyframes blinkDot {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(0.8); }
     }
 
-    /* LeetCode Stat: Amber / Gold */
-    .stat-lc { border-color: rgba(255, 161, 22, 0.35); }
-    .stat-lc .stat-corner-tag { color: #ffa116; }
-    .stat-lc h3 { font-size: 2.5rem; color: #ffa116; font-weight: 600; text-shadow: 0 0 18px rgba(255, 161, 22, 0.35); }
-    .stat-lc:hover {
-      border-color: #ffa116;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(255, 161, 22, 0.25), inset 0 1px 0 rgba(255, 161, 22, 0.4);
-      transform: translateY(-4px);
+    .stat::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--accent);
+      transition: 0.4s ease-out;
     }
 
-    /* Live Projects Stat: Cyan / Tech */
-    .stat-projects { border-color: rgba(0, 229, 255, 0.35); }
-    .stat-projects .stat-corner-tag { color: #00e5ff; }
-    .stat-projects h3 { font-size: 2.5rem; color: #00e5ff; font-weight: 600; text-shadow: 0 0 18px rgba(0, 229, 255, 0.35); }
-    .stat-projects:hover {
-      border-color: #00e5ff;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 229, 255, 0.25), inset 0 1px 0 rgba(0, 229, 255, 0.4);
-      transform: translateY(-4px);
+    .stat:hover::after {
+      width: 100%;
     }
 
-    /* AI Internship Stat: Neural Purple */
-    .stat-intern { border-color: rgba(179, 136, 255, 0.35); }
-    .stat-intern .stat-corner-tag { color: #b388ff; }
-    .stat-intern h3 { font-size: 2.5rem; color: #b388ff; font-weight: 600; text-shadow: 0 0 18px rgba(179, 136, 255, 0.35); }
-    .stat-intern:hover {
-      border-color: #b388ff;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(179, 136, 255, 0.25), inset 0 1px 0 rgba(179, 136, 255, 0.4);
-      transform: translateY(-4px);
+    .stat h3 {
+      font-size: 2.5rem;
+      color: var(--text);
+      font-weight: 300;
     }
 
-    /* CGPA Stat: Sky Blue */
-    .stat-gpa { border-color: rgba(56, 189, 248, 0.35); }
-    .stat-gpa .stat-corner-tag { color: #38bdf8; }
-    .stat-gpa h3 { font-size: 2.5rem; color: #38bdf8; font-weight: 600; text-shadow: 0 0 18px rgba(56, 189, 248, 0.35); }
-    .stat-gpa:hover {
-      border-color: #38bdf8;
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.25), inset 0 1px 0 rgba(56, 189, 248, 0.4);
-      transform: translateY(-4px);
-    }
     .stat p {
-      font-size: 0.78rem;
-      color: #ffffff;
+      font-size: 0.75rem;
+      color: var(--text-muted);
       text-transform: uppercase;
-      letter-spacing: 1.2px;
-      margin-top: 6px;
-      font-weight: 500;
+      letter-spacing: 1px;
+      margin-top: 8px;
     }
 
-    /* 3. PROJECTS: Bespoke Themed Cards with Watermarks */
-    .project-card {
-      padding: 44px 40px;
+    /* PROJECTS */
+    .project-list {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 32px;
+    }
+
+    .project-card {
+      padding: 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
       position: relative;
       overflow: hidden;
       transform-origin: center bottom;
-      border-radius: 16px;
-      border: 1px solid rgba(0, 229, 255, 0.22);
-      background: linear-gradient(145deg, rgba(10, 18, 30, 0.88), rgba(5, 10, 18, 0.96));
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .project-watermark {
+    .project-card::before {
+      content: '';
       position: absolute;
-      top: 10px;
-      right: 24px;
-      font-size: 5.5rem;
-      font-weight: 800;
-      font-family: var(--font-heading);
-      line-height: 1;
-      opacity: 0.05;
-      pointer-events: none;
-      user-select: none;
-      transition: all 0.4s ease;
-    }
-    .project-card:hover .project-watermark {
-      opacity: 0.15;
-      transform: translateY(-4px) scale(1.05);
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: var(--accent);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: 0.4s;
     }
 
-    /* 01. Pennool: Rose-Cyan Luxury E-Commerce */
-    .project-pennool { border-left: 4px solid #ff4081 !important; }
-    .project-pennool .project-watermark { color: #ff4081; }
-    .project-pennool:hover {
-      border-color: #ff4081;
-      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6), 0 0 30px rgba(255, 64, 129, 0.25), inset 0 1px 0 rgba(255, 64, 129, 0.4);
-      transform: translateY(-4px);
-    }
-
-    /* 02. PR Reviewer: Purple AI Reviewer */
-    .project-pr { border-left: 4px solid #a855f7 !important; }
-    .project-pr .project-watermark { color: #a855f7; }
-    .project-pr:hover {
-      border-color: #a855f7;
-      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6), 0 0 30px rgba(168, 85, 247, 0.25), inset 0 1px 0 rgba(168, 85, 247, 0.4);
-      transform: translateY(-4px);
-    }
-
-    /* 03. CivicPulse: Emerald Civic Platform */
-    .project-civic { border-left: 4px solid #10b981 !important; }
-    .project-civic .project-watermark { color: #10b981; }
-    .project-civic:hover {
-      border-color: #10b981;
-      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6), 0 0 30px rgba(16, 185, 129, 0.25), inset 0 1px 0 rgba(16, 185, 129, 0.4);
-      transform: translateY(-4px);
-    }
-
-    /* 04. Forecasting Platform: Amber Predictive Analytics */
-    .project-forecast { border-left: 4px solid #f59e0b !important; }
-    .project-forecast .project-watermark { color: #f59e0b; }
-    .project-forecast:hover {
-      border-color: #f59e0b;
-      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6), 0 0 30px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(245, 158, 11, 0.4);
-      transform: translateY(-4px);
-    }
-
-    /* 05. Smart Code Translator: Indigo DevTool */
-    .project-translator { border-left: 4px solid #6366f1 !important; }
-    .project-translator .project-watermark { color: #6366f1; }
-    .project-translator:hover {
-      border-color: #6366f1;
-      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6), 0 0 30px rgba(99, 102, 241, 0.25), inset 0 1px 0 rgba(99, 102, 241, 0.4);
-      transform: translateY(-4px);
-    }
-
-    /* 06. Space Escape Runner: Neon Lime Arcade */
-    .project-game { border-left: 4px solid #84cc16 !important; }
-    .project-game .project-watermark { color: #84cc16; }
-    .project-game:hover {
-      border-color: #84cc16;
-      box-shadow: 0 16px 44px rgba(0, 0, 0, 0.6), 0 0 30px rgba(132, 204, 22, 0.25), inset 0 1px 0 rgba(132, 204, 22, 0.4);
-      transform: translateY(-4px);
-    }
-
-    .p-link-live {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      background: rgba(0, 229, 255, 0.08);
-      border: 1px solid rgba(0, 229, 255, 0.35);
-      color: var(--accent) !important;
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 500;
-      transition: 0.3s;
-    }
-    .p-link-live:hover {
-      background: rgba(0, 229, 255, 0.22);
-      box-shadow: 0 0 16px rgba(0, 229, 255, 0.4);
-      transform: translateY(-2px);
-    }
-    .live-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #00e676;
-      box-shadow: 0 0 8px #00e676;
-      display: inline-block;
-      animation: blinkDot 1.5s infinite;
+    .project-card:hover::before {
+      transform: scaleY(1);
     }
 
     .project-header {
@@ -940,19 +706,18 @@
 
     .tag {
       font-size: 0.75rem;
-      padding: 5px 12px;
-      border-radius: 6px;
-      background: rgba(0, 229, 255, 0.05);
-      border: 1px solid rgba(0, 229, 255, 0.2);
-      color: #b0d0e6;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
       transition: all 0.3s ease;
     }
 
     .tag:hover {
-      background: rgba(0, 229, 255, 0.15);
-      color: #ffffff;
+      background: rgba(0, 229, 255, 0.08);
+      color: var(--text);
       border-color: var(--accent);
-      box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
       transform: translateY(-2px);
     }
 
@@ -995,60 +760,30 @@
       border-bottom-color: var(--accent);
     }
 
-    /* 4. EXP & EDU: Work vs Academic Timeline Cards */
+    /* EXP & EDU */
     .exp-item {
-      border-radius: 14px;
-      padding: 26px 28px;
-      margin-bottom: 20px;
+      border-left: 1px solid var(--border);
+      padding: 0 0 32px 32px;
       position: relative;
-      box-shadow: var(--card-blue-glow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .exp-work {
-      border: 1px solid rgba(0, 229, 255, 0.25);
-      border-left: 4px solid var(--accent) !important;
-      background: linear-gradient(145deg, rgba(10, 20, 34, 0.85), rgba(5, 11, 20, 0.94));
+
+    .exp-item::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 8px;
+      width: 7px;
+      height: 7px;
+      background: var(--bg);
+      border: 1px solid var(--accent);
+      border-radius: 50%;
+      transition: 0.3s;
     }
-    .exp-work:hover {
-      border-color: var(--accent);
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(0, 229, 255, 0.25);
-      transform: translateY(-3px);
+
+    .exp-item:hover::before {
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
     }
-    .exp-edu {
-      border: 1px solid rgba(129, 140, 248, 0.25);
-      border-left: 4px solid #818cf8 !important;
-      background: linear-gradient(145deg, rgba(15, 16, 36, 0.85), rgba(8, 9, 24, 0.94));
-    }
-    .exp-edu:hover {
-      border-color: #818cf8;
-      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.6), 0 0 25px rgba(129, 140, 248, 0.25);
-      transform: translateY(-3px);
-    }
-    .exp-category-pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.68rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      padding: 3px 10px;
-      border-radius: 20px;
-      margin-bottom: 10px;
-    }
-    .pill-work {
-      background: rgba(0, 229, 255, 0.1);
-      border: 1px solid rgba(0, 229, 255, 0.3);
-      color: var(--accent);
-    }
-    .pill-edu {
-      background: rgba(129, 140, 248, 0.12);
-      border: 1px solid rgba(129, 140, 248, 0.35);
-      color: #818cf8;
-    }
-    .exp-item::before { display: none; }
 
     .exp-title {
       font-size: 1.25rem;
@@ -1062,145 +797,74 @@
       margin-bottom: 16px;
       display: block;
     }
-    .exp-edu .exp-meta {
-      color: #a5b4fc;
-    }
 
-    /* 5. CERTIFICATIONS: Verified Credential Tile */
-    .cert-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 12px;
-      padding: 24px 22px;
-      border: 1px solid rgba(0, 229, 255, 0.2);
-      background: linear-gradient(145deg, rgba(10, 18, 30, 0.8), rgba(5, 10, 18, 0.92));
-      transition: all 0.35s ease;
-    }
-    .cert-card:hover {
-      border-color: #fbbf24;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.55), 0 0 20px rgba(251, 191, 36, 0.25), inset 0 1px 0 rgba(251, 191, 36, 0.4);
-      transform: translateY(-4px);
-    }
-    .cert-seal {
-      font-size: 0.65rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: #fbbf24;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-bottom: 8px;
-    }
-
-    /* 6. ACTIVITIES: Streamline Capability Capsule */
+    /* INTERESTS & ACTIVITIES */
     .activity-box {
-      padding: 18px 22px;
-      border-radius: 12px;
-      border: 1px solid rgba(0, 229, 255, 0.22);
-      border-left: 4px solid var(--accent);
-      background: linear-gradient(145deg, rgba(10, 18, 30, 0.85), rgba(5, 10, 18, 0.94));
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      transition: all 0.3s ease;
+      padding: 24px;
+      border-left: 2px solid var(--border);
+      transition: 0.3s;
+      background: rgba(255, 255, 255, 0.01);
     }
+
     .activity-box:hover {
-      border-color: var(--accent);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.25);
+      border-left-color: var(--accent);
+      background: rgba(255, 255, 255, 0.03);
       transform: translateX(8px);
-    }
-    .act-left {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-    .act-icon {
-      font-size: 1.4rem;
-    }
-    .act-arrow {
-      color: var(--accent);
-      font-size: 1.2rem;
-      opacity: 0.4;
-      transition: all 0.3s ease;
-    }
-    .activity-box:hover .act-arrow {
-      opacity: 1;
-      transform: translateX(4px);
     }
 
     .activity-title {
       font-size: 1rem;
       color: var(--text);
+      margin-bottom: 8px;
       font-weight: 500;
     }
 
     .activity-desc {
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: var(--text-secondary);
       font-weight: 300;
-      margin-top: 2px;
+      line-height: 1.5;
     }
 
-    /* 7. SKILLS: Distinct Matrices by Domain */
+    /* SKILLS */
     .skills-wrapper {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
       gap: 24px;
     }
 
     .skill-box {
       padding: 24px;
-      border: 1px solid rgba(0, 229, 255, 0.2);
-      background: linear-gradient(145deg, rgba(10, 18, 32, 0.85), rgba(5, 10, 20, 0.94));
-      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.01);
+      border-radius: 8px;
       position: relative;
       overflow: hidden;
-      box-shadow: var(--card-blue-glow);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    .skill-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 16px;
+    .skill-box::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, transparent 60%);
+      opacity: 0;
+      transition: 0.4s;
+      pointer-events: none;
     }
-    .skill-header .skill-title {
-      margin-bottom: 0;
-      font-size: 0.85rem;
+
+    .skill-box:hover::after {
+      opacity: 1;
+    }
+
+    .skill-title {
+      font-size: 0.8rem;
       text-transform: uppercase;
-      letter-spacing: 1.5px;
-      font-weight: 600;
-    }
-    .skill-badge {
-      font-size: 0.65rem;
-      padding: 2px 8px;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.05);
       color: var(--text-secondary);
-      font-family: monospace;
-    }
-    .skill-languages { border-top: 3px solid #00e5ff; }
-    .skill-languages .skill-title { color: #00e5ff; }
-    .skill-frontend { border-top: 3px solid #14b8a6; }
-    .skill-frontend .skill-title { color: #14b8a6; }
-    .skill-backend { border-top: 3px solid #6366f1; }
-    .skill-backend .skill-title { color: #818cf8; }
-    .skill-databases { border-top: 3px solid #f59e0b; }
-    .skill-databases .skill-title { color: #f59e0b; }
-    .skill-tools { border-top: 3px solid #8b5cf6; }
-    .skill-tools .skill-title { color: #a78bfa; }
-    .skill-ai { border-top: 3px solid #ec4899; }
-    .skill-ai .skill-title { color: #f472b6; }
-    .skill-concepts { border-top: 3px solid #06b6d4; }
-    .skill-concepts .skill-title { color: #22d3ee; }
-
-    .skill-box:hover {
-      box-shadow: var(--card-blue-glow-hover);
-      transform: translateY(-4px);
+      margin-bottom: 16px;
+      letter-spacing: 1px;
     }
 
     .skill-tags {
@@ -1225,21 +889,19 @@
 
     .form-control {
       width: 100%;
-      padding: 14px 18px;
-      background: rgba(10, 18, 30, 0.8);
-      border: 1px solid var(--card-blue-border);
+      padding: 12px 16px;
+      background: rgba(0, 0, 0, 0.2);
+      border: 1px solid var(--border);
       color: var(--text);
-      border-radius: 8px;
+      border-radius: 4px;
       font-family: inherit;
       font-size: 1rem;
       transition: 0.3s;
-      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4);
     }
 
     .form-control:focus {
       outline: none;
       border-color: var(--accent);
-      box-shadow: 0 0 16px rgba(0, 229, 255, 0.3), inset 0 1px 2px rgba(0, 0, 0, 0.3);
     }
 
     textarea.form-control {
@@ -1247,61 +909,48 @@
       resize: vertical;
     }
 
-    /* 8. CONTACT: Terminal Dispatch & Interactive Channel Links */
-    .form-terminal-bar {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 18px;
-      margin-bottom: 24px;
-      border-bottom: 1px solid rgba(0, 229, 255, 0.15);
-      font-family: monospace;
-      font-size: 0.78rem;
-      color: var(--accent);
-      letter-spacing: 1px;
-    }
     .c-link-item {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      border: 1px solid rgba(0, 229, 255, 0.2);
-      border-left: 4px solid var(--accent);
-      border-radius: 12px;
-      margin-bottom: 12px;
-      background: linear-gradient(145deg, rgba(10, 18, 30, 0.85), rgba(5, 10, 18, 0.94));
-      transition: all 0.3s ease;
-      text-decoration: none;
-    }
-    .c-link-content {
-      display: flex;
-      align-items: center;
       gap: 12px;
+      font-size: 1rem;
+      color: var(--text-secondary);
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      transition: 0.3s;
+      position: relative;
+      overflow: hidden;
     }
-    .c-link-icon {
-      font-size: 1.1rem;
+
+    .c-link-item::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transition: 0.3s;
     }
-    .c-link-arrow {
-      color: var(--accent);
-      opacity: 0.4;
-      transition: all 0.3s ease;
-      font-size: 0.9rem;
+
+    .c-link-item:hover::before {
+      transform: scaleY(1);
     }
-    .c-link-item:hover .c-link-arrow {
-      opacity: 1;
+
+    .c-link-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+      border-color: var(--border-light);
       transform: translateX(4px);
     }
-    .c-link-github:hover { border-left-color: #ffffff; box-shadow: 0 0 20px rgba(255, 255, 255, 0.25); }
-    .c-link-linkedin:hover { border-left-color: #0a66c2; box-shadow: 0 0 20px rgba(10, 102, 194, 0.35); }
-    .c-link-leetcode:hover { border-left-color: #ffa116; box-shadow: 0 0 20px rgba(255, 161, 22, 0.35); }
-    .c-link-email:hover { border-left-color: #00e5ff; box-shadow: 0 0 20px rgba(0, 229, 255, 0.35); }
-    .c-link-phone:hover { border-left-color: #00e676; box-shadow: 0 0 20px rgba(0, 230, 118, 0.35); }
-    .c-link-location:hover { border-left-color: #f43f5e; box-shadow: 0 0 20px rgba(244, 63, 94, 0.35); }
 
     /* MODERN LEETCODE PROFILE */
     .lc-modern-card {
-      background: linear-gradient(145deg, rgba(11, 20, 34, 0.85), rgba(6, 12, 22, 0.94));
-      border: 1px solid var(--card-blue-border);
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.05);
       border-radius: 16px;
       padding: 48px;
       display: grid;
@@ -1310,16 +959,14 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 229, 255, 0.12), inset 0 1px 0 rgba(0, 229, 255, 0.3);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      transition: all 0.4s ease;
-      animation: bluePulse 5s ease-in-out infinite alternate;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: 0.4s;
     }
 
     .lc-modern-card:hover {
-      border-color: var(--accent);
-      box-shadow: var(--card-blue-glow-hover);
+      border-color: rgba(255, 161, 22, 0.2);
     }
 
     .lc-modern-card::before {
@@ -1329,7 +976,7 @@
       left: -50%;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle, rgba(0, 229, 255, 0.12) 0%, transparent 60%);
+      background: radial-gradient(circle, rgba(255, 161, 22, 0.08) 0%, transparent 60%);
       pointer-events: none;
     }
 
@@ -1475,26 +1122,15 @@
 
     .lc-mini-stats {
       display: flex;
-      gap: 16px;
+      gap: 32px;
       margin-top: 16px;
-      border-top: 1px solid rgba(0, 229, 255, 0.15);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
       padding-top: 24px;
     }
 
     .lc-mini-item {
       display: flex;
       flex-direction: column;
-      padding: 10px 16px;
-      background: rgba(0, 229, 255, 0.05);
-      border: 1px solid rgba(0, 229, 255, 0.15);
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-
-    .lc-mini-item:hover {
-      border-color: var(--accent);
-      background: rgba(0, 229, 255, 0.1);
-      box-shadow: 0 0 12px rgba(0, 229, 255, 0.2);
     }
 
     .lc-mini-item .val {
@@ -1532,6 +1168,20 @@
       text-align: center;
       color: var(--text-muted);
       font-size: 0.85rem;
+    }
+
+    /* INTERESTS & ACTIVITIES */
+    .activity-box {
+      padding: 24px;
+      border-left: 2px solid var(--border);
+      transition: 0.3s;
+      background: rgba(255, 255, 255, 0.01);
+    }
+
+    .activity-box:hover {
+      border-left-color: var(--accent);
+      background: rgba(255, 255, 255, 0.03);
+      transform: translateX(8px);
     }
 
     .gsap-reveal-clip {
@@ -1646,7 +1296,6 @@
 
 <body>
 
-  <div class="scroll-progress-line" id="scrollProgressBar"></div>
   <div class="cursor-dot"></div>
   <div class="cursor-outline"></div>
 
@@ -1727,46 +1376,31 @@
       <span class="section-eyebrow gsap-fade">About</span>
       <h2 class="section-heading gsap-fade">About Me</h2>
       <div class="grid-2">
-        <div class="about-bio-box gsap-fade">
-          <div class="bio-terminal-bar">
-            <div class="terminal-dots">
-              <span class="t-dot t-red"></span>
-              <span class="t-dot t-yellow"></span>
-              <span class="t-dot t-green"></span>
-            </div>
-            <span class="t-title">gms@developer:~/about.sh</span>
-            <span class="t-status">ACTIVE</span>
-          </div>
-          <div class="bio-content">
-            <p style="color:var(--text-secondary); margin-bottom:16px; font-weight:300; line-height:1.7;">
-              Full Stack Software Developer &amp; Freelancer with hands-on experience in backend engineering, REST API design and scalable web application development. Solved <span style="color:var(--text); font-weight:500;">540+ LeetCode problems</span> covering Data Structures, Algorithms.
-            </p>
-            <p style="color:var(--text-secondary); font-weight:300; line-height:1.7;">
-              Experienced in building AI-powered, real-time systems using Java, Spring Boot, React.js, PostgreSQL and Python. I believe in writing code that is not only functional but architecturally sound.
-            </p>
-          </div>
+        <div class="gsap-fade">
+          <p style="color:var(--text-secondary); margin-bottom:20px; font-weight:300;">
+            Full Stack Software Developer &amp; Freelancer with hands-on experience in backend engineering, REST API design and scalable web application development. Solved <span style="color:var(--text); font-weight:500;">540+ LeetCode problems</span> covering Data Structures, Algorithms.
+          </p>
+          <p style="color:var(--text-secondary); font-weight:300;">
+            Experienced in building AI-powered, real-time systems using Java, Spring Boot, React.js, PostgreSQL and Python. I believe in writing code that is not only functional but architecturally sound.
+          </p>
         </div>
         <div class="stat-grid gsap-fade">
-          <a href="https://leetcode.com/u/gms_26/" target="_blank" class="stat stat-lc"
+          <a href="https://leetcode.com/u/gms_26/" target="_blank" class="stat"
             style="text-decoration:none; display:block; color:inherit;">
-            <div class="stat-corner-tag"><span>⚡</span> LEETCODE</div>
             <h3>540+</h3>
-            <p>Problems Solved</p>
+            <p>LeetCode Solved</p>
           </a>
-          <div class="stat stat-projects">
-            <div class="stat-corner-tag"><span class="pulse-dot"></span> LIVE APPS</div>
+          <div class="stat">
             <h3>5+</h3>
-            <p>Production Builds</p>
+            <p>Live Projects</p>
           </div>
-          <div class="stat stat-intern">
-            <div class="stat-corner-tag"><span>🧠</span> APPLIED AI</div>
+          <div class="stat">
             <h3>1</h3>
-            <p>Industry Internship</p>
+            <p>AI Internship</p>
           </div>
-          <div class="stat stat-gpa">
-            <div class="stat-corner-tag"><span>🎓</span> B.E. CS</div>
+          <div class="stat">
             <h3>7.74</h3>
-            <p>Academic CGPA</p>
+            <p>CGPA</p>
           </div>
         </div>
       </div>
@@ -1847,12 +1481,11 @@
       <p class="section-sub gsap-fade">A selection of platforms I've architected.</p>
 
       <div class="project-list">
-        <div class="card project-card project-pennool gsap-reveal-clip">
-          <span class="project-watermark">01</span>
+        <div class="card project-card gsap-reveal-clip">
           <div class="project-header">
-            <h3 class="project-title">Pennool <span style="font-size:0.75rem; color:#ff4081; border:1px solid rgba(255,64,129,0.35); padding:2px 8px; border-radius:4px; margin-left:10px; vertical-align:middle; font-weight:400; text-transform:uppercase; letter-spacing:1px; font-family:var(--font-body);">Freelance Client</span> <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:8px;">2026</span></h3>
+            <h3 class="project-title">Pennool <span style="font-size:0.75rem; color:var(--accent); border:1px solid rgba(0,229,255,0.3); padding:2px 8px; border-radius:4px; margin-left:10px; vertical-align:middle; font-weight:400; text-transform:uppercase; letter-spacing:1px; font-family:var(--font-body);">Freelance Client</span> <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:8px;">2026</span></h3>
             <div class="project-links">
-              <a href="http://pennool.in" target="_blank" class="p-link-live"><span class="live-dot"></span> Live Site</a>
+              <a href="http://pennool.in" target="_blank" class="p-link">Live Site</a>
             </div>
           </div>
           <div class="project-tags">
@@ -1868,12 +1501,11 @@
           </ul>
         </div>
 
-        <div class="card project-card project-pr gsap-reveal-clip">
-          <span class="project-watermark">02</span>
+        <div class="card project-card gsap-reveal-clip">
           <div class="project-header">
-            <h3 class="project-title">PR Reviewer <span style="font-size:0.75rem; color:#a855f7; border:1px solid rgba(168,85,247,0.35); padding:2px 8px; border-radius:4px; margin-left:10px; vertical-align:middle; font-weight:400; text-transform:uppercase; letter-spacing:1px; font-family:var(--font-body);">AI Engine</span> <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:8px;">2026</span></h3>
+            <h3 class="project-title">PR Reviewer <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:12px;">2026</span></h3>
             <div class="project-links">
-              <a href="https://pr-reviewer-iota.vercel.app/login" target="_blank" class="p-link-live"><span class="live-dot"></span> Live Demo</a>
+              <a href="https://pr-reviewer-iota.vercel.app/login" target="_blank" class="p-link">Live Demo</a>
               <a href="https://github.com/gms26/PR-Reviewer" target="_blank" class="p-link"
                 style="color:var(--text-secondary);">Source</a>
             </div>
@@ -1889,12 +1521,11 @@
             <li>Built a React dashboard for repository management and AI review monitoring.</li>
           </ul>
         </div>
-        <div class="card project-card project-civic gsap-reveal-clip">
-          <span class="project-watermark">03</span>
+        <div class="card project-card gsap-reveal-clip">
           <div class="project-header">
-            <h3 class="project-title">CivicPulse <span style="font-size:0.75rem; color:#10b981; border:1px solid rgba(16,185,129,0.35); padding:2px 8px; border-radius:4px; margin-left:10px; vertical-align:middle; font-weight:400; text-transform:uppercase; letter-spacing:1px; font-family:var(--font-body);">Real-Time</span> <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:8px;">2025</span></h3>
+            <h3 class="project-title">CivicPulse <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:12px;">2025</span></h3>
             <div class="project-links">
-              <a href="https://civicpulse-frontend-3mb8.onrender.com" target="_blank" class="p-link-live"><span class="live-dot"></span> Live Demo</a>
+              <a href="https://civicpulse-frontend-3mb8.onrender.com" target="_blank" class="p-link">Live Demo</a>
               <a href="https://github.com/gms26/CivicPulse" target="_blank" class="p-link"
                 style="color:var(--text-secondary);">Source</a>
             </div>
@@ -1912,12 +1543,11 @@
           </ul>
         </div>
 
-        <div class="card project-card project-forecast gsap-reveal-clip">
-          <span class="project-watermark">04</span>
+        <div class="card project-card gsap-reveal-clip">
           <div class="project-header">
-            <h3 class="project-title">Forecasting Platform <span style="font-size:0.75rem; color:#f59e0b; border:1px solid rgba(245,158,11,0.35); padding:2px 8px; border-radius:4px; margin-left:10px; vertical-align:middle; font-weight:400; text-transform:uppercase; letter-spacing:1px; font-family:var(--font-body);">Analytics</span> <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:8px;">2024</span></h3>
+            <h3 class="project-title">Forecasting Platform <span style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:12px;">2024</span></h3>
             <div class="project-links">
-              <a href="https://sanjay-forcasting.vercel.app/" target="_blank" class="p-link-live"><span class="live-dot"></span> Live Demo</a>
+              <a href="https://sanjay-forcasting.vercel.app/" target="_blank" class="p-link">Live Demo</a>
               <a href="https://github.com/gms26/Forcasting" target="_blank" class="p-link"
                 style="color:var(--text-secondary);">Source</a>
             </div>
@@ -1934,12 +1564,11 @@
           </ul>
         </div>
 
-        <div class="card project-card project-translator gsap-reveal-clip">
-          <span class="project-watermark">05</span>
+        <div class="card project-card gsap-reveal-clip">
           <div class="project-header">
-            <h3 class="project-title">Smart Code Translator <span style="font-size:0.75rem; color:#6366f1; border:1px solid rgba(99,102,241,0.35); padding:2px 8px; border-radius:4px; margin-left:10px; vertical-align:middle; font-weight:400; text-transform:uppercase; letter-spacing:1px; font-family:var(--font-body);">DevTools</span></h3>
+            <h3 class="project-title">Smart Code Translator</h3>
             <div class="project-links">
-              <a href="https://smart-code-translator-kappa.vercel.app/" target="_blank" class="p-link-live"><span class="live-dot"></span> Live Demo</a>
+              <a href="https://smart-code-translator-kappa.vercel.app/" target="_blank" class="p-link">Live Demo</a>
               <a href="https://github.com/gms26/Smart-Code-Translator" target="_blank" class="p-link"
                 style="color:var(--text-secondary);">Source</a>
             </div>
@@ -1959,18 +1588,17 @@
           </ul>
         </div>
 
-        <div class="card project-card project-game gsap-reveal-clip">
-          <span class="project-watermark">06</span>
+        <div class="card project-card gsap-reveal-clip">
           <div class="project-header">
             <h3 class="project-title">
               Space Escape Runner
               <span
-                style="font-size:0.7rem;color:#84cc16;border:1px solid rgba(132,204,22,0.35);padding:3px 10px;border-radius:4px;margin-left:12px;vertical-align:middle;font-family:var(--font-body);font-weight:400;letter-spacing:1px;text-transform:uppercase;">Android
+                style="font-size:0.7rem;color:var(--accent);border:1px solid rgba(0,229,255,0.3);padding:3px 10px;border-radius:4px;margin-left:12px;vertical-align:middle;font-family:var(--font-body);font-weight:400;letter-spacing:1px;text-transform:uppercase;">Android
                 APK</span>
             </h3>
             <div class="project-links">
               <a href="https://expo.dev/accounts/gms26/projects/SpaceEscapeRunner/builds/3e353ecd-27a7-46f2-afe5-16386f13d62a"
-                target="_blank" class="p-link-live"><span class="live-dot"></span> Download APK</a>
+                target="_blank" class="p-link">Download APK</a>
               <a href="https://github.com/gms26/Game-App" target="_blank" class="p-link"
                 style="color:var(--text-secondary);">Source</a>
             </div>
@@ -1984,9 +1612,9 @@
             <span class="tag">Android</span>
           </div>
           <ul class="project-desc">
-            <li>2D arcade survival game — pilot a spaceship dodging asteroids, meteors, and enemies while collecting
+            <li>2D arcade survival game ΓÇö pilot a spaceship dodging asteroids, meteors, and enemies while collecting
               power-ups: shields, slow-motion, and score multipliers.</li>
-            <li>Custom real-time game loop with AABB collision detection and dynamic difficulty scaling — zero game
+            <li>Custom real-time game loop with AABB collision detection and dynamic difficulty scaling ΓÇö zero game
               engines used.</li>
             <li>Built entirely with native React Native views; no images, no canvas, no external game libraries.</li>
             <li>Haptic feedback, persistent high scores via AsyncStorage, packaged as standalone Android APK using EAS
@@ -2004,11 +1632,10 @@
 
       <div class="grid-2">
         <div class="gsap-fade">
-          <div class="exp-item exp-work">
-            <span class="exp-category-pill pill-work">💼 FREELANCE CLIENT</span>
+          <div class="exp-item">
             <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;">
               <h3 class="exp-title">Freelance Full-Stack Developer</h3>
-              <a href="http://pennool.in" target="_blank" class="p-link-live" style="font-size:0.75rem; padding:4px 10px;"><span class="live-dot"></span> pennool.in &nearr;</a>
+              <a href="http://pennool.in" target="_blank" class="p-link" style="font-size:0.8rem; margin:0;">pennool.in &nearr;</a>
             </div>
             <span class="exp-meta">Pennool | 2026</span>
             <ul
@@ -2019,8 +1646,7 @@
               <li>&bull; Implemented responsive mobile-optimized UI, fast-loading media assets, and SEO structured schemas.</li>
             </ul>
           </div>
-          <div class="exp-item exp-work">
-            <span class="exp-category-pill pill-work">💼 INDUSTRY INTERNSHIP</span>
+          <div class="exp-item" style="border-left-color:transparent;">
             <h3 class="exp-title">AI Intern</h3>
             <span class="exp-meta">Gateway Software Solutions | June 2025</span>
             <ul
@@ -2034,15 +1660,13 @@
           </div>
         </div>
         <div class="gsap-fade">
-          <div class="exp-item exp-edu">
-            <span class="exp-category-pill pill-edu">🎓 BACHELOR OF ENGINEERING</span>
+          <div class="exp-item">
             <h3 class="exp-title">B.E. Computer Science</h3>
-            <span class="exp-meta">Dr. NGP Institute of Technology | 2023 – Present</span>
+            <span class="exp-meta">Dr. NGP Institute of Technology | 2023 ΓÇô Present</span>
             <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Current CGPA: 7.74. Focusing on
               Data Structures, Algorithms, Web Development, and AI technologies.</p>
           </div>
-          <div class="exp-item exp-edu">
-            <span class="exp-category-pill pill-edu">🎓 HIGHER SECONDARY</span>
+          <div class="exp-item" style="border-left-color:transparent;">
             <h3 class="exp-title">HSC</h3>
             <span class="exp-meta">AVP Trust National Matric School | 2023</span>
             <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Scored 83% overall with a
@@ -2058,11 +1682,11 @@
       <span class="section-eyebrow gsap-fade">Achievements</span>
       <h2 class="section-heading gsap-fade">Certifications & Achievements</h2>
 
-      <div class="card gsap-fade" style="margin-bottom:48px; padding:28px 32px;">
-        <ul style="color:var(--text-secondary); font-weight:300; line-height:1.8; padding-left:20px; font-size:1.05rem; margin:0;">
-          <li style="margin-bottom:10px;">Solved <strong style="color:var(--text);">540+ LeetCode problems</strong> focused on Data Structures, Algorithms, and optimization.</li>
-          <li style="margin-bottom:10px;">Completed certifications: <strong style="color:var(--text);">Large Language Models (LLMs) and Generative AI</strong>.</li>
-          <li>Participated in a <strong style="color:var(--text);">State-Level Buildathon</strong> and UI/UX design workshops.</li>
+      <div class="gsap-fade" style="margin-bottom:60px;">
+        <ul style="color:var(--text-secondary); font-weight:300; line-height:1.8; padding-left:20px; font-size:1.05rem;">
+          <li style="margin-bottom:12px;">Solved <strong>540+ LeetCode problems</strong> focused on Data Structures, Algorithms, and optimization.</li>
+          <li style="margin-bottom:12px;">Completed certifications: <strong>Large Language Models (LLMs) and Generative AI</strong>.</li>
+          <li style="margin-bottom:12px;">Participated in a <strong>State-Level Buildathon</strong> and UI/UX design workshops.</li>
         </ul>
       </div>
 
@@ -2070,40 +1694,39 @@
         style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">
         AI & Generative AI</h3>
       <div class="grid-3 gsap-fade" style="margin-bottom:60px;">
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Generative AI Mastery Workshop</h4>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Generative AI Mastery
+            Workshop</h4>
           <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">OpenAI Academy</p>
           <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Sep 2025</p>
         </div>
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Gen AI Project Completion</h4>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Gen AI Project Completion
+          </h4>
           <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft (SDE II)</p>
           <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Sep 2024</p>
         </div>
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">LLMs & Agentic AI Masterclass</h4>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">LLMs & Agentic AI
+            Masterclass</h4>
           <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Ion Health</p>
           <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Sep 2025</p>
         </div>
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">MCP Workshop + Project Completion</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Model Context Protocol</p>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">MCP Workshop + Project
+            Completion</h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
           <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Aug 2025</p>
         </div>
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">MVP Build & Launch Workshop</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Product Engineering</p>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">MVP Build & Launch Workshop
+          </h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
           <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">May 2026</p>
         </div>
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
+        <div class="card" style="padding:28px;">
           <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">UI/UX Mega Workshop</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Design Systems & Wireframing</p>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">&nbsp;</p>
           <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Dec 2024</p>
         </div>
       </div>
@@ -2112,35 +1735,36 @@
         style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">
         Cloud & Platforms</h3>
       <div class="grid-3 gsap-fade">
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
+        <div class="card" style="padding:28px;">
           <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">NPTEL Cloud Computing</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">IIT Kharagpur</p>
-          <p style="font-size:0.8rem; color:var(--accent); font-weight:400; margin-top:4px;">Score: 72/100 · Elite</p>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">IIT</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">JanΓÇôApr 2025 ┬╖
+            Score: 72/100</p>
         </div>
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">NPTEL Internet of Things</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">IIT Kharagpur</p>
-          <p style="font-size:0.8rem; color:var(--accent); font-weight:400; margin-top:4px;">Score: 75/100 · Elite</p>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">NPTEL Internet of Things
+          </h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">IIT</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">JulΓÇôOct 2025 ┬╖
+            Score: 75/100</p>
         </div>
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
+        <div class="card" style="padding:28px;">
           <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">AWS Mega Workshop</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Amazon Web Services</p>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">AWS</p>
           <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jun 2024</p>
         </div>
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Salesforce Agentblazer Workshop</h4>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">Salesforce Agentblazer
+            Workshop</h4>
           <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Salesforce</p>
           <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Jan 2026</p>
         </div>
-        <div class="card cert-card" style="padding:24px;">
-          <span class="cert-seal">✓ VERIFIED</span>
-          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">ICT Academy Learnathon 2024</h4>
-          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft · Google · MathWorks</p>
-          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">Aug–Oct 2024</p>
+        <div class="card" style="padding:28px;">
+          <h4 style="font-size:1rem; color:var(--text); margin-bottom:8px; font-weight:500;">ICT Academy Learnathon 2024
+          </h4>
+          <p style="font-size:0.85rem; color:var(--text-secondary); font-weight:300;">Microsoft ┬╖ Google ┬╖ MathWorks ┬╖
+            MongoDB ┬╖ Bentley</p>
+          <p style="font-size:0.8rem; color:var(--text-secondary); font-weight:300; margin-top:4px;">AugΓÇôOct 2024</p>
         </div>
       </div>
     </div>
@@ -2156,44 +1780,16 @@
           <h3 style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">Area of Interest</h3>
           <div style="display:flex; flex-direction:column; gap:16px;">
             <div class="activity-box">
-              <div class="act-left">
-                <span class="act-icon">⚡</span>
-                <div>
-                  <h4 class="activity-title">Backend Engineering</h4>
-                  <p class="activity-desc">Distributed REST APIs &amp; Scalable Server Architectures</p>
-                </div>
-              </div>
-              <span class="act-arrow">&rarr;</span>
+              <h4 class="activity-title">Backend Engineering</h4>
             </div>
             <div class="activity-box">
-              <div class="act-left">
-                <span class="act-icon">🌐</span>
-                <div>
-                  <h4 class="activity-title">Full Stack Development</h4>
-                  <p class="activity-desc">End-to-End Modern Web &amp; E-Commerce Platforms</p>
-                </div>
-              </div>
-              <span class="act-arrow">&rarr;</span>
+              <h4 class="activity-title">Full Stack Development</h4>
             </div>
             <div class="activity-box">
-              <div class="act-left">
-                <span class="act-icon">💻</span>
-                <div>
-                  <h4 class="activity-title">Web Development</h4>
-                  <p class="activity-desc">High-Performance Responsive Interfaces &amp; Animations</p>
-                </div>
-              </div>
-              <span class="act-arrow">&rarr;</span>
+              <h4 class="activity-title">Web Development</h4>
             </div>
             <div class="activity-box">
-              <div class="act-left">
-                <span class="act-icon">🧠</span>
-                <div>
-                  <h4 class="activity-title">AI Engineering</h4>
-                  <p class="activity-desc">LLM Integrations, Multi-Model APIs &amp; Reasoning Systems</p>
-                </div>
-              </div>
-              <span class="act-arrow">&rarr;</span>
+              <h4 class="activity-title">AI Engineer</h4>
             </div>
           </div>
         </div>
@@ -2208,59 +1804,38 @@
       <h2 class="section-heading gsap-fade">Technology Stack</h2>
 
       <div class="skills-wrapper">
-        <div class="skill-box skill-languages gsap-fade">
-          <div class="skill-header">
-            <h4 class="skill-title">&lt;/&gt; Languages</h4>
-            <span class="skill-badge">3 Tech</span>
-          </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Languages</h4>
           <div class="skill-tags"><span class="tag">Java</span><span class="tag">Python</span><span
               class="tag">JavaScript</span></div>
         </div>
-        <div class="skill-box skill-frontend gsap-fade">
-          <div class="skill-header">
-            <h4 class="skill-title">🎨 Frontend</h4>
-            <span class="skill-badge">4 Tech</span>
-          </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Frontend</h4>
           <div class="skill-tags"><span class="tag">React.js</span><span class="tag">HTML5</span><span
               class="tag">CSS3</span><span class="tag">Tailwind CSS</span></div>
         </div>
-        <div class="skill-box skill-backend gsap-fade">
-          <div class="skill-header">
-            <h4 class="skill-title">⚙️ Backend</h4>
-            <span class="skill-badge">4 Tech</span>
-          </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Backend</h4>
           <div class="skill-tags"><span class="tag">Spring Boot</span><span class="tag">Node.js</span><span
               class="tag">REST APIs</span><span class="tag">FastAPI</span></div>
         </div>
-        <div class="skill-box skill-databases gsap-fade">
-          <div class="skill-header">
-            <h4 class="skill-title">🗄️ Databases</h4>
-            <span class="skill-badge">3 Tech</span>
-          </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Databases</h4>
           <div class="skill-tags"><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span
               class="tag">MongoDB</span></div>
         </div>
-        <div class="skill-box skill-tools gsap-fade">
-          <div class="skill-header">
-            <h4 class="skill-title">🛠️ Tools &amp; Cloud</h4>
-            <span class="skill-badge">6 Tech</span>
-          </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Tools</h4>
           <div class="skill-tags"><span class="tag">Git & GitHub</span><span class="tag">Docker</span><span
               class="tag">Render</span><span class="tag">Cloudinary</span><span class="tag">Vercel</span><span
               class="tag">Razorpay</span></div>
         </div>
-        <div class="skill-box skill-ai gsap-fade">
-          <div class="skill-header">
-            <h4 class="skill-title">✨ AI / ML</h4>
-            <span class="skill-badge">2 Tech</span>
-          </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">AI / ML</h4>
           <div class="skill-tags"><span class="tag">LLM Integration</span><span class="tag">Gemini AI</span></div>
         </div>
-        <div class="skill-box skill-concepts gsap-fade">
-          <div class="skill-header">
-            <h4 class="skill-title">📐 Concepts</h4>
-            <span class="skill-badge">7 Concepts</span>
-          </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Concepts</h4>
           <div class="skill-tags"><span class="tag">DSA</span><span class="tag">OOP</span><span
               class="tag">DBMS</span><span class="tag">OS</span><span class="tag">JWT</span><span
               class="tag">WebSocket</span><span class="tag">API Integration</span></div>
@@ -2276,71 +1851,43 @@
 
       <div class="grid-2">
         <div class="gsap-fade">
-          <div class="c-link-item c-link-location" style="cursor:default;">
-            <div class="c-link-content">
-              <span class="c-link-icon">📍</span>
-              <span>Location: Tirupur, Tamil Nadu, India</span>
-            </div>
-            <span class="c-link-arrow">✦</span>
+          <div class="c-link-item" style="cursor:default;">
+            <span>Location: Tirupur, Tamil Nadu, India</span>
           </div>
-          <a href="mailto:gmsofficial26@gmail.com" class="c-link-item c-link-email">
-            <div class="c-link-content">
-              <span class="c-link-icon">✉️</span>
-              <span>Email: gmsofficial26@gmail.com</span>
-            </div>
-            <span class="c-link-arrow">&nearr;</span>
+          <a href="mailto:gmsofficial26@gmail.com" class="c-link-item">
+            <span>Email: gmsofficial26@gmail.com</span>
           </a>
-          <a href="tel:+919952830946" class="c-link-item c-link-phone">
-            <div class="c-link-content">
-              <span class="c-link-icon">📞</span>
-              <span>Phone: +91 9952830946</span>
-            </div>
-            <span class="c-link-arrow">&nearr;</span>
+          <a href="tel:+919952830946" class="c-link-item">
+            <span>Phone: +91 9952830946</span>
           </a>
-          <a href="https://github.com/gms26" target="_blank" class="c-link-item c-link-github">
-            <div class="c-link-content">
-              <span class="c-link-icon">🐙</span>
-              <span>GitHub: github.com/gms26</span>
-            </div>
-            <span class="c-link-arrow">&nearr;</span>
+          <a href="https://github.com/gms26" target="_blank" class="c-link-item">
+            <span>GitHub: github.com/gms26</span>
           </a>
-          <a href="https://linkedin.com/in/sanjay" target="_blank" class="c-link-item c-link-linkedin">
-            <div class="c-link-content">
-              <span class="c-link-icon">💼</span>
-              <span>LinkedIn: linkedin.com/in/sanjay</span>
-            </div>
-            <span class="c-link-arrow">&nearr;</span>
+          <a href="https://linkedin.com/in/sanjay" target="_blank" class="c-link-item">
+            <span>LinkedIn: linkedin.com/in/sanjay</span>
           </a>
-          <a href="https://leetcode.com/u/gms_26/" target="_blank" class="c-link-item c-link-leetcode">
-            <div class="c-link-content">
-              <span class="c-link-icon">⚡</span>
-              <span>LeetCode: gms_26</span>
-            </div>
-            <span class="c-link-arrow">&nearr;</span>
+          <a href="https://leetcode.com/u/gms_26/" target="_blank" class="c-link-item">
+            <span>LeetCode: gms_26</span>
           </a>
         </div>
 
-        <form class="card gsap-fade" id="contactForm" style="padding:36px;">
-          <div class="form-terminal-bar">
-            <span>TRANSMISSION // ENCRYPTED DISPATCH</span>
-            <span class="t-status">READY</span>
-          </div>
+        <form class="card gsap-fade" id="contactForm">
           <!-- PLEASE GET YOUR ACCESS KEY FROM https://web3forms.com/ AND PASTE IT BELOW -->
           <input type="hidden" name="access_key" value="78daa832-ff6f-4a9b-b716-ba961a22c952">
 
           <div class="form-group">
             <label>Your Name</label>
-            <input type="text" name="name" class="form-control" placeholder="Enter your full name" required>
+            <input type="text" name="name" class="form-control" required>
           </div>
           <div class="form-group">
             <label>Your Email</label>
-            <input type="email" name="email" class="form-control" placeholder="Enter your email address" required>
+            <input type="email" name="email" class="form-control" required>
           </div>
           <div class="form-group">
             <label>Your Message</label>
-            <textarea name="message" class="form-control" placeholder="Write your message here..." required></textarea>
+            <textarea name="message" class="form-control" required></textarea>
           </div>
-          <button type="submit" class="btn" style="width:100%; justify-content:center;" id="submitBtn">Send Message &rarr;</button>
+          <button type="submit" class="btn" style="width:100%;" id="submitBtn">Send Message</button>
         </form>
       </div>
     </div>
@@ -2353,10 +1900,10 @@
   </footer>
 
   <script>
-    // ── GSAP ──
+    // ΓöÇΓöÇ GSAP ΓöÇΓöÇ
     gsap.registerPlugin(ScrollTrigger);
 
-    // ── Smooth Scroll ──
+    // ΓöÇΓöÇ Smooth Scroll ΓöÇΓöÇ
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -2369,7 +1916,7 @@
     gsap.ticker.add((time) => { lenis.raf(time * 1000); });
     gsap.ticker.lagSmoothing(0);
 
-    // ── Hero Fly-Through ──
+    // ΓöÇΓöÇ Hero Fly-Through ΓöÇΓöÇ
     const heroTl = gsap.timeline({
       scrollTrigger: {
         trigger: "#hero",
@@ -2389,7 +1936,7 @@
       .to("#heroInner", { y: -100, opacity: 0, ease: "power2.in" }, 0)
       .to("#heroPhoto", { opacity: 0, ease: "power2.in" }, 0);
 
-    // ── Scroll Reveal (Batched for Performance) ──
+    // ΓöÇΓöÇ Scroll Reveal (Batched for Performance) ΓöÇΓöÇ
     gsap.set('.gsap-reveal-clip', { clipPath: 'polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)', opacity: 0, y: 30 });
     gsap.set('.gsap-fade', { opacity: 0, y: 20 });
 
@@ -2431,8 +1978,8 @@
       ScrollTrigger.refresh();
     }, 4000);
 
-    // ── Typing Effect ──
-    const phrases = ['Full-Stack Developer & Freelancer', 'Backend Engineer — Java & Spring Boot', 'AI-Powered App Builder', '540+ LeetCode Problem Solver'];
+    // ΓöÇΓöÇ Typing Effect ΓöÇΓöÇ
+    const phrases = ['Full-Stack Developer & Freelancer', 'Backend Engineer ΓÇö Java & Spring Boot', 'AI-Powered App Builder', '540+ LeetCode Problem Solver'];
     const typedEl = document.getElementById('typed');
     let pi = 0, ci = 0, deleting = false;
     function type() {
@@ -2450,7 +1997,7 @@
     }
     setTimeout(type, 100);
 
-    // ── Mobile Menu ──
+    // ΓöÇΓöÇ Mobile Menu ΓöÇΓöÇ
     const toggle = document.getElementById('navToggle');
     const menuOverlay = document.getElementById('menuOverlay');
     const nav = document.querySelector('.nav');
@@ -2469,29 +2016,20 @@
     toggle.addEventListener('click', toggleMenu);
     document.querySelectorAll('.m-item').forEach(el => el.addEventListener('click', () => { if (isMenuOpen) toggleMenu(); }));
 
-    // Throttled scroll listener for nav & scroll progress
+    // Throttled scroll listener for nav
     let scrollTicking = false;
-    const scrollBar = document.getElementById('scrollProgressBar');
     window.addEventListener('scroll', () => {
       if (!scrollTicking) {
         requestAnimationFrame(() => {
           if (window.scrollY > 50) nav.classList.add('scrolled');
           else nav.classList.remove('scrolled');
-
-          if (scrollBar) {
-            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
-            scrollBar.style.width = scrolled + '%';
-          }
-
           scrollTicking = false;
         });
         scrollTicking = true;
       }
     });
 
-    // ── Custom Cursor ──
+    // ΓöÇΓöÇ Custom Cursor ΓöÇΓöÇ
     if (window.innerWidth >= 768) {
       const dot = document.querySelector('.cursor-dot');
       const outline = document.querySelector('.cursor-outline');
@@ -2517,13 +2055,13 @@
       }
       animateCursor();
 
-      document.querySelectorAll('a, button, input, textarea, .card, .skill-box, .stat, .exp-item, .activity-box, .lc-modern-card, .c-link-item, .about-bio-box').forEach(el => {
+      document.querySelectorAll('a, button, input, textarea, .card, .skill-box').forEach(el => {
         el.addEventListener('mouseenter', () => { outline.classList.add('hover'); });
         el.addEventListener('mouseleave', () => { outline.classList.remove('hover'); });
       });
     }
 
-    // ── Web3Forms ──
+    // ΓöÇΓöÇ Web3Forms ΓöÇΓöÇ
     const contactForm = document.getElementById('contactForm');
     const submitBtn = document.getElementById('submitBtn');
     contactForm.addEventListener('submit', async (e) => {
@@ -2535,7 +2073,7 @@
       try {
         const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: new FormData(contactForm) });
         const data = await res.json();
-        if (data.success) { submitBtn.innerHTML = 'Sent ✓'; contactForm.reset(); }
+        if (data.success) { submitBtn.innerHTML = 'Sent Γ£ô'; contactForm.reset(); }
         else { submitBtn.innerHTML = 'Error'; }
       } catch (error) { submitBtn.innerHTML = 'Failed'; }
       setTimeout(() => { submitBtn.innerHTML = 'Send Message'; submitBtn.style.opacity = '1'; submitBtn.style.pointerEvents = 'auto'; }, 4000);
