@@ -750,19 +750,22 @@
     }
 
     .tag {
-      font-size: 0.75rem;
-      padding: 4px 10px;
+      font-size: 0.78rem;
+      padding: 5px 12px;
       border-radius: 4px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
       color: var(--text-secondary);
-      transition: all 0.3s ease;
+      transition: all 0.25s ease;
+      display: inline-block;
+      cursor: default;
     }
 
     .tag:hover {
       background: rgba(0, 229, 255, 0.08);
       color: var(--text);
       border-color: var(--accent);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
       transform: translateY(-2px);
     }
 
@@ -772,18 +775,30 @@
     }
 
     .project-desc li {
-      font-size: 1rem;
+      font-size: 0.98rem;
       color: var(--text-secondary);
-      padding-left: 20px;
+      padding: 8px 14px 8px 26px;
       position: relative;
-      margin-bottom: 12px;
+      margin-bottom: 8px;
       font-weight: 300;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+    }
+
+    .project-desc li:hover {
+      color: var(--text);
+      background: rgba(0, 229, 255, 0.04);
+      border-color: rgba(0, 229, 255, 0.25);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
+      transform: translateX(4px);
     }
 
     .project-desc li::before {
       content: '>';
       position: absolute;
-      left: 0;
+      left: 8px;
+      top: 8px;
       color: var(--accent);
       font-family: monospace;
     }
@@ -794,15 +809,25 @@
     }
 
     .p-link {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--accent);
-      border-bottom: 1px solid transparent;
-      transition: 0.2s;
-      padding-bottom: 2px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      background: rgba(0, 229, 255, 0.05);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      transition: all 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
     }
 
     .p-link:hover {
-      border-bottom-color: var(--accent);
+      background: rgba(0, 229, 255, 0.14);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.35);
+      transform: translateY(-2px);
     }
 
     /* EXP & EDU */
@@ -855,6 +880,20 @@
       background: rgba(10, 18, 30, 0.9);
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
       transform: translateX(6px);
+    }
+
+    .exp-item ul li {
+      padding: 6px 12px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+      transition: all 0.25s ease;
+    }
+
+    .exp-item ul li:hover {
+      color: var(--text);
+      background: rgba(0, 229, 255, 0.04);
+      border-color: rgba(0, 229, 255, 0.25);
+      transform: translateX(4px);
     }
 
     .exp-title {
@@ -1269,12 +1308,30 @@
     .lc-mini-item {
       display: flex;
       flex-direction: column;
+      padding: 8px 16px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+
+    .lc-mini-item:hover {
+      background: rgba(0, 229, 255, 0.08);
+      border-color: var(--accent);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.28);
+      transform: translateY(-2px);
     }
 
     .lc-mini-item .val {
       font-size: 1.25rem;
       color: var(--text);
       font-family: var(--font-heading);
+      transition: color 0.25s ease;
+    }
+
+    .lc-mini-item:hover .val {
+      color: var(--accent);
     }
 
     .lc-mini-item .lbl {
@@ -1282,6 +1339,23 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       color: var(--text-secondary);
+    }
+
+    .lc-bar-item {
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 12px;
+      transition: all 0.25s ease;
+      cursor: default;
+    }
+
+    .lc-bar-item:hover {
+      background: rgba(0, 229, 255, 0.05);
+      border-color: var(--accent);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.2);
+      transform: translateX(4px);
     }
 
     @media(max-width: 800px) {
@@ -1515,7 +1589,7 @@
       <span class="section-eyebrow gsap-fade">About</span>
       <h2 class="section-heading gsap-fade">About Me</h2>
       <div class="grid-2">
-        <div class="gsap-fade">
+        <div class="card gsap-fade" style="padding: 32px 36px;">
           <p style="color:var(--text-secondary); margin-bottom:20px; font-weight:300;">
             Full Stack Software Developer &amp; Freelancer with hands-on experience in backend engineering, REST API
             design and scalable web application development. Solved <span
@@ -1851,7 +1925,7 @@
       <span class="section-eyebrow gsap-fade">Achievements</span>
       <h2 class="section-heading gsap-fade">Certifications & Achievements</h2>
 
-      <div class="gsap-fade" style="margin-bottom:60px;">
+      <div class="card gsap-fade" style="margin-bottom:48px; padding:28px 36px;">
         <ul
           style="color:var(--text-secondary); font-weight:300; line-height:1.8; padding-left:20px; font-size:1.05rem;">
           <li style="margin-bottom:12px;">Solved <strong>540+ LeetCode problems</strong> focused on Data Structures,
@@ -2229,7 +2303,7 @@
       }
       animateCursor();
 
-      document.querySelectorAll('a, button, input, textarea, .card, .skill-box, .stat, .lc-modern-card, .exp-item, .activity-box, .c-link-item').forEach(el => {
+      document.querySelectorAll('a, button, input, textarea, .card, .skill-box, .stat, .lc-modern-card, .exp-item, .activity-box, .c-link-item, .tag, .p-link, .lc-mini-item, .lc-bar-item, .project-desc li, .exp-item ul li').forEach(el => {
         el.addEventListener('mouseenter', () => { outline.classList.add('hover'); });
         el.addEventListener('mouseleave', () => { outline.classList.remove('hover'); });
       });
