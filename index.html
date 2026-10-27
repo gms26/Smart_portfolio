@@ -30,14 +30,14 @@
     }
 
     :root {
-      --bg: #07090d;
-      --bg-card: rgba(255, 255, 255, 0.02);
-      --border: rgba(255, 255, 255, 0.08);
-      --border-light: rgba(255, 255, 255, 0.15);
+      --bg: #0c1017;
+      --bg-card: rgba(20, 27, 41, 0.78);
+      --border: rgba(255, 255, 255, 0.12);
+      --border-light: rgba(255, 255, 255, 0.22);
       --text: #ffffff;
-      --text-secondary: #8a8f98;
+      --text-secondary: #b0bac9;
       --accent: #00e5ff;
-      --accent-glow: rgba(0, 229, 255, 0.15);
+      --accent-glow: rgba(0, 229, 255, 0.18);
       --font-body: 'Inter', sans-serif;
       --font-heading: 'Space Grotesk', sans-serif;
     }
@@ -46,7 +46,7 @@
     html {
       scroll-behavior: auto;
       scrollbar-width: thin;
-      scrollbar-color: rgba(0, 229, 255, 0.4) #07090d;
+      scrollbar-color: rgba(0, 229, 255, 0.5) #0c1017;
       overflow-x: hidden;
     }
 
@@ -66,14 +66,14 @@
     }
 
     ::-webkit-scrollbar-track {
-      background: #07090d;
-      border-left: 1px solid rgba(0, 229, 255, 0.08);
+      background: #0c1017;
+      border-left: 1px solid rgba(0, 229, 255, 0.1);
     }
 
     ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, rgba(0, 229, 255, 0.45) 0%, rgba(0, 180, 216, 0.25) 100%);
+      background: linear-gradient(180deg, rgba(0, 229, 255, 0.55) 0%, rgba(0, 180, 216, 0.3) 100%);
       border-radius: 999px;
-      border: 1px solid rgba(0, 229, 255, 0.2);
+      border: 1px solid rgba(0, 229, 255, 0.25);
       transition: background 0.3s, box-shadow 0.3s;
     }
 
@@ -94,81 +94,84 @@
     }
 
     ::-webkit-scrollbar-corner {
-      background: #07090d;
+      background: #0c1017;
     }
 
-    /* Custom Cursor - keep native cursor as fallback, custom overlays on top */
+    /* Futuristic Cyber Precision Pointer */
+    @media (min-width: 768px) {
+      body, a, button, select, [role="button"], .card, .btn, .skill-box, .stat, .lc-modern-card, .exp-item, .activity-box, .c-link-item, .tag, .p-link, .lc-mini-item, .lc-bar-item, .project-desc li, .exp-item ul li, .achievement-item, .proj-nav-pill, .nav-logo, .nav-toggle, .theme-toggle, .lc-badge, .lc-metric-card, .lc-track, .timeline-dot {
+        cursor: none !important;
+      }
 
-    .cursor-dot,
-    .cursor-outline {
-      position: fixed;
-      top: 0;
-      left: 0;
-      border-radius: 50%;
-      z-index: 9999;
-      pointer-events: none;
-      display: none;
-      will-change: transform, width, height;
-    }
+      input, textarea, [contenteditable="true"] {
+        cursor: text !important;
+      }
 
-    @media(min-width: 768px) {
-
-      .cursor-dot,
-      .cursor-outline {
-        display: block;
+      .cursor-pointer {
+        display: block !important;
       }
     }
 
-    .cursor-dot {
-      width: 8px;
-      height: 8px;
-      margin-left: -4px;
-      margin-top: -4px;
-      background: var(--accent);
-      border-radius: 50%;
-      box-shadow: 0 0 12px var(--accent), 0 0 4px #fff;
-    }
-
-    .cursor-outline {
+    .cursor-pointer {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 999999;
+      pointer-events: none;
+      display: none;
+      will-change: transform, opacity;
+      transform: translate3d(-100px, -100px, 0);
+      opacity: 0;
       width: 24px;
       height: 24px;
-      margin-left: -12px;
-      margin-top: -12px;
-      border: 1px solid rgba(0, 229, 255, 0.2);
-      border-radius: 50%;
-      background: rgba(0, 229, 255, 0.03);
-      backdrop-filter: blur(2px);
-      -webkit-backdrop-filter: blur(2px);
-      transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), height 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, margin 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      margin-left: 0;
+      margin-top: 0;
+      transition: opacity 0.25s ease;
     }
 
-    .cursor-outline.hover {
-      width: 42px;
-      height: 42px;
-      margin-left: -21px;
-      margin-top: -21px;
-      background-color: rgba(0, 229, 255, 0.12);
-      border-color: rgba(0, 229, 255, 0.6);
-      box-shadow: 0 0 18px rgba(0, 229, 255, 0.4);
+    .cursor-pointer-icon {
+      width: 24px;
+      height: 24px;
+      transform-origin: 0 0;
+      transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), filter 0.2s ease;
     }
 
-    /* Site Background */
+    .cursor-pointer.hover .cursor-pointer-icon {
+      transform: scale(1.22);
+      filter: drop-shadow(0 0 10px #00e5ff) drop-shadow(0 0 20px rgba(0, 229, 255, 0.9));
+    }
+
+    .cursor-pointer.clicking .cursor-pointer-icon {
+      transform: scale(0.82);
+    }
+
+    .cursor-pointer.text-mode {
+      opacity: 0;
+    }
+
+    /* Luminous Ambient Site Background */
     .site-bg {
       position: fixed;
       inset: 0;
       z-index: -2;
       pointer-events: none;
-      background: var(--bg);
+      background:
+        radial-gradient(ellipse 90% 60% at 50% -10%, rgba(0, 229, 255, 0.09) 0%, transparent 70%),
+        radial-gradient(circle 800px at 15% 35%, rgba(20, 70, 140, 0.14) 0%, transparent 65%),
+        radial-gradient(circle 700px at 85% 65%, rgba(0, 229, 255, 0.07) 0%, transparent 65%),
+        radial-gradient(circle 600px at 50% 95%, rgba(20, 60, 120, 0.12) 0%, transparent 60%),
+        #0c1017;
     }
 
     .site-grid {
       position: absolute;
       inset: 0;
-      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-image: linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
       background-size: 60px 60px;
       mask-image: radial-gradient(ellipse at top, black 40%, transparent 80%);
       -webkit-mask-image: radial-gradient(ellipse at top, black 40%, transparent 80%);
+      opacity: 0.85;
     }
 
     /* Typography & Links */
@@ -596,10 +599,13 @@
       background: var(--bg-card);
       border: 1px solid var(--border);
       padding: 40px;
-      border-radius: 8px;
+      border-radius: 10px;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.28);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
 
     .card::after {
@@ -609,7 +615,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at center, rgba(0, 229, 255, 0.1) 0%, transparent 65%);
+      background: radial-gradient(circle at center, rgba(0, 229, 255, 0.12) 0%, transparent 65%);
       opacity: 0;
       transition: 0.4s ease;
       pointer-events: none;
@@ -621,8 +627,8 @@
 
     .card:hover {
       border-color: var(--accent);
-      background: rgba(10, 18, 30, 0.9);
-      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
+      background: rgba(22, 32, 50, 0.95);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 24px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
       transform: translateY(-4px);
     }
 
@@ -635,12 +641,13 @@
 
     .stat {
       padding: 32px;
-      background: rgba(255, 255, 255, 0.01);
+      background: rgba(20, 27, 41, 0.72);
       border: 1px solid var(--border);
       border-radius: 8px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -698,6 +705,158 @@
     }
 
     /* PROJECTS */
+    .project-category-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: -36px;
+      margin-bottom: 56px;
+    }
+
+    .proj-nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 20px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .proj-nav-pill .pill-glow {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+
+    .proj-nav-pill .pill-count {
+      font-size: 0.72rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-secondary);
+      transition: all 0.3s ease;
+    }
+
+    .proj-nav-pill:hover,
+    .proj-nav-pill.active {
+      color: var(--text);
+      border-color: rgba(0, 229, 255, 0.45);
+      background: rgba(0, 229, 255, 0.06);
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .proj-nav-pill:hover .pill-glow,
+    .proj-nav-pill.active .pill-glow {
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+    }
+
+    .proj-nav-pill:hover .pill-count,
+    .proj-nav-pill.active .pill-count {
+      background: rgba(0, 229, 255, 0.18);
+      color: var(--accent);
+    }
+
+    .project-category-head {
+      margin-bottom: 30px;
+      scroll-margin-top: 100px;
+      position: relative;
+    }
+
+    .project-category-head.with-margin-top {
+      margin-top: 80px;
+    }
+
+    .category-header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .category-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-weight: 500;
+    }
+
+    .category-eyebrow::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    .category-count-badge {
+      font-size: 0.72rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-secondary);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-family: var(--font-body);
+    }
+
+    .category-title {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 500;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .category-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 300;
+      max-width: 680px;
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+
+    .category-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(0, 229, 255, 0.45) 0%, rgba(0, 229, 255, 0.1) 40%, rgba(255, 255, 255, 0.03) 80%, transparent 100%);
+      margin-bottom: 32px;
+      position: relative;
+    }
+
+    .category-divider::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: -1px;
+      width: 36px;
+      height: 3px;
+      background: var(--accent);
+      box-shadow: 0 0 10px var(--accent);
+      border-radius: 2px;
+    }
+
     .project-list {
       display: flex;
       flex-direction: column;
@@ -754,19 +913,19 @@
       font-size: 0.78rem;
       padding: 5px 12px;
       border-radius: 4px;
-      background: rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.05);
       border: 1px solid var(--border);
-      color: var(--text-secondary);
+      color: #cdd6e4;
       transition: all 0.25s ease;
       display: inline-block;
       cursor: default;
     }
 
     .tag:hover {
-      background: rgba(0, 229, 255, 0.08);
-      color: var(--text);
+      background: rgba(0, 229, 255, 0.12);
+      color: #ffffff;
       border-color: var(--accent);
-      box-shadow: 0 0 12px rgba(0, 229, 255, 0.3);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.4);
       transform: translateY(-2px);
     }
 
@@ -777,7 +936,7 @@
 
     .project-desc li {
       font-size: 0.98rem;
-      color: var(--text-secondary);
+      color: #c4d0e0;
       padding: 8px 14px 8px 26px;
       position: relative;
       margin-bottom: 8px;
@@ -788,8 +947,8 @@
     }
 
     .project-desc li:hover {
-      color: var(--text);
-      background: rgba(0, 229, 255, 0.04);
+      color: #ffffff;
+      background: rgba(0, 229, 255, 0.06);
       border-color: rgba(0, 229, 255, 0.25);
       box-shadow: 0 0 12px rgba(0, 229, 255, 0.15);
       transform: translateX(4px);
@@ -797,10 +956,10 @@
 
     .achievement-item {
       padding: 12px 18px;
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(20, 27, 41, 0.72);
       border: 1px solid var(--border);
       border-radius: 6px;
-      color: var(--text-secondary);
+      color: #d1d9e6;
       font-size: 0.98rem;
       transition: all 0.25s ease;
       display: flex;
@@ -810,9 +969,9 @@
     }
 
     .achievement-item:hover {
-      background: rgba(0, 229, 255, 0.06);
+      background: rgba(22, 34, 52, 0.95);
       border-color: var(--accent);
-      color: var(--text);
+      color: #ffffff;
       box-shadow: 0 0 14px rgba(0, 229, 255, 0.25);
       transform: translateX(4px);
     }
@@ -859,6 +1018,8 @@
       padding: 20px 24px 28px 30px;
       position: relative;
       border-radius: 6px;
+      background: rgba(20, 27, 41, 0.6);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.2);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       overflow: hidden;
     }
@@ -900,7 +1061,7 @@
 
     .exp-item:hover {
       border-left-color: var(--accent);
-      background: rgba(10, 18, 30, 0.9);
+      background: rgba(22, 34, 52, 0.95);
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
       transform: translateX(6px);
     }
@@ -936,10 +1097,11 @@
     .activity-box {
       padding: 24px;
       border: 1px solid var(--border);
-      border-left: 3px solid var(--border);
+      border-left: 3px solid rgba(0, 229, 255, 0.4);
       border-radius: 6px;
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      background: rgba(255, 255, 255, 0.01);
+      background: rgba(20, 27, 41, 0.7);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
       position: relative;
       overflow: hidden;
     }
@@ -964,7 +1126,7 @@
     .activity-box:hover {
       border-color: var(--accent);
       border-left-color: var(--accent);
-      background: rgba(10, 18, 30, 0.9);
+      background: rgba(22, 34, 52, 0.95);
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
       transform: translateY(-4px);
     }
@@ -972,7 +1134,7 @@
     .activity-title {
       font-size: 1rem;
       color: var(--text);
-      margin-bottom: 8px;
+      margin-bottom: 0;
       font-weight: 500;
     }
 
@@ -993,7 +1155,8 @@
     .skill-box {
       padding: 24px;
       border: 1px solid var(--border);
-      background: rgba(255, 255, 255, 0.01);
+      background: rgba(20, 27, 41, 0.7);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.22);
       border-radius: 8px;
       position: relative;
       overflow: hidden;
@@ -1018,17 +1181,28 @@
 
     .skill-box:hover {
       border-color: var(--accent);
-      background: rgba(10, 18, 30, 0.9);
+      background: rgba(22, 34, 52, 0.95);
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
       transform: translateY(-4px);
     }
 
     .skill-title {
-      font-size: 0.8rem;
+      font-size: 0.95rem;
       text-transform: uppercase;
-      color: var(--text-secondary);
+      color: var(--accent);
       margin-bottom: 16px;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+      text-shadow: 0 0 12px rgba(0, 229, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .skill-box:hover .skill-title {
+      color: #ffffff;
+      border-bottom-color: rgba(0, 229, 255, 0.45);
+      text-shadow: 0 0 14px rgba(0, 229, 255, 0.7);
     }
 
     .skill-tags {
@@ -1132,7 +1306,7 @@
 
     /* MODERN LEETCODE PROFILE */
     .lc-modern-card {
-      background: rgba(255, 255, 255, 0.02);
+      background: rgba(20, 27, 41, 0.78);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 48px;
@@ -1142,9 +1316,9 @@
       align-items: center;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -1167,7 +1341,7 @@
 
     .lc-modern-card:hover {
       border-color: var(--accent);
-      background: rgba(10, 18, 30, 0.9);
+      background: rgba(22, 34, 52, 0.95);
       box-shadow: 0 10px 28px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 229, 255, 0.22), inset 0 1px 0 rgba(0, 229, 255, 0.35);
       transform: translateY(-4px);
     }
@@ -1523,6 +1697,21 @@
         padding: 32px 24px;
       }
 
+      .project-category-head.with-margin-top {
+        margin-top: 56px;
+      }
+
+      .project-category-nav {
+        margin-top: -24px;
+        margin-bottom: 36px;
+        gap: 8px;
+      }
+
+      .proj-nav-pill {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+      }
+
       .menu-link {
         font-size: clamp(2rem, 8vw, 3rem);
       }
@@ -1532,8 +1721,19 @@
 
 <body>
 
-  <div class="cursor-dot"></div>
-  <div class="cursor-outline"></div>
+  <!-- Futuristic Cyber Precision Pointer -->
+  <div class="cursor-pointer" id="cursorPointer" aria-hidden="true">
+    <div class="cursor-pointer-icon">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <filter id="cyberGlow" x="-30%" y="-30%" width="160%" height="160%">
+            <feDropShadow dx="0" dy="0" stdDeviation="2.2" flood-color="#00e5ff" flood-opacity="0.95"/>
+          </filter>
+        </defs>
+        <path d="M0 0 L6.8 21.2 L11 13.5 L19.5 11 Z" fill="#00e5ff" stroke="#ffffff" stroke-width="1.6" stroke-linejoin="round" filter="url(#cyberGlow)"/>
+      </svg>
+    </div>
+  </div>
 
   <div class="site-bg">
     <div class="site-grid"></div>
@@ -1553,11 +1753,12 @@
       <nav class="menu-links">
         <a href="#about" class="menu-link m-item">About</a>
         <a href="#dsa" class="menu-link m-item">DSA & LeetCode</a>
+        <a href="#education" class="menu-link m-item">Education</a>
+        <a href="#internship" class="menu-link m-item">Internship</a>
         <a href="#projects" class="menu-link m-item">Projects</a>
-        <a href="#experience" class="menu-link m-item">Experience</a>
-        <a href="#certifications" class="menu-link m-item">Certifications</a>
-        <a href="#activities" class="menu-link m-item">Interests & Activities</a>
         <a href="#skills" class="menu-link m-item">Skills</a>
+        <a href="#activities" class="menu-link m-item">Interests & Activities</a>
+        <a href="#certifications" class="menu-link m-item">Certifications</a>
         <a href="#contact" class="menu-link m-item">Contact</a>
       </nav>
       <div class="menu-aside">
@@ -1619,18 +1820,10 @@
               style="color:var(--text); font-weight:500;">540+ LeetCode problems</span> covering Data Structures,
             Algorithms.
           </p>
-          <p style="color:var(--text-secondary); font-weight:300;">
+          <p style="color:var(--text-secondary); font-weight:300; margin:0;">
             Experienced in building AI-powered, real-time systems using Java, Spring Boot, React.js, PostgreSQL and
             Python. I believe in writing code that is not only functional but architecturally sound.
           </p>
-          <div class="skill-tags" style="margin-top:22px;">
-            <span class="tag">Backend Engineering</span>
-            <span class="tag">Full Stack Development</span>
-            <span class="tag">540+ LeetCode Solved</span>
-            <span class="tag">Spring Boot &amp; React</span>
-            <span class="tag">REST API Architecture</span>
-            <span class="tag">AI Systems</span>
-          </div>
         </div>
         <div class="stat-grid gsap-fade">
           <a href="https://leetcode.com/u/gms_26/" target="_blank" class="stat"
@@ -1728,42 +1921,143 @@
     </div>
   </section>
 
+  <section id="education">
+    <div class="container">
+      <span class="section-eyebrow gsap-fade">Academics</span>
+      <h2 class="section-heading gsap-fade">Education</h2>
+      <p class="section-sub gsap-fade">Academic foundation, core computer science coursework, and performance milestones.</p>
+
+      <div class="grid-2">
+        <div class="gsap-fade">
+          <div class="exp-item">
+            <h3 class="exp-title">B.E. Computer Science</h3>
+            <span class="exp-meta">Dr. NGP Institute of Technology | 2023 - Present</span>
+            <div class="skill-tags" style="margin: 12px 0 14px 0;">
+              <span class="tag">CGPA: 7.74</span>
+              <span class="tag">Data Structures</span>
+              <span class="tag">Algorithms</span>
+              <span class="tag">Web Architecture</span>
+              <span class="tag">AI Technologies</span>
+            </div>
+            <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Current CGPA: 7.74. Focusing on
+              Data Structures, Algorithms, Web Development, and AI technologies.</p>
+          </div>
+        </div>
+        <div class="gsap-fade">
+          <div class="exp-item">
+            <h3 class="exp-title">HSC</h3>
+            <span class="exp-meta">AVP Trust National Matric School | 2023</span>
+            <div class="skill-tags" style="margin: 12px 0 14px 0;">
+              <span class="tag">CS: 100/100</span>
+              <span class="tag">83% Overall</span>
+              <span class="tag">AVP Trust</span>
+            </div>
+            <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Scored 83% overall with a
+              perfect 100/100 in Computer Science.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="internship">
+    <div class="container">
+      <span class="section-eyebrow gsap-fade">Experience</span>
+      <h2 class="section-heading gsap-fade">Internship</h2>
+      <p class="section-sub gsap-fade">Practical industrial software engineering training and real-time AI system implementations.</p>
+
+      <div class="grid-2">
+        <div class="gsap-fade">
+          <div class="exp-item">
+            <h3 class="exp-title">AI Intern</h3>
+            <span class="exp-meta">Gateway Software Solutions | June 2025</span>
+            <div class="skill-tags" style="margin-bottom: 14px;">
+              <span class="tag">DeepSeek AI</span>
+              <span class="tag">Mistral API</span>
+              <span class="tag">Python</span>
+              <span class="tag">AgriTech Workflows</span>
+            </div>
+            <ul
+              style="font-size:0.95rem; color:var(--text-secondary); font-weight:300; list-style:none; padding-left:0;">
+              <li style="margin-bottom:8px;">&bull; Developed a real-time crop suitability prediction system using
+                DeepSeek and Mistral APIs.</li>
+              <li style="margin-bottom:8px;">&bull; Processed agricultural datasets and integrated AI-based
+                recommendation workflows.</li>
+              <li>&bull; Collaborated on backend integration and scalable AI-driven data processing.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="gsap-fade">
+          <div class="exp-item">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;">
+              <h3 class="exp-title">Freelance Full-Stack Developer</h3>
+              <a href="http://pennool.in" target="_blank" class="p-link" style="font-size:0.8rem; margin:0;">pennool.in
+                &nearr;</a>
+            </div>
+            <span class="exp-meta">Pennool | 2026</span>
+            <div class="skill-tags" style="margin-bottom: 14px;">
+              <span class="tag">Pennool.in</span>
+              <span class="tag">E-Commerce</span>
+              <span class="tag">Razorpay</span>
+              <span class="tag">Google OAuth</span>
+              <span class="tag">SEO / JSON-LD</span>
+            </div>
+            <ul
+              style="font-size:0.95rem; color:var(--text-secondary); font-weight:300; list-style:none; padding-left:0;">
+              <li style="margin-bottom:8px;">&bull; Developed and launched the production e-commerce website for Pennool
+                (<a href="http://pennool.in" target="_blank"
+                  style="color:var(--accent); text-decoration:none;">pennool.in</a>) delivering modern ethnic wear
+                across India.</li>
+              <li style="margin-bottom:8px;">&bull; Built the full storefront experience including dynamic product
+                catalog, interactive cart, wishlist, and customer accounts.</li>
+              <li style="margin-bottom:8px;">&bull; Integrated Razorpay payment gateway for secure transactions and
+                Google Identity Services for frictionless authentication.</li>
+              <li>&bull; Implemented responsive mobile-optimized UI, fast-loading media assets, and SEO structured
+                schemas.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="projects">
     <div class="container">
       <span class="section-eyebrow gsap-fade">Work</span>
       <h2 class="section-heading gsap-fade">Projects</h2>
-      <p class="section-sub gsap-fade">A selection of platforms I've architected.</p>
+      <p class="section-sub gsap-fade">A selection of platforms, client solutions, and mobile applications I've architected.</p>
+
+      <!-- CATEGORY NAV PILLS -->
+      <div class="project-category-nav gsap-fade">
+        <a href="#head-projects" class="proj-nav-pill active">
+          <span class="pill-glow"></span>
+          <span class="pill-name">Projects</span>
+          <span class="pill-count">4</span>
+        </a>
+        <a href="#head-freelance" class="proj-nav-pill">
+          <span class="pill-glow"></span>
+          <span class="pill-name">Freelance</span>
+          <span class="pill-count">1</span>
+        </a>
+        <a href="#head-apk" class="proj-nav-pill">
+          <span class="pill-glow"></span>
+          <span class="pill-name">APK</span>
+          <span class="pill-count">1</span>
+        </a>
+      </div>
+
+      <!-- HEAD 1: PROJECTS -->
+      <div class="project-category-head gsap-fade" id="head-projects">
+        <div class="category-header-top">
+          <span class="category-eyebrow">Full-Stack &amp; AI Systems</span>
+          <span class="category-count-badge">4 Projects</span>
+        </div>
+        <h3 class="category-title">Projects</h3>
+        <p class="category-desc">Distributed backend services, intelligent developer tooling, predictive analytics, and scalable web apps.</p>
+        <div class="category-divider"></div>
+      </div>
 
       <div class="project-list">
-        <div class="card project-card gsap-reveal-clip">
-          <div class="project-header">
-            <h3 class="project-title">Pennool <span
-                style="font-size:0.75rem; color:var(--accent); border:1px solid rgba(0,229,255,0.3); padding:2px 8px; border-radius:4px; margin-left:10px; vertical-align:middle; font-weight:400; text-transform:uppercase; letter-spacing:1px; font-family:var(--font-body);">Freelance
-                Client</span> <span
-                style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:8px;">2026</span></h3>
-            <div class="project-links">
-              <a href="http://pennool.in" target="_blank" class="p-link">Live Site</a>
-            </div>
-          </div>
-          <div class="project-tags">
-            <span class="tag">Freelance</span><span class="tag">E-Commerce</span><span
-              class="tag">JavaScript</span><span class="tag">HTML5 / CSS3</span><span class="tag">Razorpay</span><span
-              class="tag">Google OAuth</span><span class="tag">SEO / JSON-LD</span>
-          </div>
-          <ul class="project-desc">
-            <li>Designed and developed the official production website for <strong>Pennool</strong> (<a
-                href="http://pennool.in" target="_blank"
-                style="color:var(--accent); text-decoration:none;">pennool.in</a>), an ethnic wear brand offering
-              pan-India delivery.</li>
-            <li>Built an end-to-end shopping experience featuring curated product showcases, dynamic hero carousel,
-              interactive shopping cart, and wishlist management.</li>
-            <li>Integrated secure checkout workflows with <strong>Razorpay payment gateway</strong> and seamless
-              <strong>Google OAuth</strong> (Identity Services) user authentication.</li>
-            <li>Engineered a high-performance, mobile-first responsive interface with structured JSON-LD schema for
-              pan-India retail SEO discovery.</li>
-          </ul>
-        </div>
-
         <div class="card project-card gsap-reveal-clip">
           <div class="project-header">
             <h3 class="project-title">PR Reviewer <span
@@ -1854,7 +2148,62 @@
             </li>
           </ul>
         </div>
+      </div>
 
+      <!-- HEAD 2: FREELANCE -->
+      <div class="project-category-head gsap-fade with-margin-top" id="head-freelance">
+        <div class="category-header-top">
+          <span class="category-eyebrow">Client Production</span>
+          <span class="category-count-badge">1 Project</span>
+        </div>
+        <h3 class="category-title">Freelance</h3>
+        <p class="category-desc">Commercial client delivery, end-to-end e-commerce architecture, and live retail platforms.</p>
+        <div class="category-divider"></div>
+      </div>
+
+      <div class="project-list">
+        <div class="card project-card gsap-reveal-clip">
+          <div class="project-header">
+            <h3 class="project-title">Pennool <span
+                style="font-size:0.75rem; color:var(--accent); border:1px solid rgba(0,229,255,0.3); padding:2px 8px; border-radius:4px; margin-left:10px; vertical-align:middle; font-weight:400; text-transform:uppercase; letter-spacing:1px; font-family:var(--font-body);">Freelance
+                Client</span> <span
+                style="font-size:1rem; color:var(--text-secondary); font-weight:300; margin-left:8px;">2026</span></h3>
+            <div class="project-links">
+              <a href="http://pennool.in" target="_blank" class="p-link">Live Site</a>
+            </div>
+          </div>
+          <div class="project-tags">
+            <span class="tag">Freelance</span><span class="tag">E-Commerce</span><span
+              class="tag">JavaScript</span><span class="tag">HTML5 / CSS3</span><span class="tag">Razorpay</span><span
+              class="tag">Google OAuth</span><span class="tag">SEO / JSON-LD</span>
+          </div>
+          <ul class="project-desc">
+            <li>Designed and developed the official production website for <strong>Pennool</strong> (<a
+                href="http://pennool.in" target="_blank"
+                style="color:var(--accent); text-decoration:none;">pennool.in</a>), an ethnic wear brand offering
+              pan-India delivery.</li>
+            <li>Built an end-to-end shopping experience featuring curated product showcases, dynamic hero carousel,
+              interactive shopping cart, and wishlist management.</li>
+            <li>Integrated secure checkout workflows with <strong>Razorpay payment gateway</strong> and seamless
+              <strong>Google OAuth</strong> (Identity Services) user authentication.</li>
+            <li>Engineered a high-performance, mobile-first responsive interface with structured JSON-LD schema for
+              pan-India retail SEO discovery.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- HEAD 3: APK -->
+      <div class="project-category-head gsap-fade with-margin-top" id="head-apk">
+        <div class="category-header-top">
+          <span class="category-eyebrow">Mobile &amp; Game Engineering</span>
+          <span class="category-count-badge">1 APK Build</span>
+        </div>
+        <h3 class="category-title">APK</h3>
+        <p class="category-desc">Cross-platform mobile applications, custom real-time game loops, and direct installable Android packages.</p>
+        <div class="category-divider"></div>
+      </div>
+
+      <div class="project-list">
         <div class="card project-card gsap-reveal-clip">
           <div class="project-header">
             <h3 class="project-title">
@@ -1892,86 +2241,79 @@
     </div>
   </section>
 
-  <section id="experience">
+
+  <section id="skills">
     <div class="container">
-      <span class="section-eyebrow gsap-fade">Journey</span>
-      <h2 class="section-heading gsap-fade">Experience & Education</h2>
+      <span class="section-eyebrow gsap-fade">Skills</span>
+      <h2 class="section-heading gsap-fade">Technology Stack</h2>
+
+      <div class="skills-wrapper">
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Languages</h4>
+          <div class="skill-tags"><span class="tag">Java</span><span class="tag">Python</span><span
+              class="tag">JavaScript</span></div>
+        </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Frontend</h4>
+          <div class="skill-tags"><span class="tag">React.js</span><span class="tag">HTML5</span><span
+              class="tag">CSS3</span><span class="tag">Tailwind CSS</span></div>
+        </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Backend</h4>
+          <div class="skill-tags"><span class="tag">Spring Boot</span><span class="tag">Node.js</span><span
+              class="tag">REST APIs</span><span class="tag">FastAPI</span></div>
+        </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Databases</h4>
+          <div class="skill-tags"><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span
+              class="tag">MongoDB</span></div>
+        </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Tools</h4>
+          <div class="skill-tags"><span class="tag">Git & GitHub</span><span class="tag">Docker</span><span
+              class="tag">Render</span><span class="tag">Cloudinary</span><span class="tag">Vercel</span><span
+              class="tag">Razorpay</span></div>
+        </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">AI / ML</h4>
+          <div class="skill-tags"><span class="tag">LLM Integration</span><span class="tag">Gemini AI</span></div>
+        </div>
+        <div class="skill-box gsap-fade">
+          <h4 class="skill-title">Concepts</h4>
+          <div class="skill-tags"><span class="tag">DSA</span><span class="tag">OOP</span><span
+              class="tag">DBMS</span><span class="tag">OS</span><span class="tag">JWT</span><span
+              class="tag">WebSocket</span><span class="tag">API Integration</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="activities">
+    <div class="container">
+      <span class="section-eyebrow gsap-fade">Beyond Code</span>
+      <h2 class="section-heading gsap-fade">Interests & Activities</h2>
 
       <div class="grid-2">
         <div class="gsap-fade">
-          <div class="exp-item">
-            <div style="display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:8px;">
-              <h3 class="exp-title">Freelance Full-Stack Developer</h3>
-              <a href="http://pennool.in" target="_blank" class="p-link" style="font-size:0.8rem; margin:0;">pennool.in
-                &nearr;</a>
+          <h3
+            style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">
+            Area of Interest</h3>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+            <div class="activity-box">
+              <h4 class="activity-title">Backend Engineering</h4>
             </div>
-            <span class="exp-meta">Pennool | 2026</span>
-            <div class="skill-tags" style="margin-bottom: 14px;">
-              <span class="tag">Pennool.in</span>
-              <span class="tag">E-Commerce</span>
-              <span class="tag">Razorpay</span>
-              <span class="tag">Google OAuth</span>
-              <span class="tag">SEO / JSON-LD</span>
+            <div class="activity-box">
+              <h4 class="activity-title">Full Stack Development</h4>
             </div>
-            <ul
-              style="font-size:0.95rem; color:var(--text-secondary); font-weight:300; list-style:none; padding-left:0;">
-              <li style="margin-bottom:8px;">&bull; Developed and launched the production e-commerce website for Pennool
-                (<a href="http://pennool.in" target="_blank"
-                  style="color:var(--accent); text-decoration:none;">pennool.in</a>) delivering modern ethnic wear
-                across India.</li>
-              <li style="margin-bottom:8px;">&bull; Built the full storefront experience including dynamic product
-                catalog, interactive cart, wishlist, and customer accounts.</li>
-              <li style="margin-bottom:8px;">&bull; Integrated Razorpay payment gateway for secure transactions and
-                Google Identity Services for frictionless authentication.</li>
-              <li>&bull; Implemented responsive mobile-optimized UI, fast-loading media assets, and SEO structured
-                schemas.</li>
-            </ul>
-          </div>
-          <div class="exp-item" style="border-left-color:transparent;">
-            <h3 class="exp-title">AI Intern</h3>
-            <span class="exp-meta">Gateway Software Solutions | June 2025</span>
-            <div class="skill-tags" style="margin-bottom: 14px;">
-              <span class="tag">DeepSeek AI</span>
-              <span class="tag">Mistral API</span>
-              <span class="tag">Python</span>
-              <span class="tag">AgriTech Workflows</span>
+            <div class="activity-box">
+              <h4 class="activity-title">Web Development</h4>
             </div>
-            <ul
-              style="font-size:0.95rem; color:var(--text-secondary); font-weight:300; list-style:none; padding-left:0;">
-              <li style="margin-bottom:8px;">&bull; Developed a real-time crop suitability prediction system using
-                DeepSeek and Mistral APIs.</li>
-              <li style="margin-bottom:8px;">&bull; Processed agricultural datasets and integrated AI-based
-                recommendation workflows.</li>
-              <li>&bull; Collaborated on backend integration and scalable AI-driven data processing.</li>
-            </ul>
+            <div class="activity-box">
+              <h4 class="activity-title">AI Engineer</h4>
+            </div>
           </div>
         </div>
-        <div class="gsap-fade">
-          <div class="exp-item">
-            <h3 class="exp-title">B.E. Computer Science</h3>
-            <span class="exp-meta">Dr. NGP Institute of Technology | 2023 - Present</span>
-            <div class="skill-tags" style="margin: 12px 0 14px 0;">
-              <span class="tag">CGPA: 7.74</span>
-              <span class="tag">Data Structures</span>
-              <span class="tag">Algorithms</span>
-              <span class="tag">Web Architecture</span>
-              <span class="tag">AI Technologies</span>
-            </div>
-            <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Current CGPA: 7.74. Focusing on
-              Data Structures, Algorithms, Web Development, and AI technologies.</p>
-          </div>
-          <div class="exp-item" style="border-left-color:transparent;">
-            <h3 class="exp-title">HSC</h3>
-            <span class="exp-meta">AVP Trust National Matric School | 2023</span>
-            <div class="skill-tags" style="margin: 12px 0 14px 0;">
-              <span class="tag">CS: 100/100</span>
-              <span class="tag">83% Overall</span>
-              <span class="tag">AVP Trust</span>
-            </div>
-            <p style="font-size:0.95rem; color:var(--text-secondary); font-weight:300;">Scored 83% overall with a
-              perfect 100/100 in Computer Science.</p>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
@@ -2090,106 +2432,6 @@
             <span class="tag">Bentley</span>
             <span class="tag">2024</span>
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="activities">
-    <div class="container">
-      <span class="section-eyebrow gsap-fade">Beyond Code</span>
-      <h2 class="section-heading gsap-fade">Interests & Activities</h2>
-
-      <div class="grid-2">
-        <div class="gsap-fade">
-          <h3
-            style="font-family:var(--font-heading); font-size:1.1rem; color:var(--accent); text-transform:uppercase; letter-spacing:2px; margin-bottom:24px; font-weight:500;">
-            Area of Interest</h3>
-          <div style="display:flex; flex-direction:column; gap:16px;">
-            <div class="activity-box">
-              <h4 class="activity-title" style="margin-bottom:12px;">Backend Engineering</h4>
-              <div class="skill-tags">
-                <span class="tag">Spring Boot</span>
-                <span class="tag">REST APIs</span>
-                <span class="tag">Microservices</span>
-                <span class="tag">Database Architecture</span>
-              </div>
-            </div>
-            <div class="activity-box">
-              <h4 class="activity-title" style="margin-bottom:12px;">Full Stack Development</h4>
-              <div class="skill-tags">
-                <span class="tag">End-to-End Systems</span>
-                <span class="tag">React &amp; Node</span>
-                <span class="tag">Responsive UI</span>
-                <span class="tag">Payment &amp; Auth</span>
-              </div>
-            </div>
-            <div class="activity-box">
-              <h4 class="activity-title" style="margin-bottom:12px;">Web Development</h4>
-              <div class="skill-tags">
-                <span class="tag">Modern HTML5/CSS3</span>
-                <span class="tag">State Management</span>
-                <span class="tag">Performance &amp; SEO</span>
-                <span class="tag">Cloud Deployment</span>
-              </div>
-            </div>
-            <div class="activity-box">
-              <h4 class="activity-title" style="margin-bottom:12px;">AI Engineer</h4>
-              <div class="skill-tags">
-                <span class="tag">LLM Integration</span>
-                <span class="tag">Gemini API</span>
-                <span class="tag">Agentic Workflows</span>
-                <span class="tag">Prompt Engineering</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <div class="container">
-      <span class="section-eyebrow gsap-fade">Skills</span>
-      <h2 class="section-heading gsap-fade">Technology Stack</h2>
-
-      <div class="skills-wrapper">
-        <div class="skill-box gsap-fade">
-          <h4 class="skill-title">Languages</h4>
-          <div class="skill-tags"><span class="tag">Java</span><span class="tag">Python</span><span
-              class="tag">JavaScript</span></div>
-        </div>
-        <div class="skill-box gsap-fade">
-          <h4 class="skill-title">Frontend</h4>
-          <div class="skill-tags"><span class="tag">React.js</span><span class="tag">HTML5</span><span
-              class="tag">CSS3</span><span class="tag">Tailwind CSS</span></div>
-        </div>
-        <div class="skill-box gsap-fade">
-          <h4 class="skill-title">Backend</h4>
-          <div class="skill-tags"><span class="tag">Spring Boot</span><span class="tag">Node.js</span><span
-              class="tag">REST APIs</span><span class="tag">FastAPI</span></div>
-        </div>
-        <div class="skill-box gsap-fade">
-          <h4 class="skill-title">Databases</h4>
-          <div class="skill-tags"><span class="tag">PostgreSQL</span><span class="tag">MySQL</span><span
-              class="tag">MongoDB</span></div>
-        </div>
-        <div class="skill-box gsap-fade">
-          <h4 class="skill-title">Tools</h4>
-          <div class="skill-tags"><span class="tag">Git & GitHub</span><span class="tag">Docker</span><span
-              class="tag">Render</span><span class="tag">Cloudinary</span><span class="tag">Vercel</span><span
-              class="tag">Razorpay</span></div>
-        </div>
-        <div class="skill-box gsap-fade">
-          <h4 class="skill-title">AI / ML</h4>
-          <div class="skill-tags"><span class="tag">LLM Integration</span><span class="tag">Gemini AI</span></div>
-        </div>
-        <div class="skill-box gsap-fade">
-          <h4 class="skill-title">Concepts</h4>
-          <div class="skill-tags"><span class="tag">DSA</span><span class="tag">OOP</span><span
-              class="tag">DBMS</span><span class="tag">OS</span><span class="tag">JWT</span><span
-              class="tag">WebSocket</span><span class="tag">API Integration</span></div>
         </div>
       </div>
     </div>
@@ -2380,35 +2622,101 @@
       }
     });
 
-    // -- Custom Cursor --
-    if (window.innerWidth >= 768) {
-      const dot = document.querySelector('.cursor-dot');
-      const outline = document.querySelector('.cursor-outline');
-      let mouseX = 0, mouseY = 0;
-      let outlineX = 0, outlineY = 0;
-
-      document.body.style.cursor = 'none';
-      document.querySelectorAll('a, button, input, textarea').forEach(el => {
-        el.style.cursor = 'none';
+    // Project category pills: smooth scroll & scroll-spy
+    const projPills = document.querySelectorAll('.proj-nav-pill');
+    const projHeads = document.querySelectorAll('.project-category-head');
+    projPills.forEach(pill => {
+      pill.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = pill.getAttribute('href');
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          if (typeof lenis !== 'undefined' && lenis) {
+            lenis.scrollTo(targetEl, { offset: -90 });
+          } else {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+          projPills.forEach(p => p.classList.remove('active'));
+          pill.classList.add('active');
+        }
       });
+    });
+
+    if (projHeads.length && projPills.length) {
+      window.addEventListener('scroll', () => {
+        let currentHeadId = '';
+        projHeads.forEach(head => {
+          const rect = head.getBoundingClientRect();
+          if (rect.top <= 240) {
+            currentHeadId = head.getAttribute('id');
+          }
+        });
+        if (currentHeadId) {
+          projPills.forEach(p => {
+            if (p.getAttribute('href') === '#' + currentHeadId) {
+              p.classList.add('active');
+            } else {
+              p.classList.remove('active');
+            }
+          });
+        }
+      }, { passive: true });
+    }
+
+    // -- Futuristic Cyber Precision Pointer UI --
+    if (window.innerWidth >= 768) {
+      const pointer = document.getElementById('cursorPointer');
+      let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+      let isVisible = false;
 
       window.addEventListener('mousemove', e => {
         mouseX = e.clientX;
         mouseY = e.clientY;
-        dot.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+        pointer.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0)`;
+        if (!isVisible) {
+          isVisible = true;
+          pointer.style.opacity = '1';
+        }
       });
 
-      function animateCursor() {
-        outlineX += (mouseX - outlineX) * 0.15;
-        outlineY += (mouseY - outlineY) * 0.15;
-        outline.style.transform = `translate(${outlineX}px, ${outlineY}px)`;
-        requestAnimationFrame(animateCursor);
-      }
-      animateCursor();
+      window.addEventListener('mouseenter', () => {
+        pointer.style.opacity = '1';
+      });
 
-      document.querySelectorAll('a, button, input, textarea, .card, .skill-box, .stat, .lc-modern-card, .exp-item, .activity-box, .c-link-item, .tag, .p-link, .lc-mini-item, .lc-bar-item, .project-desc li, .exp-item ul li, .achievement-item').forEach(el => {
-        el.addEventListener('mouseenter', () => { outline.classList.add('hover'); });
-        el.addEventListener('mouseleave', () => { outline.classList.remove('hover'); });
+      window.addEventListener('mouseleave', () => {
+        pointer.style.opacity = '0';
+      });
+
+      window.addEventListener('mousedown', () => {
+        pointer.classList.add('clicking');
+      });
+
+      window.addEventListener('mouseup', () => {
+        pointer.classList.remove('clicking');
+      });
+
+      const hoverTargets = document.querySelectorAll(
+        'a, button, [role="button"], .btn, .card, .skill-box, .stat, .lc-modern-card, ' +
+        '.exp-item, .activity-box, .c-link-item, .tag, .p-link, .lc-mini-item, ' +
+        '.lc-bar-item, .project-desc li, .exp-item ul li, .achievement-item, .proj-nav-pill, .nav-logo, .nav-toggle, .theme-toggle'
+      );
+
+      hoverTargets.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          pointer.classList.add('hover');
+        });
+        el.addEventListener('mouseleave', () => {
+          pointer.classList.remove('hover');
+        });
+      });
+
+      document.querySelectorAll('input, textarea').forEach(el => {
+        el.addEventListener('mouseenter', () => {
+          pointer.classList.add('text-mode');
+        });
+        el.addEventListener('mouseleave', () => {
+          pointer.classList.remove('text-mode');
+        });
       });
     }
 
